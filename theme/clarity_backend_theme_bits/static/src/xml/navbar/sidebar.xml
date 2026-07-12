@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <!-- Extend web.NavBar -->
+    <!-- Community navbar: anchor before AppsMenu (DropdownItem is removed in Enterprise). -->
     <t t-inherit="web.NavBar" t-inherit-mode="extension" owl="1">
-        <xpath expr="//DropdownItem[@t-if='!env.isSmall and currentApp']" position="before">
+        <xpath expr="//t[@t-call='web.NavBar.AppsMenu']" position="before">
             <div class="sidebar-toggler d-flex align-items-center p-2 ms-2">
                 <a href="javascript:;" class="sidebar-toggle-bits" t-on-click="toggleSidebar">
                     <i class="toggle fa fa-bars fa-2x"/>
                     <i class="back-arrow oi oi-chevron-left fa-2x chevron-toggle"/>
                 </a>
                 <t t-if="currentApp">
-                    <h4 class="mb-0 current_app" ><t t-esc="currentApp.name"/></h4>
+                    <h4 class="mb-0 current_app"><t t-esc="currentApp.name"/></h4>
                 </t>
             </div>
         </xpath>
-        <xpath expr="//DropdownItem[@t-if='!env.isSmall and currentApp']" position="replace"/>
+        <xpath expr="//DropdownItem[@t-esc='currentApp.name']" position="replace"/>
         <xpath expr="//t[t[@t-call='web.NavBar.SectionsMenu']]" position="replace"/>
         <xpath expr="//t[@t-call='web.NavBar.AppsMenu']" position="replace"/>
+    </t>
+
+    <!-- Enterprise replaces AppsMenu/app brand; hide duplicate app title in menu toggle. -->
+    <t t-inherit="web_enterprise.EnterpriseNavBar" t-inherit-mode="extension" owl="1">
+        <xpath expr="//span[@t-esc='currentApp.name'][contains(@class, 'o_menu_brand')]" position="replace"/>
     </t>
     <t t-name="CustomAppsMenu" owl="1">
         <nav role="navigation" class="primary-nav menu o_main_navbar" data-command-category="disabled">
