@@ -97,6 +97,9 @@ header a.btn-primary,
     border: 2px solid transparent;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+    z-index: 2;
 }
 
 .kad-btn:hover {
@@ -152,6 +155,7 @@ header a.btn-primary,
         radial-gradient(ellipse 80% 60% at 15% 20%, rgba(111, 207, 58, 0.28), transparent 55%),
         radial-gradient(ellipse 70% 50% at 85% 75%, rgba(47, 122, 239, 0.35), transparent 50%),
         var(--kad-grad-blue);
+    pointer-events: none;
 }
 
 .kad-hero__bg::after {
@@ -178,7 +182,17 @@ header a.btn-primary,
 
 .kad-hero__copy {
     max-width: 760px;
-    animation: kadFadeUp 0.85s ease both;
+}
+
+.kad-js-ready .kad-hero__copy.kad-reveal:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(28px);
+}
+
+.kad-js-ready .kad-hero__copy.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.85s ease, transform 0.85s ease;
 }
 
 .kad-hero__logo {
@@ -219,6 +233,8 @@ header a.btn-primary,
 }
 
 .kad-hero__actions {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-wrap: wrap;
     gap: 0.85rem;
@@ -598,27 +614,24 @@ header a.btn-primary,
     color: rgba(255, 255, 255, 0.65);
 }
 
-/* Motion */
-@keyframes kadFadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(28px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.kad-reveal {
+/* Motion — only hide while waiting for reveal after JS boots */
+.kad-js-ready .kad-reveal {
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.kad-reveal.is-visible {
+.kad-js-ready .kad-reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .kad-js-ready .kad-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 /* Responsive */
