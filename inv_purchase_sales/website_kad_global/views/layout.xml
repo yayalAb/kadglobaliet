@@ -72,17 +72,4 @@
             </div>
         </xpath>
     </template>
-
-    <!-- Force KAD logo in the navbar -->
-    <template id="kad_header_logo" inherit_id="website.option_header_brand_logo" name="KAD Navbar Logo">
-        <xpath expr="//a[hasclass('navbar-brand')]" position="replace">
-            <a data-name="Navbar Logo" href="/" class="navbar-brand logo">
-                <img src="/website_kad_global/static/src/img/kad_logo.png"
-                     alt="KAD Import &amp; Export"
-                     class="img img-fluid kad-brand__logo"
-                     width="160"
-                     height="56"/>
-            </a>
-        </xpath>
-    </template>
 </odoo>
