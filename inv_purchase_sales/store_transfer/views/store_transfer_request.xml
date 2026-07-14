@@ -105,5 +105,5 @@
     </record>
 
     <menuitem id="menu_store_transfer_request" name="Transfer Requests"
-        parent="store_request.menu_store_request_root" action="action_store_transfer_request" />
+        parent="store_request.menu_store_request" action="action_store_transfer_request" />
 </odoo>
