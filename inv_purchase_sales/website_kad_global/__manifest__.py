@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'KAD Global Website',
-    'version': '18.0.1.0.4',
+    'version': '18.0.1.4.3',
     'summary': 'Custom public website for KAD Import & Export',
     'description': """
         Branded Odoo website for Kalkidan Abebaw Derso Import & Export (KADIE).
@@ -17,6 +17,8 @@
     'license': 'LGPL-3',
     'depends': ['website'],
     'data': [
+        'data/unlock_homepage.xml',
+        'views/homepage_body.xml',
         'views/layout.xml',
         'views/thanks.xml',
         'data/pages/home.xml',
@@ -28,6 +30,7 @@
             'website_kad_global/static/src/js/kad_website.js',
         ],
     },
+    'post_init_hook': 'post_init_hook',
     'installable': True,
     'application': False,
 }
