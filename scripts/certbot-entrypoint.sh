@@ -1,14 +1,14 @@
 #!/bin/sh
 set -e
 
-DOMAIN="${SSL_DOMAIN:-redfox.loyalitsolution.com}"
+DOMAIN="${SSL_DOMAIN:-kadglobaltrading.com}"
 EMAIL="${CERTBOT_EMAIL:-admin@${DOMAIN}}"
 WEBROOT=/var/www/certbot
 CERT="/etc/letsencrypt/live/${DOMAIN}/fullchain.pem"
 RETRY_SECONDS="${CERTBOT_RETRY_SECONDS:-300}"
 RENEW_INTERVAL="${CERTBOT_RENEW_INTERVAL:-43200}"
 
-echo "Certbot: domain=${DOMAIN} email=${EMAIL}"
+echo "Certbot: domain=${DOMAIN} www.${DOMAIN} email=${EMAIL}"
 
 # Nginx must be up to answer the ACME webroot challenge
 sleep 15
@@ -17,10 +17,12 @@ request_certificate() {
     certbot certonly --webroot \
         -w "$WEBROOT" \
         -d "$DOMAIN" \
+        -d "www.${DOMAIN}" \
         --email "$EMAIL" \
         --agree-tos \
         --non-interactive \
-        --keep-until-expiring
+        --keep-until-expiring \
+        --expand
 }
 
 if [ ! -f "$CERT" ]; then
