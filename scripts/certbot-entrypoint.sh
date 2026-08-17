@@ -1,6 +1,9 @@
 #!/bin/sh
 set -e
 
+# Show logs immediately when stdout is not a TTY (docker compose logs)
+export PYTHONUNBUFFERED=1
+
 DOMAIN="${SSL_DOMAIN:-kadglobaltrading.com}"
 EMAIL="${CERTBOT_EMAIL:-admin@${DOMAIN}}"
 WEBROOT=/var/www/certbot
@@ -11,7 +14,9 @@ RENEW_INTERVAL="${CERTBOT_RENEW_INTERVAL:-43200}"
 echo "Certbot: domain=${DOMAIN} www.${DOMAIN} email=${EMAIL}"
 
 # Nginx must be up to answer the ACME webroot challenge
+echo "Certbot: waiting 15s for nginx..."
 sleep 15
+echo "Certbot: nginx wait complete"
 
 request_certificate() {
     certbot certonly --webroot \
@@ -32,7 +37,11 @@ if [ ! -f "$CERT" ]; then
         sleep "$RETRY_SECONDS"
     done
     echo "Certbot: initial certificate obtained"
+else
+    echo "Certbot: existing certificate found at ${CERT}"
 fi
+
+echo "Certbot: watching for renewals every ${RENEW_INTERVAL}s"
 
 while true; do
     sleep "$RENEW_INTERVAL"
