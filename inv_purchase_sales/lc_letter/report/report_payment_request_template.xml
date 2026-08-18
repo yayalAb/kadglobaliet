@@ -3,6 +3,9 @@
     <template id="report_payment_request_document">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
+                <t t-set="doc_title" t-value="'Payment Request'" />
+                <t t-set="doc_number" t-value="doc.doc_no or doc.order_no or ''" />
+                <t t-set="issue_number" t-value="'1'" />
                 <t t-call="web.external_layout">
                     <div class="page" style="font-family: Arial, Helvetica, sans-serif; max-width: 800px; margin: 0 auto; font-size: 16px; line-height: 1.5;">
                         <div style="margin-bottom: 10px;">
