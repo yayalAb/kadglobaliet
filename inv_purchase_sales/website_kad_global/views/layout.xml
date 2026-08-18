@@ -13,6 +13,14 @@
         <xpath expr="//div[@id='wrapwrap']" position="attributes">
             <attribute name="class" add="kad-wrapwrap" separator=" "/>
         </xpath>
+        <xpath expr="//div[@id='wrapwrap']" position="inside">
+            <nav class="kad-float" aria-label="Quick contact">
+                <a class="kad-float__call" href="tel:+251911357216" title="Call">Call</a>
+                <a class="kad-float__wa" href="https://wa.me/251911357216" target="_blank" rel="noopener" title="WhatsApp">WA</a>
+                <a class="kad-float__mail" href="mailto:info@kadglobaltrading.com" title="Email">Mail</a>
+                <a class="kad-float__top" href="#top" title="Back to top">Top</a>
+            </nav>
+        </xpath>
     </template>
 
     <!-- Custom branded footer -->
@@ -32,23 +40,24 @@
                             </p>
                         </div>
                         <div class="col-6 col-lg-2">
-                            <h5 class="kad-footer__title">Quick Links</h5>
+                            <h5 class="kad-footer__title">Company</h5>
                             <ul class="kad-footer__list">
-                                <li><a href="/#about">About</a></li>
+                                <li><a href="/#about">About Us</a></li>
                                 <li><a href="/#services">Services</a></li>
-                                <li><a href="/#exports">Exports</a></li>
-                                <li><a href="/#imports">Imports</a></li>
+                                <li><a href="/#products">Products</a></li>
+                                <li><a href="/#markets">Global Markets</a></li>
+                                <li><a href="/#news">News</a></li>
                                 <li><a href="/#contact">Contact</a></li>
                             </ul>
                         </div>
                         <div class="col-6 col-lg-3">
                             <h5 class="kad-footer__title">Products</h5>
                             <ul class="kad-footer__list">
-                                <li>Fruits &amp; Vegetables</li>
-                                <li>Oilseeds &amp; Pulses</li>
-                                <li>Livestock &amp; Spices</li>
-                                <li>Construction Materials</li>
-                                <li>Steel &amp; Rebars</li>
+                                <li><a href="/#exports">Sesame, Soya &amp; Pulses</a></li>
+                                <li><a href="/#exports">Fresh Produce &amp; Livestock</a></li>
+                                <li><a href="/#imports">Glass &amp; Steel</a></li>
+                                <li><a href="/#imports">Industrial Raw Materials</a></li>
+                                <li><a href="/#quote">Request a Quote</a></li>
                             </ul>
                         </div>
                         <div class="col-lg-3">
@@ -57,6 +66,7 @@
                                 <li>Addis Ababa, Ethiopia</li>
                                 <li><a href="tel:+251911357216">+251 911 357 216</a></li>
                                 <li><a href="tel:+251911205428">+251 911 205 428</a></li>
+                                <li><a href="https://wa.me/251911357216" target="_blank" rel="noopener">WhatsApp</a></li>
                                 <li><a href="mailto:info@kadglobaltrading.com">info@kadglobaltrading.com</a></li>
                                 <li>Mon–Sat · 8:00 AM – 6:00 PM</li>
                             </ul>
@@ -65,8 +75,8 @@
                 </div>
                 <div class="kad-footer__bar">
                     <div class="container d-flex flex-wrap justify-content-between gap-2">
-                        <span>© 2026 KAD Import &amp; Export</span>
-                        <span>Bridging Markets, Connecting Worlds</span>
+                        <span>© 2026 KAD Import &amp; Export PLC</span>
+                        <span>Powered by Odoo · Bridging Markets, Connecting Worlds</span>
                     </div>
                 </div>
             </div>

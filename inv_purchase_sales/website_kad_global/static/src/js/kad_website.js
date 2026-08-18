@@ -96,6 +96,8 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
         this._bindGlobalAnchors();
         this._bindScrollChrome();
         this._bindParallax();
+        this._setupHeroSlider();
+        this._setupBackToTop();
         return this._super(...arguments);
     },
 
@@ -110,6 +112,9 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
         }
         if (this._pointerHandler) {
             this.el.removeEventListener("pointermove", this._pointerHandler);
+        }
+        if (this._heroTimer) {
+            window.clearInterval(this._heroTimer);
         }
         return this._super(...arguments);
     },
@@ -180,6 +185,35 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
             });
         };
         this.el.addEventListener("pointermove", this._pointerHandler, { passive: true });
+    },
+
+    _setupHeroSlider() {
+        const slides = [...this.el.querySelectorAll(".kad-hero__slides .kad-hero__photo")];
+        if (slides.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            return;
+        }
+        let index = 0;
+        this._heroTimer = window.setInterval(() => {
+            slides[index].classList.remove("is-active");
+            index = (index + 1) % slides.length;
+            slides[index].classList.add("is-active");
+        }, 5500);
+    },
+
+    _setupBackToTop() {
+        const btn = document.querySelector(".kad-float__top");
+        if (!btn) {
+            return;
+        }
+        btn.addEventListener("click", (event) => {
+            event.preventDefault();
+            const root = getScrollRoot();
+            if (root === document.body || root === document.documentElement || root === document.scrollingElement) {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+                root.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        });
     },
 
     _setupReveals() {

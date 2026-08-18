@@ -2,13 +2,14 @@
 <odoo>
     <template id="homepage_body" name="KAD Homepage Body">
 
-        <!-- HERO — full-bleed trade photography -->
+        <!-- HERO -->
         <section class="kad-hero kad-style kad-style--cinematic">
             <div class="kad-hero__media" aria-hidden="true">
-                <img src="/website_kad_global/static/src/img/hero_port.jpg"
-                     alt=""
-                     class="kad-hero__photo"
-                     loading="eager"/>
+                <div class="kad-hero__slides">
+                    <img src="/website_kad_global/static/src/img/hero_port.jpg" alt="" class="kad-hero__photo is-active" loading="eager"/>
+                    <img src="/website_kad_global/static/src/img/containers.jpg" alt="" class="kad-hero__photo" loading="lazy"/>
+                    <img src="/website_kad_global/static/src/img/cargo_ship.jpg" alt="" class="kad-hero__photo" loading="lazy"/>
+                </div>
                 <div class="kad-hero__shade"/>
                 <span class="kad-orb kad-orb--1"/>
                 <span class="kad-orb kad-orb--2"/>
@@ -32,88 +33,101 @@
 
                 <div class="kad-hero__copy kad-hero__copy--wide">
                     <h1 class="kad-hero__title" data-kad-anim="fade-up" data-kad-delay="140">
-                        Bridging Markets,<br/>
-                        <span class="kad-hero__title-accent">Connecting Worlds.</span>
+                        Connecting Ethiopia <span class="kad-hero__title-accent">to Global Markets.</span>
                     </h1>
                     <p class="kad-hero__lead" data-kad-anim="fade-up" data-kad-delay="220">
-                        Connecting Ethiopian products with global markets while delivering
-                        high-quality imported goods for industrial, commercial, and construction sectors.
+                        We export premium Ethiopian agricultural products and import high-quality
+                        industrial, construction, and commercial products from trusted international suppliers.
                     </p>
                     <div class="kad-hero__actions" data-kad-anim="fade-up" data-kad-delay="300">
-                        <a href="#contact" class="kad-btn kad-btn--primary">
-                            <span>Get Quote</span>
+                        <a href="#quote" class="kad-btn kad-btn--primary">
+                            <span>Request a Quote</span>
                             <span class="kad-btn__shine" aria-hidden="true"/>
                         </a>
-                        <a href="#about" class="kad-btn kad-btn--ghost">Learn More</a>
+                        <a href="#products" class="kad-btn kad-btn--ghost">Explore Products</a>
                     </div>
                     <div class="kad-hero__chips" data-kad-anim="fade-up" data-kad-delay="380">
-                        <span class="kad-chip">Export</span>
-                        <span class="kad-chip">Import</span>
-                        <span class="kad-chip">Logistics</span>
-                        <span class="kad-chip">Global Trade</span>
+                        <span class="kad-chip">Licensed Trader</span>
+                        <span class="kad-chip">10+ Years</span>
+                        <span class="kad-chip">Export &amp; Import</span>
+                        <span class="kad-chip">Quality Assured</span>
                     </div>
                 </div>
             </div>
             <div class="kad-hero__scroll" aria-hidden="true"><span/></div>
         </section>
 
-        <!-- MARQUEE — animated trade chips -->
+        <!-- MARQUEE -->
         <section class="kad-marquee" aria-label="Trade focus areas">
             <div class="kad-marquee__fade kad-marquee__fade--left" aria-hidden="true"/>
             <div class="kad-marquee__fade kad-marquee__fade--right" aria-hidden="true"/>
             <div class="kad-marquee__row">
                 <div class="kad-marquee__track kad-marquee__track--left">
-                    <span class="kad-pill">Oilseeds</span>
-                    <span class="kad-pill">Pulses</span>
-                    <span class="kad-pill">Spices</span>
-                    <span class="kad-pill">Flowers</span>
-                    <span class="kad-pill">Livestock</span>
+                    <span class="kad-pill">Sesame</span>
+                    <span class="kad-pill">Soya Beans</span>
+                    <span class="kad-pill">Niger Seed</span>
+                    <span class="kad-pill">Chickpeas</span>
+                    <span class="kad-pill">Green Mung</span>
                     <span class="kad-pill kad-pill--accent">Export</span>
-                    <span class="kad-pill">Glass</span>
-                    <span class="kad-pill">Steel</span>
-                    <span class="kad-pill">Machinery</span>
-                    <span class="kad-pill">Chemicals</span>
+                    <span class="kad-pill">Avocado</span>
+                    <span class="kad-pill">Onion</span>
+                    <span class="kad-pill">Mango</span>
+                    <span class="kad-pill">Livestock</span>
                     <span class="kad-pill kad-pill--accent">Import</span>
-                    <span class="kad-pill">Oilseeds</span>
-                    <span class="kad-pill">Pulses</span>
-                    <span class="kad-pill">Spices</span>
-                    <span class="kad-pill">Flowers</span>
-                    <span class="kad-pill">Livestock</span>
+                    <span class="kad-pill">Sesame</span>
+                    <span class="kad-pill">Soya Beans</span>
+                    <span class="kad-pill">Niger Seed</span>
+                    <span class="kad-pill">Chickpeas</span>
+                    <span class="kad-pill">Green Mung</span>
                     <span class="kad-pill kad-pill--accent">Export</span>
-                    <span class="kad-pill">Glass</span>
-                    <span class="kad-pill">Steel</span>
-                    <span class="kad-pill">Machinery</span>
-                    <span class="kad-pill">Chemicals</span>
+                    <span class="kad-pill">Avocado</span>
+                    <span class="kad-pill">Onion</span>
+                    <span class="kad-pill">Mango</span>
+                    <span class="kad-pill">Livestock</span>
                     <span class="kad-pill kad-pill--accent">Import</span>
                 </div>
             </div>
             <div class="kad-marquee__row">
                 <div class="kad-marquee__track kad-marquee__track--right">
-                    <span class="kad-pill">Logistics</span>
+                    <span class="kad-pill">Float Glass</span>
+                    <span class="kad-pill">Laminated Glass</span>
+                    <span class="kad-pill">Rebars</span>
+                    <span class="kad-pill">Steel RHS</span>
+                    <span class="kad-pill kad-pill--accent">Construction</span>
+                    <span class="kad-pill">Plastics</span>
                     <span class="kad-pill">Customs</span>
-                    <span class="kad-pill">Partnerships</span>
-                    <span class="kad-pill">Quality</span>
-                    <span class="kad-pill kad-pill--accent">Global Trade</span>
-                    <span class="kad-pill">Containers</span>
+                    <span class="kad-pill">Freight</span>
                     <span class="kad-pill">Warehousing</span>
-                    <span class="kad-pill">Sourcing</span>
-                    <span class="kad-pill">Shipping</span>
                     <span class="kad-pill kad-pill--accent">Ethiopia</span>
-                    <span class="kad-pill">Logistics</span>
+                    <span class="kad-pill">Float Glass</span>
+                    <span class="kad-pill">Laminated Glass</span>
+                    <span class="kad-pill">Rebars</span>
+                    <span class="kad-pill">Steel RHS</span>
+                    <span class="kad-pill kad-pill--accent">Construction</span>
+                    <span class="kad-pill">Plastics</span>
                     <span class="kad-pill">Customs</span>
-                    <span class="kad-pill">Partnerships</span>
-                    <span class="kad-pill">Quality</span>
-                    <span class="kad-pill kad-pill--accent">Global Trade</span>
-                    <span class="kad-pill">Containers</span>
+                    <span class="kad-pill">Freight</span>
                     <span class="kad-pill">Warehousing</span>
-                    <span class="kad-pill">Sourcing</span>
-                    <span class="kad-pill">Shipping</span>
                     <span class="kad-pill kad-pill--accent">Ethiopia</span>
                 </div>
             </div>
         </section>
 
-        <!-- ABOUT — style 2: editorial split -->
+        <!-- TRUSTED BY -->
+        <section class="kad-trusted" aria-label="Trusted partners">
+            <div class="container-fluid kad-section__inner">
+                <p class="kad-trusted__label" data-kad-anim="fade-up">Trusted by businesses across Africa, Asia, Europe, and the Middle East</p>
+                <div class="kad-trusted__row" data-kad-anim="fade-up" data-kad-delay="80">
+                    <span>International Buyers</span>
+                    <span>Business Partners</span>
+                    <span>Banks</span>
+                    <span>Shipping Partners</span>
+                    <span>Government Organizations</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
         <section id="about" class="kad-section kad-about kad-style kad-style--editorial">
             <div class="container-fluid kad-section__inner">
                 <div class="row align-items-center g-5">
@@ -131,289 +145,823 @@
                     </div>
                     <div class="col-lg-7">
                         <div class="kad-section__head" data-kad-anim="fade-up">
-                            <p class="kad-kicker">About KAD</p>
-                            <h2>Connecting Ethiopia with global markets through reliable import and export solutions.</h2>
+                            <p class="kad-kicker">About Us</p>
+                            <h2>Who We Are</h2>
+                            <p class="kad-lead">
+                                KAD Import &amp; Export PLC is an Ethiopian international trading company
+                                specializing in the export of agricultural commodities and the import of
+                                industrial, construction, and commercial products.
+                            </p>
+                            <p class="kad-lead">
+                                We provide reliable sourcing, procurement, logistics, customs clearance,
+                                and global trade solutions for partners in Ethiopia and worldwide.
+                            </p>
                         </div>
-                        <div class="row g-4 kad-mission-grid">
-                            <div class="col-md-6">
-                                <article class="kad-panel" data-kad-anim="fade-up" data-kad-delay="80">
-                                    <h3>Our Mission</h3>
-                                    <p>
-                                        To connect Ethiopian products with international markets while providing
-                                        high-quality imported products that support economic growth, industrial
-                                        development, and long-term business partnerships.
-                                    </p>
-                                </article>
+                        <div class="row g-3 kad-about-facts">
+                            <div class="col-6 col-md-3">
+                                <div class="kad-fact" data-kad-anim="fade-up"><strong>10+</strong><span>Years Experience</span></div>
                             </div>
-                            <div class="col-md-6">
-                                <article class="kad-panel kad-panel--accent" data-kad-anim="fade-up" data-kad-delay="180">
-                                    <h3>Our Vision</h3>
-                                    <p>
-                                        To become one of East Africa's most trusted import and export companies,
-                                        recognized globally for reliability, quality service, transparency, and
-                                        customer satisfaction.
-                                    </p>
-                                </article>
+                            <div class="col-6 col-md-3">
+                                <div class="kad-fact" data-kad-anim="fade-up" data-kad-delay="80"><strong>3</strong><span>Business Divisions</span></div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="kad-fact" data-kad-anim="fade-up" data-kad-delay="140"><strong>25+</strong><span>Countries Served</span></div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="kad-fact" data-kad-anim="fade-up" data-kad-delay="200"><strong>ET</strong><span>Licensed in Ethiopia</span></div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row g-4 kad-values mt-4">
+                    <div class="col-md-4">
+                        <article class="kad-panel" data-kad-anim="fade-up">
+                            <h3>Our Mission</h3>
+                            <p>To connect Ethiopian products with international markets while supplying high-quality imported goods that support growth, industry, and long-term partnerships.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-4">
+                        <article class="kad-panel kad-panel--accent" data-kad-anim="fade-up" data-kad-delay="80">
+                            <h3>Our Vision</h3>
+                            <p>To become one of East Africa’s most trusted import and export companies, recognized for reliability, quality, transparency, and customer satisfaction.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-4">
+                        <article class="kad-panel" data-kad-anim="fade-up" data-kad-delay="160">
+                            <h3>Core Values</h3>
+                            <p>Integrity, quality assurance, on-time delivery, competitive pricing, and responsible sourcing across every trade we manage.</p>
+                        </article>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SERVICES — style 3: media cards -->
+        <!-- SERVICES -->
         <section id="services" class="kad-section kad-services kad-style kad-style--cards">
             <div class="container-fluid kad-section__inner">
                 <div class="kad-section__head kad-section__head--wide" data-kad-anim="fade-up">
-                    <p class="kad-kicker">What We Do</p>
-                    <h2>Reliable trade solutions that connect businesses with global opportunities.</h2>
-                </div>
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <article class="kad-service kad-service--photo" data-kad-anim="fade-up" data-kad-delay="60">
-                            <div class="kad-service__media">
-                                <img src="/website_kad_global/static/src/img/agriculture.jpg"
-                                     alt="Export of agricultural products"
-                                     loading="lazy"/>
-                            </div>
-                            <div class="kad-service__body">
-                                <h3>Export Solutions</h3>
-                                <p>
-                                    We connect Ethiopian agricultural producers, manufacturers, and suppliers
-                                    with international buyers through efficient export services and global
-                                    trade partnerships.
-                                </p>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-md-4">
-                        <article class="kad-service kad-service--photo" data-kad-anim="fade-up" data-kad-delay="140">
-                            <div class="kad-service__media">
-                                <img src="/website_kad_global/static/src/img/construction.jpg"
-                                     alt="Imported construction materials"
-                                     loading="lazy"/>
-                            </div>
-                            <div class="kad-service__body">
-                                <h3>Import Solutions</h3>
-                                <p>
-                                    We source high-quality construction materials, machinery, chemicals, and
-                                    industrial products from trusted suppliers around the world.
-                                </p>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-md-4">
-                        <article class="kad-service kad-service--photo" data-kad-anim="fade-up" data-kad-delay="220">
-                            <div class="kad-service__media">
-                                <img src="/website_kad_global/static/src/img/logistics.jpg"
-                                     alt="Freight and logistics coordination"
-                                     loading="lazy"/>
-                            </div>
-                            <div class="kad-service__body">
-                                <h3>Logistics Support</h3>
-                                <p>
-                                    Our team coordinates shipping, customs clearance, documentation, and
-                                    delivery to ensure smooth and reliable trade operations.
-                                </p>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- GALLERY — style 4: cinema strip -->
-        <section class="kad-gallery kad-style kad-style--cinema" aria-label="Trade operations">
-            <div class="kad-gallery__grid">
-                <figure class="kad-gallery__item" data-kad-anim="fade-up">
-                    <img src="/website_kad_global/static/src/img/containers.jpg" alt="Container terminal" loading="lazy"/>
-                    <figcaption>Ocean freight</figcaption>
-                </figure>
-                <figure class="kad-gallery__item" data-kad-anim="fade-up" data-kad-delay="80">
-                    <img src="/website_kad_global/static/src/img/spices.jpg" alt="Ethiopian spices for export" loading="lazy"/>
-                    <figcaption>Premium spices</figcaption>
-                </figure>
-                <figure class="kad-gallery__item" data-kad-anim="fade-up" data-kad-delay="160">
-                    <img src="/website_kad_global/static/src/img/warehouse.jpg" alt="Modern warehouse" loading="lazy"/>
-                    <figcaption>Warehousing</figcaption>
-                </figure>
-                <figure class="kad-gallery__item" data-kad-anim="fade-up" data-kad-delay="240">
-                    <img src="/website_kad_global/static/src/img/global_map.jpg" alt="Global trade routes" loading="lazy"/>
-                    <figcaption>Global reach</figcaption>
-                </figure>
-            </div>
-        </section>
-
-        <!-- EXPORTS — style 5: clean light catalog -->
-        <section id="exports" class="kad-section kad-products kad-products--exports kad-style kad-style--catalog">
-            <div class="container">
-                <div class="row align-items-end g-4 mb-4">
-                    <div class="col-lg-7">
-                        <div class="kad-section__head mb-0" data-kad-anim="fade-up">
-                            <p class="kad-kicker">Export Products</p>
-                            <h2>Ethiopian agricultural and natural products for global markets</h2>
-                        </div>
-                    </div>
-                    <div class="col-lg-5" data-kad-anim="fade-up" data-kad-delay="100">
-                        <div class="kad-section-banner">
-                            <img src="/website_kad_global/static/src/img/spices.jpg"
-                                 alt="Ethiopian spices and oilseeds"
-                                 loading="lazy"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="kad-product-list">
-                    <div class="kad-product-item" data-kad-anim="fade-up" data-kad-delay="40">
-                        <strong>Fruits &amp; Vegetables</strong>
-                        <span>Fresh Ethiopian produce supplied to international markets.</span>
-                    </div>
-                    <div class="kad-product-item" data-kad-anim="fade-up" data-kad-delay="80">
-                        <strong>Oilseeds</strong>
-                        <span>Sesame, Niger Seed, Linseed and other premium oilseed products.</span>
-                    </div>
-                    <div class="kad-product-item" data-kad-anim="fade-up" data-kad-delay="120">
-                        <strong>Pulses &amp; Legumes</strong>
-                        <span>Chickpeas, lentils, beans and other nutritious legumes.</span>
-                    </div>
-                    <div class="kad-product-item" data-kad-anim="fade-up" data-kad-delay="160">
-                        <strong>Livestock &amp; Meat</strong>
-                        <span>Live animals and quality meat products for international buyers.</span>
-                    </div>
-                    <div class="kad-product-item" data-kad-anim="fade-up" data-kad-delay="200">
-                        <strong>Flowers</strong>
-                        <span>Fresh cut flowers and ornamental plants for global floral markets.</span>
-                    </div>
-                    <div class="kad-product-item" data-kad-anim="fade-up" data-kad-delay="240">
-                        <strong>Spices</strong>
-                        <span>Black pepper, red pepper, turmeric and premium Ethiopian spices.</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- IMPORTS — style 6: dark industrial -->
-        <section id="imports" class="kad-section kad-products kad-products--imports kad-style kad-style--industrial">
-            <div class="container">
-                <div class="row align-items-end g-4 mb-4">
-                    <div class="col-lg-7">
-                        <div class="kad-section__head mb-0" data-kad-anim="fade-up">
-                            <p class="kad-kicker">Import Products</p>
-                            <h2>Industrial, construction, and commercial products from trusted global suppliers</h2>
-                        </div>
-                    </div>
-                    <div class="col-lg-5" data-kad-anim="fade-up" data-kad-delay="100">
-                        <div class="kad-section-banner">
-                            <img src="/website_kad_global/static/src/img/construction.jpg"
-                                 alt="Construction and industrial materials"
-                                 loading="lazy"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="kad-product-list">
-                    <div class="kad-product-item" data-kad-anim="fade-up" data-kad-delay="40">
-                        <strong>Glass Products</strong>
-                        <span>Float, laminated, clear, and colored glass for commercial and residential use.</span>
-                    </div>
-                    <div class="kad-product-item" data-kad-anim="fade-up" data-kad-delay="80">
-                        <strong>Building Materials</strong>
-                        <span>High-quality materials for infrastructure and commercial projects.</span>
-                    </div>
-                    <div class="kad-product-item" data-kad-anim="fade-up" data-kad-delay="120">
-                        <strong>Machinery &amp; Equipment</strong>
-                        <span>Heavy equipment and industrial machines for efficient operations.</span>
-                    </div>
-                    <div class="kad-product-item" data-kad-anim="fade-up" data-kad-delay="160">
-                        <strong>Stationery</strong>
-                        <span>Office supplies, paper products, and educational materials.</span>
-                    </div>
-                    <div class="kad-product-item" data-kad-anim="fade-up" data-kad-delay="200">
-                        <strong>Chemicals</strong>
-                        <span>Industrial chemicals for manufacturing and production industries.</span>
-                    </div>
-                    <div class="kad-product-item" data-kad-anim="fade-up" data-kad-delay="240">
-                        <strong>Industrial Inputs</strong>
-                        <span>Raw materials supporting manufacturing and industrial production.</span>
-                    </div>
-                    <div class="kad-product-item" data-kad-anim="fade-up" data-kad-delay="280">
-                        <strong>Rebars</strong>
-                        <span>Reinforcement steel bars for construction and infrastructure.</span>
-                    </div>
-                    <div class="kad-product-item" data-kad-anim="fade-up" data-kad-delay="320">
-                        <strong>Steel Coils</strong>
-                        <span>High-grade steel coils for industrial and manufacturing use.</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- WHY US -->
-        <section id="why-us" class="kad-section kad-why kad-style kad-style--trust">
-            <div class="container">
-                <div class="kad-section__head" data-kad-anim="fade-up">
-                    <p class="kad-kicker">Why Choose KAD</p>
-                    <h2>Trusted import and export solutions built on reliability, quality, and long-term partnerships.</h2>
+                    <p class="kad-kicker">Business Divisions &amp; Services</p>
+                    <h2>Complete trade, logistics, and sourcing solutions.</h2>
                 </div>
                 <div class="row g-4">
                     <div class="col-md-6 col-lg-3">
-                        <article class="kad-why-item" data-kad-anim="fade-up" data-kad-delay="40">
+                        <article class="kad-service" data-kad-anim="fade-up">
+                            <span class="kad-service__icon">EX</span>
+                            <h3>Export Management</h3>
+                            <p>Agricultural commodities, fresh produce, and livestock supplied to international buyers with export-grade packing and documentation.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <article class="kad-service" data-kad-anim="fade-up" data-kad-delay="60">
+                            <span class="kad-service__icon">IM</span>
+                            <h3>Import Management</h3>
+                            <p>Construction materials, industrial raw materials, and commercial supplies sourced from trusted global manufacturers.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <article class="kad-service" data-kad-anim="fade-up" data-kad-delay="100">
+                            <span class="kad-service__icon">SO</span>
+                            <h3>International Sourcing</h3>
+                            <p>Supplier identification, verification, and procurement support across Asia, the Middle East, Europe, and Africa.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <article class="kad-service" data-kad-anim="fade-up" data-kad-delay="140">
+                            <span class="kad-service__icon">CU</span>
+                            <h3>Customs Clearance</h3>
+                            <p>Import and export documentation, permits, and clearance handled with Ethiopian and international trade requirements.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <article class="kad-service" data-kad-anim="fade-up" data-kad-delay="60">
+                            <span class="kad-service__icon">FF</span>
+                            <h3>Freight Forwarding</h3>
+                            <p>Ocean freight, air freight, inland transport, and cargo consolidation for reliable door-to-port movement.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <article class="kad-service" data-kad-anim="fade-up" data-kad-delay="100">
+                            <span class="kad-service__icon">WH</span>
+                            <h3>Warehousing</h3>
+                            <p>Storage, handling, and cargo staging so shipments stay organized before loading or after arrival.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <article class="kad-service" data-kad-anim="fade-up" data-kad-delay="140">
+                            <span class="kad-service__icon">QA</span>
+                            <h3>Quality Inspection</h3>
+                            <p>Product checks and supplier verification to protect quality before goods are shipped or received.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <article class="kad-service" data-kad-anim="fade-up" data-kad-delay="180">
+                            <span class="kad-service__icon">TD</span>
+                            <h3>Trade Documentation</h3>
+                            <p>Commercial invoices, packing lists, certificates, and shipping papers prepared for smooth cross-border trade.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INDUSTRIES -->
+        <section id="industries" class="kad-section kad-industries">
+            <div class="container-fluid kad-section__inner">
+                <div class="kad-section__head" data-kad-anim="fade-up">
+                    <p class="kad-kicker">Industries We Serve</p>
+                    <h2>Supporting the sectors that keep trade, industry, and food supply moving.</h2>
+                </div>
+                <div class="row g-3">
+                    <div class="col-6 col-md-3"><article class="kad-industry" data-kad-anim="fade-up"><strong>Construction</strong><span>Glass, steel, and building inputs</span></article></div>
+                    <div class="col-6 col-md-3"><article class="kad-industry" data-kad-anim="fade-up" data-kad-delay="60"><strong>Manufacturing</strong><span>Industrial resins and raw materials</span></article></div>
+                    <div class="col-6 col-md-3"><article class="kad-industry" data-kad-anim="fade-up" data-kad-delay="100"><strong>Agriculture</strong><span>Oilseeds, pulses, and fresh produce</span></article></div>
+                    <div class="col-6 col-md-3"><article class="kad-industry" data-kad-anim="fade-up" data-kad-delay="140"><strong>Food Processing</strong><span>Export-grade commodities</span></article></div>
+                    <div class="col-6 col-md-3"><article class="kad-industry" data-kad-anim="fade-up"><strong>Packaging</strong><span>PET, LDPE, LLDPE, PP raffia</span></article></div>
+                    <div class="col-6 col-md-3"><article class="kad-industry" data-kad-anim="fade-up" data-kad-delay="60"><strong>Commercial</strong><span>Office and business supplies</span></article></div>
+                    <div class="col-6 col-md-3"><article class="kad-industry" data-kad-anim="fade-up" data-kad-delay="100"><strong>Logistics</strong><span>Freight and warehouse partners</span></article></div>
+                    <div class="col-6 col-md-3"><article class="kad-industry" data-kad-anim="fade-up" data-kad-delay="140"><strong>International Traders</strong><span>Buyers and sourcing agents</span></article></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPORT PRODUCTS -->
+        <span id="products"/>
+        <section id="exports" class="kad-section kad-products kad-products--exports kad-style kad-style--catalog">
+            <div class="container-fluid kad-section__inner">
+                <div class="kad-section__head kad-section__head--wide" data-kad-anim="fade-up">
+                    <p class="kad-kicker">Export Products</p>
+                    <h2>Ethiopian agricultural commodities, fresh produce, and livestock for global buyers.</h2>
+                </div>
+                <div class="kad-pcard-grid">
+                            <article class="kad-pcard" data-kad-anim="fade-up">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/sesame.jpg" alt="Sesame Seeds" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Agricultural Commodities</span>
+                                    <h3>Sesame Seeds</h3>
+                                    <p>Premium Ethiopian sesame seed for food processing and oil production, packed to export standards.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Markets:</strong> China, Japan, Turkey, India</li>
+                                        <li><strong>Packaging:</strong> 25 kg / 50 kg bags</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="60">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/soya-beans.jpg" alt="Soya Beans" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Agricultural Commodities</span>
+                                    <h3>Soya Beans</h3>
+                                    <p>High-quality Ethiopian soybeans for food processing, animal feed, and industrial applications.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> Seasonal / by contract</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="100">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/niger-seed.jpg" alt="Niger Seed Nug" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Agricultural Commodities</span>
+                                    <h3>Niger Seed (Nug)</h3>
+                                    <p>Ethiopian niger seed for oil production and specialty food markets, selected for purity and grade.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> In season</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="140">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/green-mung.jpg" alt="Green Mung Masho" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Agricultural Commodities</span>
+                                    <h3>Green Mung (Masho)</h3>
+                                    <p>Clean, export-grade green mung beans sourced from Ethiopian farmers for food processing buyers.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> By order</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/chickpeas.jpg" alt="Chickpeas Shimbra" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Agricultural Commodities</span>
+                                    <h3>Chickpeas (Shimbra)</h3>
+                                    <p>Nutritious Ethiopian chickpeas for wholesale food markets and processors.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> In season</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="60">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/desi-chickpeas.jpg" alt="Desi Chickpeas" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Agricultural Commodities</span>
+                                    <h3>Desi Chickpeas</h3>
+                                    <p>Desi-type chickpeas graded for export to regional and international buyers.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> By contract</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="100">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/black-kidney-beans.jpg" alt="Black Kidney Beans" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Agricultural Commodities</span>
+                                    <h3>Black Kidney Beans</h3>
+                                    <p>Premium-grade black kidney beans sourced from Ethiopian farms for global food buyers.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> By order</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="140">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/oilcake.jpg" alt="Oilcake" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Agricultural Commodities</span>
+                                    <h3>Oilcake</h3>
+                                    <p>Oilcake from Ethiopian oilseeds for animal feed and industrial processing markets.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> Regular supply</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/avocado.jpg" alt="Avocado" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Fresh Produce</span>
+                                    <h3>Avocado</h3>
+                                    <p>Fresh Ethiopian avocados carefully selected and packed for international export.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> Seasonal</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="60">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/mango.jpg" alt="Mango" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Fresh Produce</span>
+                                    <h3>Mango</h3>
+                                    <p>Export-quality Ethiopian mangoes packed for regional and international fruit buyers.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> Seasonal</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="100">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/onion.jpg" alt="Onion" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Fresh Produce</span>
+                                    <h3>Onion</h3>
+                                    <p>Fresh onions produced by Ethiopian farmers with export-quality grading and packaging.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> Seasonal</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="140">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/watermelon.jpg" alt="Watermelon" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Fresh Produce</span>
+                                    <h3>Watermelon</h3>
+                                    <p>Fresh Ethiopian watermelon selected for size, sweetness, and export packing.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> Seasonal</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/decorative-fruit.jpg" alt="Decorative fruit" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Fresh Produce</span>
+                                    <h3>Decorative Fruit</h3>
+                                    <p>Specialty decorative fruit for commercial buyers and seasonal export orders.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> By order</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="60">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/ox.jpg" alt="Live ox cattle" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Livestock &amp; Animal Products</span>
+                                    <h3>Ox</h3>
+                                    <p>Healthy live cattle for international livestock trade, supplied to agreed export standards.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> By contract</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="100">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/sheep.jpg" alt="Sheep" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Livestock &amp; Animal Products</span>
+                                    <h3>Sheep</h3>
+                                    <p>Quality sheep supplied according to international live-export requirements.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> By contract</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="140">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/goat.jpg" alt="Goat" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Livestock &amp; Animal Products</span>
+                                    <h3>Goat</h3>
+                                    <p>Premium Ethiopian goats for live export and meat production supply chains.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> By contract</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/exports/camel.jpg" alt="Camel" loading="lazy"/>
+                                    <span class="kad-pcard__badge">Export</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Livestock &amp; Animal Products</span>
+                                    <h3>Camel</h3>
+                                    <p>Healthy camels supplied for international livestock markets under agreed specifications.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> Ethiopia</li>
+                                        <li><strong>Availability:</strong> By contract</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPORT PRODUCTS -->
+        <section id="imports" class="kad-section kad-products kad-products--imports kad-style kad-style--industrial">
+            <div class="container-fluid kad-section__inner">
+                <div class="kad-section__head kad-section__head--wide" data-kad-anim="fade-up">
+                    <p class="kad-kicker">Import Products</p>
+                    <h2>Construction materials and industrial raw materials sourced from trusted global suppliers.</h2>
+                </div>
+                <div class="kad-pcard-grid">
+                            <article class="kad-pcard" data-kad-anim="fade-up">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/imports/float-glass.jpg" alt="Float Glass" loading="lazy"/>
+                                    <span class="kad-pcard__badge kad-pcard__badge--import">Import</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Construction Materials</span>
+                                    <h3>Float Glass</h3>
+                                    <p>High-quality float glass for residential and commercial construction projects.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> China, Turkey, India</li>
+                                        <li><strong>Applications:</strong> Buildings, facades, interiors</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="60">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/imports/laminated-glass.jpg" alt="Laminated Glass" loading="lazy"/>
+                                    <span class="kad-pcard__badge kad-pcard__badge--import">Import</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Construction Materials</span>
+                                    <h3>Laminated Glass</h3>
+                                    <p>Safety laminated glass for modern building, commercial, and security applications.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> China, Turkey, India</li>
+                                        <li><strong>Applications:</strong> Construction, commercial projects</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="100">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/imports/reinforcement.jpg" alt="Reinforcement steel rebars" loading="lazy"/>
+                                    <span class="kad-pcard__badge kad-pcard__badge--import">Import</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Construction Materials</span>
+                                    <h3>Reinforcement Steel (Rebars)</h3>
+                                    <p>High-strength reinforcement bars for infrastructure, commercial, and industrial buildings.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> China, Turkey, India</li>
+                                        <li><strong>Applications:</strong> Construction and infrastructure</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up" data-kad-delay="140">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/imports/steel-rhs.jpg" alt="Steel rectangular hollow sections" loading="lazy"/>
+                                    <span class="kad-pcard__badge kad-pcard__badge--import">Import</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Construction Materials</span>
+                                    <h3>Steel RHS</h3>
+                                    <p>Steel rectangular hollow sections for structural, commercial, and industrial fabrication.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> China, Turkey, India</li>
+                                        <li><strong>Applications:</strong> Frames, structures, engineering</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up">
+                                <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/imports/plastic-raw.jpg" alt="Plastic raw materials" loading="lazy"/>
+                                    <span class="kad-pcard__badge kad-pcard__badge--import">Import</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Industrial Raw Materials</span>
+                                    <h3>Plastic Raw Materials</h3>
+                                    <p>Colored plastic granules and pellets for manufacturing, packaging, and industrial use — including PET, LDPE, LLDPE, and PP raffia grades on request.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> China, UAE, Malaysia, India</li>
+                                        <li><strong>Applications:</strong> Packaging, manufacturing</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESS -->
+        <section id="process" class="kad-section kad-process">
+            <div class="container-fluid kad-section__inner">
+                <div class="kad-section__head" data-kad-anim="fade-up">
+                    <p class="kad-kicker">How We Work</p>
+                    <h2>A clear process from inquiry to delivery.</h2>
+                </div>
+                <ol class="kad-steps">
+                    <li data-kad-anim="fade-up"><span>01</span><strong>Inquiry</strong></li>
+                    <li data-kad-anim="fade-up" data-kad-delay="50"><span>02</span><strong>Quotation</strong></li>
+                    <li data-kad-anim="fade-up" data-kad-delay="100"><span>03</span><strong>Order Confirmation</strong></li>
+                    <li data-kad-anim="fade-up" data-kad-delay="150"><span>04</span><strong>Quality Inspection</strong></li>
+                    <li data-kad-anim="fade-up" data-kad-delay="200"><span>05</span><strong>Shipping</strong></li>
+                    <li data-kad-anim="fade-up" data-kad-delay="250"><span>06</span><strong>Customs Clearance</strong></li>
+                    <li data-kad-anim="fade-up" data-kad-delay="300"><span>07</span><strong>Delivery</strong></li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- WHY US + STATS -->
+        <section id="why-us" class="kad-section kad-why kad-style kad-style--trust">
+            <div class="container-fluid kad-section__inner">
+                <div class="kad-section__head" data-kad-anim="fade-up">
+                    <p class="kad-kicker">Why Choose KAD</p>
+                    <h2>Licensed, experienced, and built for reliable international trade.</h2>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3">
+                        <article class="kad-why-item" data-kad-anim="fade-up">
                             <span class="kad-why-item__num">01</span>
-                            <h3>Global Network</h3>
-                            <p>Strong international partnerships and sourcing channels across multiple markets.</p>
+                            <h3>Licensed Company</h3>
+                            <p>Registered Ethiopian import and export company operating under national trade requirements.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <article class="kad-why-item" data-kad-anim="fade-up" data-kad-delay="60">
+                            <span class="kad-why-item__num">02</span>
+                            <h3>Experienced Team</h3>
+                            <p>Trade specialists who understand sourcing, documentation, and cross-border delivery.</p>
                         </article>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <article class="kad-why-item" data-kad-anim="fade-up" data-kad-delay="100">
-                            <span class="kad-why-item__num">02</span>
-                            <h3>Quality Assurance</h3>
-                            <p>Strict quality control standards to ensure products meet customer expectations.</p>
-                        </article>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <article class="kad-why-item" data-kad-anim="fade-up" data-kad-delay="160">
                             <span class="kad-why-item__num">03</span>
-                            <h3>Reliable Logistics</h3>
-                            <p>Efficient transportation, customs handling, and supply chain coordination.</p>
+                            <h3>International Standards</h3>
+                            <p>Quality control and packing aligned with buyer specifications and export-grade requirements.</p>
                         </article>
                     </div>
                     <div class="col-md-6 col-lg-3">
-                        <article class="kad-why-item" data-kad-anim="fade-up" data-kad-delay="220">
+                        <article class="kad-why-item" data-kad-anim="fade-up" data-kad-delay="140">
                             <span class="kad-why-item__num">04</span>
+                            <h3>Reliable Logistics</h3>
+                            <p>Freight, customs, warehousing, and inland transport coordinated as one supply chain.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <article class="kad-why-item" data-kad-anim="fade-up">
+                            <span class="kad-why-item__num">05</span>
                             <h3>Competitive Pricing</h3>
-                            <p>Cost-effective sourcing and trade solutions without compromising quality.</p>
+                            <p>Cost-effective sourcing without compromising product quality or shipment reliability.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <article class="kad-why-item" data-kad-anim="fade-up" data-kad-delay="60">
+                            <span class="kad-why-item__num">06</span>
+                            <h3>Quality Assurance</h3>
+                            <p>Inspection and supplier verification before goods leave origin or enter Ethiopia.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <article class="kad-why-item" data-kad-anim="fade-up" data-kad-delay="100">
+                            <span class="kad-why-item__num">07</span>
+                            <h3>Fast Delivery</h3>
+                            <p>Clear timelines, proactive updates, and coordinated shipping to keep cargo moving.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <article class="kad-why-item" data-kad-anim="fade-up" data-kad-delay="140">
+                            <span class="kad-why-item__num">08</span>
+                            <h3>Customer Support</h3>
+                            <p>Direct phone, email, and WhatsApp support for quotes, tracking, and after-sales follow-up.</p>
                         </article>
                     </div>
                 </div>
 
                 <div class="kad-stats row g-3 mt-4" data-kad-anim="fade-up">
-                    <div class="col-6 col-md-3">
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="kad-stat" data-kad-count="10" data-kad-suffix="+">
+                            <span class="kad-stat__value" aria-live="polite">0+</span>
+                            <span class="kad-stat__label">Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-2">
                         <div class="kad-stat" data-kad-count="25" data-kad-suffix="+">
                             <span class="kad-stat__value" aria-live="polite">0+</span>
                             <span class="kad-stat__label">Countries Served</span>
                         </div>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <div class="kad-stat" data-kad-count="120" data-kad-suffix="+">
-                            <span class="kad-stat__value" aria-live="polite">0+</span>
-                            <span class="kad-stat__label">Products Traded</span>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
+                    <div class="col-6 col-md-4 col-lg-2">
                         <div class="kad-stat" data-kad-count="500" data-kad-suffix="+">
                             <span class="kad-stat__value" aria-live="polite">0+</span>
-                            <span class="kad-stat__label">Transactions</span>
+                            <span class="kad-stat__label">Successful Shipments</span>
                         </div>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <div class="kad-stat" data-kad-count="100" data-kad-suffix="%">
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="kad-stat" data-kad-count="100" data-kad-suffix="+">
+                            <span class="kad-stat__value" aria-live="polite">0+</span>
+                            <span class="kad-stat__label">Business Partners</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="kad-stat" data-kad-count="98" data-kad-suffix="%">
                             <span class="kad-stat__value" aria-live="polite">0%</span>
-                            <span class="kad-stat__label">Commitment</span>
+                            <span class="kad-stat__label">Customer Satisfaction</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="kad-stat" data-kad-count="24" data-kad-suffix="/7">
+                            <span class="kad-stat__value" aria-live="polite">0/7</span>
+                            <span class="kad-stat__label">Customer Support</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA with photo -->
+        <!-- CERTIFICATIONS -->
+        <section id="certifications" class="kad-section kad-certs">
+            <div class="container-fluid kad-section__inner">
+                <div class="kad-section__head" data-kad-anim="fade-up">
+                    <p class="kad-kicker">Certifications &amp; Compliance</p>
+                    <h2>Operating as a licensed Ethiopian import and export company.</h2>
+                </div>
+                <div class="row g-3">
+                    <div class="col-6 col-md-4 col-lg-3"><div class="kad-cert" data-kad-anim="fade-up">Ethiopian Investment Commission</div></div>
+                    <div class="col-6 col-md-4 col-lg-3"><div class="kad-cert" data-kad-anim="fade-up" data-kad-delay="40">Ministry of Trade</div></div>
+                    <div class="col-6 col-md-4 col-lg-3"><div class="kad-cert" data-kad-anim="fade-up" data-kad-delay="80">Chamber of Commerce</div></div>
+                    <div class="col-6 col-md-4 col-lg-3"><div class="kad-cert" data-kad-anim="fade-up" data-kad-delay="120">Tax Registration</div></div>
+                    <div class="col-6 col-md-4 col-lg-3"><div class="kad-cert" data-kad-anim="fade-up">Export License</div></div>
+                    <div class="col-6 col-md-4 col-lg-3"><div class="kad-cert" data-kad-anim="fade-up" data-kad-delay="40">Import License</div></div>
+                    <div class="col-6 col-md-4 col-lg-3"><div class="kad-cert" data-kad-anim="fade-up" data-kad-delay="80">ISO (in progress)</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section id="gallery" class="kad-gallery kad-style kad-style--cinema" aria-label="Trade operations">
+            <div class="kad-gallery__grid">
+                <figure class="kad-gallery__item" data-kad-anim="fade-up">
+                    <img src="/website_kad_global/static/src/img/warehouse.jpg" alt="Warehouse operations" loading="lazy"/>
+                    <figcaption>Warehouse</figcaption>
+                </figure>
+                <figure class="kad-gallery__item" data-kad-anim="fade-up" data-kad-delay="60">
+                    <img src="/website_kad_global/static/src/img/containers.jpg" alt="Loading containers" loading="lazy"/>
+                    <figcaption>Loading containers</figcaption>
+                </figure>
+                <figure class="kad-gallery__item" data-kad-anim="fade-up" data-kad-delay="120">
+                    <img src="/website_kad_global/static/src/img/exports/sesame.jpg" alt="Export goods" loading="lazy"/>
+                    <figcaption>Export goods</figcaption>
+                </figure>
+                <figure class="kad-gallery__item" data-kad-anim="fade-up" data-kad-delay="180">
+                    <img src="/website_kad_global/static/src/img/hero_port.jpg" alt="Port operations" loading="lazy"/>
+                    <figcaption>Port</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section id="testimonials" class="kad-section kad-quotes">
+            <div class="container-fluid kad-section__inner">
+                <div class="kad-section__head" data-kad-anim="fade-up">
+                    <p class="kad-kicker">Testimonials</p>
+                    <h2>What our partners say.</h2>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <blockquote class="kad-quote" data-kad-anim="fade-up">
+                            <p>“KAD delivered our shipment on schedule with excellent communication.”</p>
+                            <cite>International Buyer</cite>
+                        </blockquote>
+                    </div>
+                    <div class="col-md-4">
+                        <blockquote class="kad-quote" data-kad-anim="fade-up" data-kad-delay="80">
+                            <p>“Reliable sourcing and clear documentation made our import process straightforward.”</p>
+                            <cite>Construction Partner</cite>
+                        </blockquote>
+                    </div>
+                    <div class="col-md-4">
+                        <blockquote class="kad-quote" data-kad-anim="fade-up" data-kad-delay="140">
+                            <p>“Professional export handling from farm gate to port. We will continue working with KAD.”</p>
+                            <cite>Agricultural Buyer</cite>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MARKETS -->
+        <section id="markets" class="kad-section kad-markets">
+            <div class="container-fluid kad-section__inner">
+                <div class="kad-section__head" data-kad-anim="fade-up">
+                    <p class="kad-kicker">Global Markets</p>
+                    <h2>Export destinations and import sources we work with.</h2>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <article class="kad-market" data-kad-anim="fade-up">
+                            <h3>Export Markets</h3>
+                            <p>China · India · United Arab Emirates · Saudi Arabia · Turkey · Europe · Africa</p>
+                        </article>
+                    </div>
+                    <div class="col-lg-6">
+                        <article class="kad-market kad-market--import" data-kad-anim="fade-up" data-kad-delay="80">
+                            <h3>Import Sources</h3>
+                            <p>China · India · Turkey · UAE · Malaysia</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUSTAINABILITY -->
+        <section id="sustainability" class="kad-section kad-sustain">
+            <div class="container-fluid kad-section__inner">
+                <div class="kad-section__head" data-kad-anim="fade-up">
+                    <p class="kad-kicker">Sustainability</p>
+                    <h2>Responsible trade that supports farmers, industry, and long-term partnerships.</h2>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3"><article class="kad-panel" data-kad-anim="fade-up"><h3>Ethical Sourcing</h3><p>We work with verified suppliers and producers and keep product quality and origin transparent.</p></article></div>
+                    <div class="col-md-6 col-lg-3"><article class="kad-panel kad-panel--accent" data-kad-anim="fade-up" data-kad-delay="60"><h3>Environment</h3><p>We prefer efficient packing, consolidated freight, and responsible handling of industrial materials.</p></article></div>
+                    <div class="col-md-6 col-lg-3"><article class="kad-panel" data-kad-anim="fade-up" data-kad-delay="100"><h3>Community</h3><p>Export programs create market access for Ethiopian farmers and livestock producers.</p></article></div>
+                    <div class="col-md-6 col-lg-3"><article class="kad-panel kad-panel--accent" data-kad-anim="fade-up" data-kad-delay="140"><h3>Fair Trade Practice</h3><p>Clear contracts, agreed specifications, and reliable payment terms for buyers and suppliers.</p></article></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEWS -->
+        <section id="news" class="kad-section kad-news">
+            <div class="container-fluid kad-section__inner">
+                <div class="kad-section__head" data-kad-anim="fade-up">
+                    <p class="kad-kicker">Latest News</p>
+                    <h2>Company updates and trade activity.</h2>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <article class="kad-news-card" data-kad-anim="fade-up">
+                            <h3>Agricultural exports</h3>
+                            <p>Ongoing shipments of sesame, soybeans, pulses, and fresh produce to regional and international buyers.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-4">
+                        <article class="kad-news-card" data-kad-anim="fade-up" data-kad-delay="80">
+                            <h3>Construction imports</h3>
+                            <p>Supply of float glass, laminated glass, rebars, and steel sections for Ethiopian building projects.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-4">
+                        <article class="kad-news-card" data-kad-anim="fade-up" data-kad-delay="140">
+                            <h3>Trade partnerships</h3>
+                            <p>We continue to expand sourcing and buyer networks across Asia, the Middle East, Europe, and Africa.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="kad-section kad-faq">
+            <div class="container-fluid kad-section__inner">
+                <div class="kad-section__head" data-kad-anim="fade-up">
+                    <p class="kad-kicker">FAQs</p>
+                    <h2>Common questions from buyers and importers.</h2>
+                </div>
+                <div class="kad-faq__list">
+                    <details class="kad-faq__item" data-kad-anim="fade-up" open="open">
+                        <summary>Do you export worldwide?</summary>
+                        <p>Yes. We supply Ethiopian products to buyers across Africa, Asia, the Middle East, and Europe, subject to product type, season, and destination regulations.</p>
+                    </details>
+                    <details class="kad-faq__item" data-kad-anim="fade-up">
+                        <summary>What are your payment terms?</summary>
+                        <p>Payment terms are agreed per contract. Typical options include LC, TT, and other terms suitable for international trade.</p>
+                    </details>
+                    <details class="kad-faq__item" data-kad-anim="fade-up">
+                        <summary>How can I request a quotation?</summary>
+                        <p>Use the Request a Quote form with product, quantity, country, and delivery port. Our team will respond with availability and pricing.</p>
+                    </details>
+                    <details class="kad-faq__item" data-kad-anim="fade-up">
+                        <summary>Which countries do you import from?</summary>
+                        <p>We regularly source from China, India, Turkey, the UAE, and Malaysia, and can evaluate other origins on request.</p>
+                    </details>
+                    <details class="kad-faq__item" data-kad-anim="fade-up">
+                        <summary>Do you provide customs clearance?</summary>
+                        <p>Yes. Customs clearance, documentation, freight forwarding, and inland transport are part of our trade and logistics services.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
         <section class="kad-cta kad-cta--photo kad-style kad-style--impact" data-kad-anim="fade-up">
             <img src="/website_kad_global/static/src/img/containers.jpg"
                  alt=""
@@ -421,15 +969,76 @@
                  loading="lazy"/>
             <div class="kad-cta__shade"/>
             <div class="container text-center">
-                <h2>Ready to grow your trade with Ethiopia and the world?</h2>
-                <p>Partner with KAD for sourcing, export, import, and logistics support.</p>
-                <a href="#contact" class="kad-btn kad-btn--light"><span>Contact Our Team</span></a>
+                <h2>Ready to Trade with Confidence?</h2>
+                <p>Whether you want to export premium Ethiopian products or source industrial and construction materials, KAD Import &amp; Export PLC is your trusted international trade partner.</p>
+                <div class="kad-hero__actions justify-content-center">
+                    <a href="#quote" class="kad-btn kad-btn--light"><span>Request a Quote</span></a>
+                    <a href="#contact" class="kad-btn kad-btn--ghost"><span>Contact Our Experts</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUOTE -->
+        <section id="quote" class="kad-section kad-quote-form">
+            <div class="container-fluid kad-section__inner">
+                <div class="kad-section__head" data-kad-anim="fade-up">
+                    <p class="kad-kicker">Request a Quote</p>
+                    <h2>Tell us the product, quantity, and destination. We will respond with availability.</h2>
+                </div>
+                <form action="/kad/contact" method="post" class="kad-form" data-kad-anim="fade-up">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="hidden" name="form_type" value="quote"/>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="kad-label" for="kad_q_product">Product</label>
+                            <input class="kad-input" type="text" id="kad_q_product" name="product" required="required" placeholder="e.g. Sesame Seeds"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="kad-label" for="kad_q_qty">Quantity</label>
+                            <input class="kad-input" type="text" id="kad_q_qty" name="quantity" required="required" placeholder="e.g. 20 MT"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="kad-label" for="kad_q_country">Country</label>
+                            <input class="kad-input" type="text" id="kad_q_country" name="country" required="required" placeholder="Destination or origin country"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="kad-label" for="kad_q_port">Delivery Port</label>
+                            <input class="kad-input" type="text" id="kad_q_port" name="port" placeholder="e.g. Djibouti, Shanghai"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="kad-label" for="kad_q_company">Company</label>
+                            <input class="kad-input" type="text" id="kad_q_company" name="company" placeholder="Company name"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="kad-label" for="kad_q_phone">Phone</label>
+                            <input class="kad-input" type="tel" id="kad_q_phone" name="phone" placeholder="+251 ..."/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="kad-label" for="kad_q_email">Email</label>
+                            <input class="kad-input" type="email" id="kad_q_email" name="email" required="required" placeholder="Email Address"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="kad-label" for="kad_q_name">Contact Name</label>
+                            <input class="kad-input" type="text" id="kad_q_name" name="name" required="required" placeholder="Full Name"/>
+                        </div>
+                        <div class="col-12">
+                            <label class="kad-label" for="kad_q_message">Message</label>
+                            <textarea class="kad-input kad-textarea" id="kad_q_message" name="message" rows="4" placeholder="Grade, packing, Incoterms, or other requirements"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="kad-btn kad-btn--primary">
+                                <span>Submit Quote Request</span>
+                                <span class="kad-btn__shine" aria-hidden="true"/>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </section>
 
         <!-- CONTACT -->
         <section id="contact" class="kad-section kad-contact kad-style kad-style--form">
-            <div class="container">
+            <div class="container-fluid kad-section__inner">
                 <div class="kad-section__head" data-kad-anim="fade-up">
                     <p class="kad-kicker">Contact Us</p>
                     <h2>Get in touch for import, export, sourcing, logistics, and partnership inquiries.</h2>
@@ -438,6 +1047,7 @@
                     <div class="col-lg-7">
                         <form action="/kad/contact" method="post" class="kad-form" data-kad-anim="fade-up" data-kad-delay="80">
                             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <input type="hidden" name="form_type" value="contact"/>
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="kad-label" for="kad_name">Full Name</label>
@@ -457,7 +1067,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label class="kad-label" for="kad_message">Message</label>
-                                    <textarea class="kad-input kad-textarea" id="kad_message" name="message" rows="5" required="required" placeholder="Write your message..."/>
+                                    <textarea class="kad-input kad-textarea" id="kad_message" name="message" rows="5" required="required" placeholder="Write your message..."></textarea>
                                 </div>
                                 <div class="col-12">
                                     <button type="submit" class="kad-btn kad-btn--primary">
@@ -488,6 +1098,10 @@
                                 </p>
                             </div>
                             <div class="kad-contact-block">
+                                <strong>WhatsApp</strong>
+                                <p><a href="https://wa.me/251911357216" target="_blank" rel="noopener">Chat on WhatsApp</a></p>
+                            </div>
+                            <div class="kad-contact-block">
                                 <strong>Email</strong>
                                 <p><a href="mailto:info@kadglobaltrading.com">info@kadglobaltrading.com</a></p>
                             </div>
@@ -497,6 +1111,12 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="kad-map mt-5" data-kad-anim="fade-up">
+                    <iframe title="KAD office location Addis Ababa"
+                            src="https://maps.google.com/maps?q=Addis%20Ababa%20Ethiopia&amp;t=&amp;z=11&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </section>

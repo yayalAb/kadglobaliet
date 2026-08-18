@@ -11,10 +11,12 @@
         <field name="url">/</field>
         <field name="type">qweb</field>
         <field name="website_indexed" eval="True"/>
+        <field name="website_meta_title">Ethiopian Import &amp; Export Company | KAD Import &amp; Export</field>
+        <field name="website_meta_description">KAD Import &amp; Export PLC exports Ethiopian agricultural commodities, fresh produce, and livestock, and imports construction materials and industrial raw materials.</field>
         <field name="arch" type="xml">
             <t t-name="website_kad_global.page_home">
                 <t t-call="website.layout">
-                    <t t-set="additional_title">KAD Import &amp; Export | Bridging Markets, Connecting Worlds</t>
+                    <t t-set="additional_title">Ethiopian Import &amp; Export Company | KAD Import &amp; Export</t>
                     <div id="wrap" class="oe_structure kad-site">
                         <t t-call="website_kad_global.homepage_body"/>
                     </div>
