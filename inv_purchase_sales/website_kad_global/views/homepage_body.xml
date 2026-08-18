@@ -6,9 +6,7 @@
         <section class="kad-hero kad-style kad-style--cinematic">
             <div class="kad-hero__media" aria-hidden="true">
                 <div class="kad-hero__slides">
-                    <img src="/website_kad_global/static/src/img/hero_port.jpg" alt="" class="kad-hero__photo is-active" loading="eager"/>
-                    <img src="/website_kad_global/static/src/img/containers.jpg" alt="" class="kad-hero__photo" loading="lazy"/>
-                    <img src="/website_kad_global/static/src/img/cargo_ship.jpg" alt="" class="kad-hero__photo" loading="lazy"/>
+                    <img src="/website_kad_global/static/src/img/hero_port.jpg" alt="" class="kad-hero__photo is-active" loading="eager" fetchpriority="high" decoding="async"/>
                 </div>
                 <div class="kad-hero__shade"/>
                 <span class="kad-orb kad-orb--1"/>

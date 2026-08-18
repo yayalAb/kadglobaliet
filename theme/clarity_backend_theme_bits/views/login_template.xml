@@ -7,12 +7,13 @@
                  <img class="img-fluid login_side_image"
                     src="/clarity_backend_theme_bits/static/description/loyal_erp_image.jpg" 
                     alt="Description of the image" 
+                    loading="lazy"
+                    decoding="async"
                     />
                 </div>
                 <div class="col-lg-6 col-md-7 col-sm-12 parent-container">
             <div class="login_side_container">
-                <owl-component t-if="not login" name="web.user_switch" />
-            <form t-attf-class="oe_login_form #{'' if login else 'd-none'}" role="form" t-attf-action="/web/login" method="post" onsubmit="this.action = '/web/login' + location.hash">
+            <form class="oe_login_form" role="form" t-attf-action="/web/login" method="post" onsubmit="this.action = '/web/login' + location.hash">
                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                  <div class="mb-3 field-login">
                     <label class="login_label">Login</label>

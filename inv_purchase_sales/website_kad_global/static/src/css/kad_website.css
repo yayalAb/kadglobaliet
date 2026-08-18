@@ -1199,6 +1199,19 @@ header a.btn-primary {
     background: rgba(255, 255, 255, 0.05);
 }
 
+/* Improve first paint by skipping offscreen rendering */
+.kad-marquee,
+.kad-trusted,
+.kad-section,
+.kad-gallery {
+    content-visibility: auto;
+    contain-intrinsic-size: 900px;
+}
+
+.kad-hero {
+    content-visibility: visible;
+}
+
 .kad-about-facts { margin-top: 0.5rem; }
 .kad-fact {
     padding: 1rem 0.8rem;

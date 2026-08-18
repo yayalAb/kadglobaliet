@@ -95,8 +95,6 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
         this._setupReveals();
         this._bindGlobalAnchors();
         this._bindScrollChrome();
-        this._bindParallax();
-        this._setupHeroSlider();
         this._setupBackToTop();
         return this._super(...arguments);
     },
@@ -109,12 +107,6 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
             const root = getScrollRoot();
             root.removeEventListener("scroll", this._scrollHandler);
             window.removeEventListener("scroll", this._scrollHandler);
-        }
-        if (this._pointerHandler) {
-            this.el.removeEventListener("pointermove", this._pointerHandler);
-        }
-        if (this._heroTimer) {
-            window.clearInterval(this._heroTimer);
         }
         return this._super(...arguments);
     },
@@ -164,40 +156,6 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
         root.addEventListener("scroll", this._scrollHandler, { passive: true });
         window.addEventListener("scroll", this._scrollHandler, { passive: true });
         this._scrollHandler();
-    },
-
-    _bindParallax() {
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            return;
-        }
-        const orbs = this.el.querySelectorAll(".kad-orb");
-        if (!orbs.length) {
-            return;
-        }
-        this._pointerHandler = (event) => {
-            const rect = this.el.getBoundingClientRect();
-            const x = (event.clientX - rect.left) / rect.width - 0.5;
-            const y = (event.clientY - rect.top) / rect.height - 0.5;
-            orbs.forEach((orb, index) => {
-                const strength = (index + 1) * 10;
-                orb.style.setProperty("--mx", `${(x * strength).toFixed(1)}px`);
-                orb.style.setProperty("--my", `${(y * strength).toFixed(1)}px`);
-            });
-        };
-        this.el.addEventListener("pointermove", this._pointerHandler, { passive: true });
-    },
-
-    _setupHeroSlider() {
-        const slides = [...this.el.querySelectorAll(".kad-hero__slides .kad-hero__photo")];
-        if (slides.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            return;
-        }
-        let index = 0;
-        this._heroTimer = window.setInterval(() => {
-            slides[index].classList.remove("is-active");
-            index = (index + 1) % slides.length;
-            slides[index].classList.add("is-active");
-        }, 5500);
     },
 
     _setupBackToTop() {
