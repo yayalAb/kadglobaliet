@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'KAD Global Website',
-    'version': '18.0.1.5.2',
+    'version': '18.0.1.5.5',
     'summary': 'Custom public website for KAD Import & Export',
     'description': """
         Branded Odoo website for Kalkidan Abebaw Derso Import & Export (KADIE).

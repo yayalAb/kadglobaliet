@@ -258,23 +258,47 @@ header a.btn-primary {
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
 }
 
+.kad-hero__names {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-width: 0;
+    max-width: min(1100px, 100%);
+}
+
 .kad-hero__eyebrow {
     display: flex;
     flex: 0 1 auto;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-    gap: 0.28em 0.5em;
-    width: auto;
+    gap: 0.22em 0.4em;
+    width: max-content;
+    max-width: 100%;
     min-width: 0;
     margin: 0;
     font-family: var(--kad-font-display);
-    font-size: clamp(1.25rem, 3.4vw, 3.1rem);
+    font-size: clamp(1.05rem, 2.6vw, 2.65rem);
     font-weight: 400;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     line-height: 1;
+    white-space: nowrap;
     perspective: 600px;
+}
+
+.kad-hero__amharic {
+    margin: 0;
+    font-family: "Noto Sans Ethiopic", "Nyala", "Abyssinica SIL", "Fira Sans", sans-serif;
+    font-size: clamp(1.35rem, 3.2vw, 2.35rem);
+    font-weight: 700;
+    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    letter-spacing: 0.02em;
+    text-align: center;
 }
 
 .kad-hero__eyebrow::before {
@@ -1824,10 +1848,15 @@ header a.btn-primary {
     }
     .kad-hero__eyebrow {
         flex: 0 1 auto;
+        flex-wrap: nowrap;
         justify-content: center;
-        font-size: clamp(1.15rem, 5.5vw, 1.85rem);
-        letter-spacing: 0.04em;
-        gap: 0.25em 0.4em;
+        font-size: clamp(0.78rem, 3.4vw, 1.35rem);
+        letter-spacing: 0.03em;
+        gap: 0.18em 0.28em;
+        white-space: nowrap;
+    }
+    .kad-hero__amharic {
+        font-size: clamp(1.1rem, 4.2vw, 1.65rem);
     }
     .kad-gallery__grid { grid-template-columns: repeat(2, 1fr); }
     .kad-photo-stack { min-height: 320px; margin-bottom: 2rem; }

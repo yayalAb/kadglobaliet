@@ -18,15 +18,18 @@
                     <img src="/website_kad_global/static/src/img/kad_logo.png"
                          alt="KAD Import &amp; Export"
                          class="kad-hero__logo"/>
-                    <p class="kad-hero__eyebrow" aria-label="Kalkidan Abebaw Derso Import and Export KADIE">
-                        <span class="kad-word kad-word--s1" style="--i:0">Kalkidan</span>
-                        <span class="kad-word kad-word--s2" style="--i:1">Abebaw</span>
-                        <span class="kad-word kad-word--s3" style="--i:2">Derso</span>
-                        <span class="kad-word kad-word--s4" style="--i:3">Import</span>
-                        <span class="kad-amp kad-word--s5" style="--i:4">&amp;</span>
-                        <span class="kad-word kad-word--s6" style="--i:5">Export</span>
-                        <span class="kad-word kad-word--accent kad-word--s7" style="--i:6">(KADIE)</span>
-                    </p>
+                    <div class="kad-hero__names">
+                        <p class="kad-hero__eyebrow" aria-label="Kalkidan Abebaw Derso Import and Export KADIE">
+                            <span class="kad-word kad-word--s1" style="--i:0">Kalkidan</span>
+                            <span class="kad-word kad-word--s2" style="--i:1">Abebaw</span>
+                            <span class="kad-word kad-word--s3" style="--i:2">Derso</span>
+                            <span class="kad-word kad-word--s4" style="--i:3">Import</span>
+                            <span class="kad-amp kad-word--s5" style="--i:4">&amp;</span>
+                            <span class="kad-word kad-word--s6" style="--i:5">Export</span>
+                            <span class="kad-word kad-word--accent kad-word--s7" style="--i:6">(KADIE)</span>
+                        </p>
+                        <p class="kad-hero__amharic" lang="am">ቃልኪዳን አበባው ደርሶ አስመጪና ላኪ</p>
+                    </div>
                 </div>
 
                 <div class="kad-hero__copy kad-hero__copy--wide">
@@ -131,13 +134,9 @@
                 <div class="row align-items-center g-5">
                     <div class="col-lg-5" data-kad-anim="fade-up">
                         <div class="kad-photo-stack">
-                            <img src="/website_kad_global/static/src/img/cargo_ship.jpg"
-                                 alt="Cargo vessel for international trade"
+                            <img src="/website_kad_global/static/src/img/about_warehouse.png"
+                                 alt="KAD Import and Export warehouse"
                                  class="kad-photo-stack__main"
-                                 loading="lazy"/>
-                            <img src="/website_kad_global/static/src/img/handshake.jpg"
-                                 alt="Business partnership handshake"
-                                 class="kad-photo-stack__inset"
                                  loading="lazy"/>
                         </div>
                     </div>
