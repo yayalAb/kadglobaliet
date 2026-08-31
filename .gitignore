@@ -7,4 +7,3 @@
 *.db-wal
 mdocker
 venv/
-letsencrypt/
