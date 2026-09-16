@@ -1476,9 +1476,11 @@ header a.btn-primary {
     justify-content: center;
     color: #fff;
     text-decoration: none;
-    font-size: 0.72rem;
-    font-weight: 800;
     box-shadow: 0 12px 24px rgba(6, 18, 44, 0.22);
+}
+.kad-float a i {
+    font-size: 1.15rem;
+    line-height: 1;
 }
 .kad-float__call { background: #1a56c4; }
 .kad-float__wa { background: #25d366; }

@@ -15,10 +15,10 @@
         </xpath>
         <xpath expr="//div[@id='wrapwrap']" position="inside">
             <nav class="kad-float" aria-label="Quick contact">
-                <a class="kad-float__call" href="tel:+251911357216" title="Call">Call</a>
-                <a class="kad-float__wa" href="https://wa.me/251911357216" target="_blank" rel="noopener" title="WhatsApp">WA</a>
-                <a class="kad-float__mail" href="mailto:info@kadglobaltrading.com" title="Email">Mail</a>
-                <a class="kad-float__top" href="#top" title="Back to top">Top</a>
+                <a class="kad-float__call" href="tel:+251911357216" title="Call"><i class="fa fa-phone" role="img" aria-label="Call"/></a>
+                <a class="kad-float__wa" href="https://wa.me/251911357216" target="_blank" rel="noopener" title="WhatsApp"><i class="fa fa-whatsapp" role="img" aria-label="WhatsApp"/></a>
+                <a class="kad-float__mail" href="mailto:info@kadglobaltrading.com" title="Email"><i class="fa fa-envelope" role="img" aria-label="Email"/></a>
+                <a class="kad-float__top" href="#top" title="Back to top"><i class="fa fa-chevron-up" role="img" aria-label="Back to top"/></a>
             </nav>
         </xpath>
     </template>
