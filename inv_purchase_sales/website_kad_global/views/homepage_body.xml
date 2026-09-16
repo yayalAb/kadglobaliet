@@ -988,7 +988,34 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="kad-label" for="kad_q_product">Product</label>
-                            <input class="kad-input" type="text" id="kad_q_product" name="product" required="required" placeholder="e.g. Sesame Seeds"/>
+                            <div class="kad-autocomplete">
+                                <input class="kad-input" type="text" id="kad_q_product" name="product" autocomplete="off" required="required" placeholder="e.g. Sesame Seeds"
+                                       data-kad-autocomplete="kad_product_list"/>
+                                <ul class="kad-autocomplete__list" id="kad_product_list" role="listbox" hidden="hidden">
+                                    <li role="option">Sesame Seeds</li>
+                                    <li role="option">Soya Beans</li>
+                                    <li role="option">Niger Seed (Nug)</li>
+                                    <li role="option">Green Mung (Masho)</li>
+                                    <li role="option">Chickpeas (Shimbra)</li>
+                                    <li role="option">Desi Chickpeas</li>
+                                    <li role="option">Black Kidney Beans</li>
+                                    <li role="option">Oilcake</li>
+                                    <li role="option">Avocado</li>
+                                    <li role="option">Mango</li>
+                                    <li role="option">Onion</li>
+                                    <li role="option">Watermelon</li>
+                                    <li role="option">Decorative Fruit</li>
+                                    <li role="option">Ox</li>
+                                    <li role="option">Sheep</li>
+                                    <li role="option">Goat</li>
+                                    <li role="option">Camel</li>
+                                    <li role="option">Float Glass</li>
+                                    <li role="option">Laminated Glass</li>
+                                    <li role="option">Reinforcement Steel (Rebars)</li>
+                                    <li role="option">Steel RHS</li>
+                                    <li role="option">Plastic Raw Materials</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <label class="kad-label" for="kad_q_qty">Quantity</label>

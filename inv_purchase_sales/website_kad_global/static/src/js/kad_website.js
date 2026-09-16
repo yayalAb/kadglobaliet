@@ -97,6 +97,7 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
         this._bindScrollChrome();
         this._setupBackToTop();
         this._setupMapFacade();
+        this._setupAutocompletes();
         return this._super(...arguments);
     },
 
@@ -192,6 +193,63 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
             },
             { once: true }
         );
+    },
+
+    _setupAutocompletes() {
+        const inputs = this.el.querySelectorAll("[data-kad-autocomplete]");
+        inputs.forEach((input) => {
+            const list = document.getElementById(input.dataset.kadAutocomplete);
+            if (!list) {
+                return;
+            }
+            const items = Array.from(list.querySelectorAll("li"));
+
+            const open = () => {
+                list.hidden = false;
+            };
+            const close = () => {
+                list.hidden = true;
+            };
+            const filter = () => {
+                const query = input.value.trim().toLowerCase();
+                let visibleCount = 0;
+                items.forEach((item) => {
+                    const match = !query || item.textContent.toLowerCase().includes(query);
+                    item.hidden = !match;
+                    if (match) {
+                        visibleCount += 1;
+                    }
+                });
+                if (visibleCount) {
+                    open();
+                } else {
+                    close();
+                }
+            };
+
+            input.addEventListener("focus", filter);
+            input.addEventListener("input", filter);
+            input.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") {
+                    close();
+                }
+            });
+
+            items.forEach((item) => {
+                item.addEventListener("mousedown", (event) => {
+                    event.preventDefault();
+                    input.value = item.textContent;
+                    close();
+                    input.focus();
+                });
+            });
+
+            document.addEventListener("click", (event) => {
+                if (!input.contains(event.target) && !list.contains(event.target)) {
+                    close();
+                }
+            });
+        });
     },
 
     _setupReveals() {
