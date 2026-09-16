@@ -96,6 +96,7 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
         this._bindGlobalAnchors();
         this._bindScrollChrome();
         this._setupBackToTop();
+        this._setupMapFacade();
         return this._super(...arguments);
     },
 
@@ -172,6 +173,25 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
                 root.scrollTo({ top: 0, behavior: "smooth" });
             }
         });
+    },
+
+    _setupMapFacade() {
+        const facade = this.el.querySelector(".kad-map__facade");
+        if (!facade) {
+            return;
+        }
+        facade.addEventListener(
+            "click",
+            () => {
+                const iframe = document.createElement("iframe");
+                iframe.title = "KAD office location Addis Ababa";
+                iframe.src = "https://maps.google.com/maps?q=Addis%20Ababa%20Ethiopia&t=&z=11&ie=UTF8&iwloc=&output=embed";
+                iframe.referrerPolicy = "no-referrer-when-downgrade";
+                iframe.loading = "eager";
+                facade.replaceWith(iframe);
+            },
+            { once: true }
+        );
     },
 
     _setupReveals() {

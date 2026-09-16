@@ -1110,10 +1110,16 @@
                     </div>
                 </div>
                 <div class="kad-map mt-5" data-kad-anim="fade-up">
-                    <iframe title="KAD office location Addis Ababa"
-                            src="https://maps.google.com/maps?q=Addis%20Ababa%20Ethiopia&amp;t=&amp;z=11&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <button type="button" class="kad-map__facade" aria-label="Load interactive map of Addis Ababa, Ethiopia">
+                        <i class="fa fa-map-marker" aria-hidden="true"/>
+                        <span class="kad-map__facade-title">Addis Ababa, Ethiopia</span>
+                        <span class="kad-map__facade-cta">Tap to load interactive map</span>
+                    </button>
+                    <noscript>
+                        <iframe title="KAD office location Addis Ababa"
+                                src="https://maps.google.com/maps?q=Addis%20Ababa%20Ethiopia&amp;t=&amp;z=11&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </noscript>
                 </div>
             </div>
         </section>

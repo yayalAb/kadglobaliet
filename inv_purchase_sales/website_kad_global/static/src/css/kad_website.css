@@ -1457,6 +1457,36 @@ header a.btn-primary {
     height: 320px;
     border: 0;
 }
+.kad-map__facade {
+    width: 100%;
+    height: 320px;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    background:
+        linear-gradient(rgba(10, 47, 107, 0.55), rgba(10, 47, 107, 0.55)),
+        repeating-linear-gradient(45deg, #dfe6f2 0 2px, #eef2f9 2px 40px);
+    color: #fff;
+    cursor: pointer;
+    padding: 1rem;
+    text-align: center;
+}
+.kad-map__facade i {
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+}
+.kad-map__facade-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+.kad-map__facade-cta {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    text-decoration: underline;
+}
 
 .kad-float {
     position: fixed;
