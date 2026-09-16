@@ -302,7 +302,7 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
                     observer.unobserve(entry.target);
                 });
             },
-            { root: observerRoot, threshold: 0.2, rootMargin: "0px 0px -10% 0px" }
+            { root: observerRoot, threshold: 0, rootMargin: "0px 0px 0px 0px" }
         );
 
         nodes.forEach((node) => observer.observe(node));

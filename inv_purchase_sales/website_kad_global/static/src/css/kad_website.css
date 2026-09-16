@@ -1558,8 +1558,8 @@ header a.btn-primary {
 /* Reveals */
 .kad-js-ready [data-kad-anim] {
     opacity: 0;
-    transform: translateY(34px);
-    transition: opacity 0.9s var(--kad-ease), transform 0.9s var(--kad-ease);
+    transform: translateY(20px);
+    transition: opacity 0.5s var(--kad-ease), transform 0.5s var(--kad-ease);
     transition-delay: var(--kad-delay, 0ms);
 }
 
