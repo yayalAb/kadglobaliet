@@ -641,6 +641,22 @@
                             </article>
                             <article class="kad-pcard" data-kad-anim="fade-up">
                                 <div class="kad-pcard__media">
+                                    <img src="/website_kad_global/static/src/img/imports/steel-coils.png" alt="Hot rolled steel coils" loading="lazy"/>
+                                    <span class="kad-pcard__badge kad-pcard__badge--import">Import</span>
+                                </div>
+                                <div class="kad-pcard__body">
+                                    <span class="kad-pcard__cat">Construction Materials</span>
+                                    <h3>Hot Rolled Steel Coils</h3>
+                                    <p>Hot rolled steel coils for structural fabrication, manufacturing, and construction supply chains.</p>
+                                    <ul class="kad-pcard__meta">
+                                        <li><strong>Origin:</strong> China, Turkey, India</li>
+                                        <li><strong>Applications:</strong> Structural steel, manufacturing, construction</li>
+                                    </ul>
+                                    <a href="#quote" class="kad-pcard__cta">Request a Quote</a>
+                                </div>
+                            </article>
+                            <article class="kad-pcard" data-kad-anim="fade-up">
+                                <div class="kad-pcard__media">
                                     <img src="/website_kad_global/static/src/img/imports/plastic-raw.jpg" alt="Plastic raw materials" loading="lazy"/>
                                     <span class="kad-pcard__badge kad-pcard__badge--import">Import</span>
                                 </div>
@@ -1013,6 +1029,7 @@
                                     <li role="option">Laminated Glass</li>
                                     <li role="option">Reinforcement Steel (Rebars)</li>
                                     <li role="option">Steel RHS</li>
+                                    <li role="option">Hot Rolled Steel Coils</li>
                                     <li role="option">Plastic Raw Materials</li>
                                 </ul>
                             </div>
