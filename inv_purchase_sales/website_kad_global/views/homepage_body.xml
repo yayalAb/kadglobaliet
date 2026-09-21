@@ -134,7 +134,7 @@
                 <div class="row align-items-center g-5">
                     <div class="col-lg-5" data-kad-anim="fade-up">
                         <div class="kad-photo-stack">
-                            <img src="/website_kad_global/static/src/img/about_warehouse.png"
+                            <img src="/website_kad_global/static/src/img/about_warehouse_2.png"
                                  alt="KAD Import and Export warehouse"
                                  class="kad-photo-stack__main"
                                  loading="lazy"/>
