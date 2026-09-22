@@ -46,6 +46,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='payment_method']" position="attributes">
                 <attribute name="invisible">sale_scope == 'foreign'</attribute>
+                <attribute name="required">sale_scope != 'foreign'</attribute>
             </xpath>
         </field>
     </record>

@@ -11,8 +11,6 @@
                 <attribute name="options">{'no_create': True}</attribute>
             </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="after">
-                <field name="fs_no"/>
-                <field name="mrc_no"/>
                 <field name="payment_method"/>
                 <field name="driver_name"/>
                 <field name="driver_phone"/>
