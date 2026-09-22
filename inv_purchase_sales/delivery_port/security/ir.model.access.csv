@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delivery_port_user,delivery.port.user,model_delivery_port,sales_team.group_sale_salesman,1,0,0,0
+access_delivery_port_manager,delivery.port.manager,model_delivery_port,sales_team.group_sale_manager,1,1,1,1

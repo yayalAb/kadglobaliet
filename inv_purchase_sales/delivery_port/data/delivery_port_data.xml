@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="delivery_port_djibouti" model="delivery.port">
+        <field name="name">Port of Djibouti</field>
+        <field name="code">DJI</field>
+        <field name="country_id" ref="base.dj"/>
+    </record>
+    <record id="delivery_port_mombasa" model="delivery.port">
+        <field name="name">Port of Mombasa</field>
+        <field name="code">MBA</field>
+        <field name="country_id" ref="base.ke"/>
+    </record>
+    <record id="delivery_port_dar_es_salaam" model="delivery.port">
+        <field name="name">Port of Dar es Salaam</field>
+        <field name="code">DAR</field>
+        <field name="country_id" ref="base.tz"/>
+    </record>
+    <record id="delivery_port_said" model="delivery.port">
+        <field name="name">Port Said</field>
+        <field name="code">PSD</field>
+        <field name="country_id" ref="base.eg"/>
+    </record>
+    <record id="delivery_port_alexandria" model="delivery.port">
+        <field name="name">Alexandria Port</field>
+        <field name="code">ALY</field>
+        <field name="country_id" ref="base.eg"/>
+    </record>
+    <record id="delivery_port_damietta" model="delivery.port">
+        <field name="name">Damietta Port</field>
+        <field name="code">DAM</field>
+        <field name="country_id" ref="base.eg"/>
+    </record>
+    <record id="delivery_port_durban" model="delivery.port">
+        <field name="name">Port of Durban</field>
+        <field name="code">DUR</field>
+        <field name="country_id" ref="base.za"/>
+    </record>
+    <record id="delivery_port_cape_town" model="delivery.port">
+        <field name="name">Port of Cape Town</field>
+        <field name="code">CPT</field>
+        <field name="country_id" ref="base.za"/>
+    </record>
+    <record id="delivery_port_jebel_ali" model="delivery.port">
+        <field name="name">Jebel Ali Port</field>
+        <field name="code">JEA</field>
+        <field name="country_id" ref="base.ae"/>
+    </record>
+    <record id="delivery_port_salalah" model="delivery.port">
+        <field name="name">Port of Salalah</field>
+        <field name="code">SLL</field>
+        <field name="country_id" ref="base.om"/>
+    </record>
+    <record id="delivery_port_jeddah" model="delivery.port">
+        <field name="name">Jeddah Islamic Port</field>
+        <field name="code">JED</field>
+        <field name="country_id" ref="base.sa"/>
+    </record>
+    <record id="delivery_port_shanghai" model="delivery.port">
+        <field name="name">Port of Shanghai</field>
+        <field name="code">SHA</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    <record id="delivery_port_shenzhen" model="delivery.port">
+        <field name="name">Port of Shenzhen</field>
+        <field name="code">SZX</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    <record id="delivery_port_ningbo_zhoushan" model="delivery.port">
+        <field name="name">Port of Ningbo-Zhoushan</field>
+        <field name="code">NGB</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    <record id="delivery_port_guangzhou" model="delivery.port">
+        <field name="name">Port of Guangzhou</field>
+        <field name="code">CAN</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    <record id="delivery_port_singapore" model="delivery.port">
+        <field name="name">Port of Singapore</field>
+        <field name="code">SIN</field>
+        <field name="country_id" ref="base.sg"/>
+    </record>
+    <record id="delivery_port_busan" model="delivery.port">
+        <field name="name">Port of Busan</field>
+        <field name="code">PUS</field>
+        <field name="country_id" ref="base.kr"/>
+    </record>
+    <record id="delivery_port_yokohama" model="delivery.port">
+        <field name="name">Port of Yokohama</field>
+        <field name="code">YOK</field>
+        <field name="country_id" ref="base.jp"/>
+    </record>
+    <record id="delivery_port_rotterdam" model="delivery.port">
+        <field name="name">Port of Rotterdam</field>
+        <field name="code">RTM</field>
+        <field name="country_id" ref="base.nl"/>
+    </record>
+    <record id="delivery_port_antwerp_bruges" model="delivery.port">
+        <field name="name">Port of Antwerp-Bruges</field>
+        <field name="code">ANR</field>
+        <field name="country_id" ref="base.be"/>
+    </record>
+    <record id="delivery_port_hamburg" model="delivery.port">
+        <field name="name">Port of Hamburg</field>
+        <field name="code">HAM</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    <record id="delivery_port_marseille" model="delivery.port">
+        <field name="name">Port of Marseille</field>
+        <field name="code">MRS</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    <record id="delivery_port_valencia" model="delivery.port">
+        <field name="name">Port of Valencia</field>
+        <field name="code">VLC</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    <record id="delivery_port_genoa" model="delivery.port">
+        <field name="name">Port of Genoa</field>
+        <field name="code">GOA</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    <record id="delivery_port_piraeus" model="delivery.port">
+        <field name="name">Port of Piraeus</field>
+        <field name="code">PIR</field>
+        <field name="country_id" ref="base.gr"/>
+    </record>
+    <record id="delivery_port_felixstowe" model="delivery.port">
+        <field name="name">Port of Felixstowe</field>
+        <field name="code">FFX</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    <record id="delivery_port_istanbul" model="delivery.port">
+        <field name="name">Port of Istanbul</field>
+        <field name="code">IST</field>
+        <field name="country_id" ref="base.tr"/>
+    </record>
+    <record id="delivery_port_los_angeles" model="delivery.port">
+        <field name="name">Port of Los Angeles</field>
+        <field name="code">LAX</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    <record id="delivery_port_long_beach" model="delivery.port">
+        <field name="name">Port of Long Beach</field>
+        <field name="code">LGB</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    <record id="delivery_port_vancouver" model="delivery.port">
+        <field name="name">Port of Vancouver</field>
+        <field name="code">VAN</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="delivery_port_santos" model="delivery.port">
+        <field name="name">Port of Santos</field>
+        <field name="code">SSZ</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    <record id="delivery_port_buenos_aires" model="delivery.port">
+        <field name="name">Port of Buenos Aires</field>
+        <field name="code">BUE</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    <record id="delivery_port_manzanillo" model="delivery.port">
+        <field name="name">Port of Manzanillo</field>
+        <field name="code">ZLO</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    <record id="delivery_port_melbourne" model="delivery.port">
+        <field name="name">Port of Melbourne</field>
+        <field name="code">MEL</field>
+        <field name="country_id" ref="base.au"/>
+    </record>
+    <record id="delivery_port_auckland" model="delivery.port">
+        <field name="name">Port of Auckland</field>
+        <field name="code">AKL</field>
+        <field name="country_id" ref="base.nz"/>
+    </record>
+</odoo>
