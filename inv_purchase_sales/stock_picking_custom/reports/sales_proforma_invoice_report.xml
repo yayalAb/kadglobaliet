@@ -11,7 +11,7 @@
 
     <template id="report_sales_proforma_attachment_document">
         <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang or user.lang)" />
-        <t t-set="doc_title" t-value="'Proforma Attachment'" />
+        <t t-set="doc_title" t-value="'Proforma Invoice'" />
         <t t-set="doc_number" t-value="doc.name" />
         <t t-set="issue_number" t-value="'1'" />
         <t t-set="prepared_by" t-value="doc.get_proforma_prepared_by()" />
@@ -194,7 +194,7 @@
         <div class="page spi-page">
             <div class="oe_structure" />
 
-            <div class="spi-title">Performa Attachment</div>
+            <div class="spi-title">Proforma Invoice</div>
 
             <div class="spi-cols">
                 <div class="spi-col">
@@ -239,8 +239,7 @@
                 <thead style="display: table-header-group;">
                     <tr>
                         <th style="width:4%;">S.N</th>
-                        <th style="width:10%;">Item Code</th>
-                        <th style="width:22%;">Item Description</th>
+                        <th style="width:32%;">Item Description</th>
                         <th style="width:9%;">Unit of Measure</th>
                         <th style="width:9%;">Quantity</th>
                         <th style="width:11%;">Unit Price</th>
@@ -254,9 +253,6 @@
                         <t t-set="row_count" t-value="row_count + 1" />
                         <tr style="page-break-inside: avoid;">
                             <td class="spi-center"><span t-esc="row_count" /></td>
-                            <td class="spi-center">
-                                <span t-esc="line.product_id.default_code or ''" />
-                            </td>
                             <td class="spi-desc">
                                 <span t-esc="line.product_id.display_name or line.name or ''" />
                             </td>
@@ -275,20 +271,6 @@
                             <td class="spi-desc">
                                 <span t-esc="doc.get_proforma_line_remark(line)" />
                             </td>
-                        </tr>
-                    </t>
-                    <t t-set="min_rows" t-value="row_count if row_count &gt;= 3 else 3" />
-                    <t t-set="pad_rows" t-value="min_rows - row_count" />
-                    <t t-foreach="range(pad_rows)" t-as="pad">
-                        <tr>
-                            <td class="spi-center"><span t-esc="row_count + pad + 1" /></td>
-                            <td>&#160;</td>
-                            <td>&#160;</td>
-                            <td>&#160;</td>
-                            <td>&#160;</td>
-                            <td>&#160;</td>
-                            <td>&#160;</td>
-                            <td>&#160;</td>
                         </tr>
                     </t>
                 </tbody>
@@ -318,7 +300,6 @@
             <div class="spi-line">
                 <span t-esc="doc.get_proforma_term_condition()" />
             </div>
-            <div class="spi-line">&#160;</div>
 
             <div class="spi-section">Approval Flow</div>
 

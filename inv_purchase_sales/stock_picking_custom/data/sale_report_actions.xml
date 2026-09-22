@@ -15,4 +15,9 @@
         <field name="report_name">stock_picking_custom.report_sales_order_attachment</field>
         <field name="report_file">stock_picking_custom.report_sales_order_attachment</field>
     </record>
+
+    <!-- Native "Quotation / Order" print action added by sale_pdf_quote_builder; label shown as Sales Quotation -->
+    <record id="sale_pdf_quote_builder.action_report_saleorder_raw" model="ir.actions.report">
+        <field name="name">Sales Quotation</field>
+    </record>
 </odoo>
