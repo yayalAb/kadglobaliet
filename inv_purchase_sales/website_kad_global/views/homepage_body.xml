@@ -1040,11 +1040,27 @@
                         </div>
                         <div class="col-md-6">
                             <label class="kad-label" for="kad_q_country">Country</label>
-                            <input class="kad-input" type="text" id="kad_q_country" name="country" required="required" placeholder="Destination or origin country"/>
+                            <div class="kad-autocomplete">
+                                <input class="kad-input" type="text" id="kad_q_country" name="country" autocomplete="off" required="required" placeholder="Destination or origin country"
+                                       data-kad-autocomplete="kad_country_list"/>
+                                <ul class="kad-autocomplete__list" id="kad_country_list" role="listbox" hidden="hidden">
+                                    <t t-foreach="request.env['res.country'].sudo().search([], order='name')" t-as="kad_country">
+                                        <li role="option"><t t-esc="kad_country.name"/></li>
+                                    </t>
+                                </ul>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <label class="kad-label" for="kad_q_port">Delivery Port</label>
-                            <input class="kad-input" type="text" id="kad_q_port" name="port" placeholder="e.g. Djibouti, Shanghai"/>
+                            <div class="kad-autocomplete">
+                                <input class="kad-input" type="text" id="kad_q_port" name="port" autocomplete="off" placeholder="e.g. Djibouti, Shanghai"
+                                       data-kad-autocomplete="kad_port_list"/>
+                                <ul class="kad-autocomplete__list" id="kad_port_list" role="listbox" hidden="hidden">
+                                    <t t-foreach="request.env['delivery.port'].sudo().search([], order='name')" t-as="kad_port">
+                                        <li role="option"><t t-esc="kad_port.name"/></li>
+                                    </t>
+                                </ul>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <label class="kad-label" for="kad_q_company">Company</label>

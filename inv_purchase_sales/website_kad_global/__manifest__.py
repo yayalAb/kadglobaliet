@@ -15,7 +15,7 @@
     'website': 'https://kadglobaltrading.com',
     'category': 'Website/Theme',
     'license': 'LGPL-3',
-    'depends': ['website'],
+    'depends': ['website', 'delivery_port'],
     'data': [
         'data/unlock_homepage.xml',
         'views/homepage_body.xml',
