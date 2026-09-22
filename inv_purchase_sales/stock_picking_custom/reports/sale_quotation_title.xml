@@ -15,5 +15,15 @@
         <xpath expr="//t[@t-set='layout_document_title']//span[@t-else='']" position="replace">
             <span t-else="">Sales Order # </span>
         </xpath>
+
+        <!-- Add a Currency column between Quantity and Unit Price -->
+        <xpath expr="//th[@name='th_priceunit']" position="before">
+            <th name="th_currency" class="text-end text-nowrap">Currency</th>
+        </xpath>
+        <xpath expr="//td[@name='td_priceunit']" position="before">
+            <td name="td_currency" class="text-end text-nowrap">
+                <span t-esc="doc.currency_id.name" />
+            </td>
+        </xpath>
     </template>
 </odoo>

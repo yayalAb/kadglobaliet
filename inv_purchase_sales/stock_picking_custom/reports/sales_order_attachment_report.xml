@@ -41,29 +41,38 @@
                 letter-spacing: 0.3px;
             }
             .soa-field {
+                display: table;
+                width: 100%;
                 margin-bottom: 12px;
                 font-size: 10px;
-                overflow: hidden;
-                width: 100%;
             }
             .soa-lbl {
+                display: table-cell;
+                width: 1%;
+                white-space: nowrap;
+                vertical-align: bottom;
                 font-weight: bold;
-                float: left;
-                margin-right: 6px;
+                padding-right: 6px;
                 padding-bottom: 3px;
                 line-height: 1.35;
                 font-family: 'Noto Sans Ethiopic', 'Times New Roman', serif;
             }
             .soa-und {
-                display: block;
-                overflow: hidden;
+                display: table-cell;
+                vertical-align: bottom;
                 border-bottom: 1px solid #000;
                 min-height: 18px;
                 padding: 0 0 5px 2px;
-                margin-bottom: 2px;
             }
             .soa-und-dashed {
-                border-bottom: 1px dashed #000;
+                border-bottom: 1px solid #000;
+            }
+            .soa-cols .soa-lbl {
+                width: 110px;
+                white-space: normal;
+            }
+            .soa-cols .soa-und {
+                border-bottom: 1px solid #000;
             }
             .soa-section {
                 font-family: 'Noto Sans Ethiopic', 'Times New Roman', serif;
@@ -140,7 +149,6 @@
                 vertical-align: bottom;
             }
             .soa-line {
-                border-bottom: 1px solid #000;
                 min-height: 22px;
                 padding: 0 2px 5px 2px;
                 margin-bottom: 6px;
@@ -202,7 +210,7 @@
                     </div>
                     <div class="soa-field">
                         <span class="soa-lbl">MRC No:</span>
-                        <div class="soa-und soa-und-dashed">
+                        <div class="soa-und">
                             <t t-out="doc.mrc_no or ''"/>
                         </div>
                     </div>
@@ -226,7 +234,7 @@
                     </div>
                     <div class="soa-field">
                         <span class="soa-lbl">FS No:</span>
-                        <div class="soa-und soa-und-dashed">
+                        <div class="soa-und">
                             <t t-out="doc.fs_no or ''"/>
                         </div>
                     </div>
@@ -244,22 +252,21 @@
                     </div>
                     <div class="soa-field">
                         <span class="soa-lbl">Address:</span>
-                        <div class="soa-und soa-und-dashed">
+                        <div class="soa-und">
                             <span t-esc="customer_address" />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="soa-section">የእቃ/የአገልግሎት አይነት /Item Details</div>
-
             <table class="soa-table">
                 <thead style="display: table-header-group;">
                     <tr>
                         <th style="width:4%;">S.N</th>
-                        <th style="width:32%;">Item Description</th>
+                        <th style="width:27%;">Item Description</th>
                         <th style="width:9%;">Unit of Measure</th>
                         <th style="width:9%;">Quantity</th>
+                        <th style="width:8%;">Currency</th>
                         <th style="width:11%;">Unit Price</th>
                         <th style="width:12%;">Total Unit Price</th>
                         <th style="width:13%;">Remarks</th>
@@ -279,6 +286,9 @@
                             </td>
                             <td class="soa-num">
                                 <span t-esc="'{0:,.2f}'.format(line.product_uom_qty or 0.0)" />
+                            </td>
+                            <td class="soa-center">
+                                <span t-esc="doc.currency_id.name or ''" />
                             </td>
                             <td class="soa-num">
                                 <span t-esc="'{0:,.2f}'.format(line.price_unit or 0.0)" />

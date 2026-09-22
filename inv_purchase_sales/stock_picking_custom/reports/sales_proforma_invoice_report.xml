@@ -41,26 +41,32 @@
                 letter-spacing: 0.3px;
             }
             .spi-field {
+                display: table;
+                width: 100%;
                 margin-bottom: 12px;
                 font-size: 10px;
-                overflow: hidden;
-                width: 100%;
             }
             .spi-lbl {
+                display: table-cell;
+                width: 1%;
+                white-space: nowrap;
+                vertical-align: bottom;
                 font-weight: bold;
-                float: left;
-                margin-right: 6px;
+                padding-right: 6px;
                 padding-bottom: 3px;
                 line-height: 1.35;
                 font-family: 'Noto Sans Ethiopic', 'Times New Roman', serif;
             }
             .spi-und {
-                display: block;
-                overflow: hidden;
+                display: table-cell;
+                vertical-align: bottom;
                 border-bottom: 1px solid #000;
                 min-height: 18px;
                 padding: 0 0 5px 2px;
-                margin-bottom: 2px;
+            }
+            .spi-cols .spi-lbl {
+                width: 110px;
+                white-space: normal;
             }
             .spi-section {
                 font-family: 'Noto Sans Ethiopic', 'Times New Roman', serif;
@@ -137,7 +143,6 @@
                 vertical-align: bottom;
             }
             .spi-line {
-                border-bottom: 1px solid #000;
                 min-height: 22px;
                 padding: 0 2px 5px 2px;
                 margin-bottom: 6px;
@@ -233,15 +238,14 @@
                 </div>
             </div>
 
-            <div class="spi-section">የእቃ/የአገልግሎት አይነት /Item Details</div>
-
             <table class="spi-table">
                 <thead style="display: table-header-group;">
                     <tr>
                         <th style="width:4%;">S.N</th>
-                        <th style="width:32%;">Item Description</th>
+                        <th style="width:27%;">Item Description</th>
                         <th style="width:9%;">Unit of Measure</th>
                         <th style="width:9%;">Quantity</th>
+                        <th style="width:8%;">Currency</th>
                         <th style="width:11%;">Unit Price</th>
                         <th style="width:12%;">Total Unit Price</th>
                         <th style="width:13%;">Remarks</th>
@@ -261,6 +265,9 @@
                             </td>
                             <td class="spi-num">
                                 <span t-esc="'{0:,.2f}'.format(line.product_uom_qty or 0.0)" />
+                            </td>
+                            <td class="spi-center">
+                                <span t-esc="doc.currency_id.name or ''" />
                             </td>
                             <td class="spi-num">
                                 <span t-esc="'{0:,.2f}'.format(line.price_unit or 0.0)" />
@@ -344,40 +351,6 @@
                     </div>
                 </div>
 
-                <div class="spi-appr-row">
-                    <div class="spi-appr-title">Checked By:</div>
-                    <div class="spi-appr-slot">
-                        <div class="spi-field">
-                            <span class="spi-lbl">Name:</span>
-                            <div class="spi-und">
-                                <t t-if="doc.proforma_checked_by_id">
-                                    <span t-field="doc.proforma_checked_by_id.name" />
-                                </t>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="spi-appr-slot">
-                        <div class="spi-field">
-                            <span class="spi-lbl">Sig:</span>
-                            <div class="spi-und">
-                                <t t-if="doc.proforma_checked_by_id and doc.proforma_checked_by_id.sign_signature">
-                                    <img t-att-src="'data:image/png;base64,%s' % (doc.proforma_checked_by_id.sign_signature.decode())"
-                                        style="max-height: 40px; max-width: 120px;" />
-                                </t>
-                                <t t-elif="doc.proforma_checked_by_id and doc.proforma_checked_by_id.employee_id and doc.proforma_checked_by_id.employee_id.emp_signature">
-                                    <img t-att-src="'data:image/png;base64,%s' % (doc.proforma_checked_by_id.employee_id.emp_signature.decode())"
-                                        style="max-height: 40px; max-width: 120px;" />
-                                </t>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="spi-appr-slot">
-                        <div class="spi-field">
-                            <span class="spi-lbl">Date:</span>
-                            <div class="spi-und">&#160;</div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="spi-appr-row">
                     <div class="spi-appr-title">Approved By:</div>
