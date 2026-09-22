@@ -25,5 +25,17 @@
                 <span t-esc="doc.currency_id.name" />
             </td>
         </xpath>
+
+        <!-- Rename "Taxes" to "VAT%" -->
+        <xpath expr="//th[@name='th_taxes']" position="replace">
+            <th name="th_taxes" class="text-end">VAT%</th>
+        </xpath>
+    </template>
+
+    <!-- Rename the "Untaxed Amount" subtotal label to "Total Unit Amount" on sale reports only -->
+    <template id="sale_document_tax_totals_untaxed_label" inherit_id="sale.document_tax_totals">
+        <xpath expr="//span[@t-out=&quot;subtotal['name']&quot;]" position="replace">
+            <span t-out="'Total Unit Amount' if subtotal['name'] == 'Untaxed Amount' else subtotal['name']">Untaxed Amount</span>
+        </xpath>
     </template>
 </odoo>
