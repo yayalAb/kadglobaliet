@@ -21,6 +21,19 @@ class KadWebsite(http.Controller):
         port = (post.get('port') or '').strip()
 
         if name and email and (message or product):
+            request.env['website.request'].sudo().create({
+                'name': name,
+                'email': email,
+                'phone': phone,
+                'company': company,
+                'form_type': 'quote' if form_type == 'quote' else 'contact',
+                'product': product,
+                'quantity': quantity,
+                'country': country,
+                'port': port,
+                'message': message,
+            })
+
             rows = [
                 ('Form', 'Quote Request' if form_type == 'quote' else 'Contact'),
                 ('Name', name),

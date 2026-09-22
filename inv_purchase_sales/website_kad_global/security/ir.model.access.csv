@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_website_request_salesman,website.request.salesman,model_website_request,sales_team.group_sale_salesman,1,1,0,0
+access_website_request_manager,website.request.manager,model_website_request,sales_team.group_sale_manager,1,1,1,1
