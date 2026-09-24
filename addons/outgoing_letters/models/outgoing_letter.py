@@ -50,7 +50,7 @@ class OutgoingLetter(models.Model):
 
     def action_reset_to_draft(self):
         self._check_group('outgoing_letters.group_outgoing_letter_approver')
-        self._check_state(['submitted', 'approved'])
+        self._check_state(['submitted', 'approved', 'printable'])
         self.state = 'draft'
 
     def action_print(self):
