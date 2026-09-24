@@ -8,6 +8,10 @@
                 <field name="name"/>
                 <field name="title"/>
                 <field name="date"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'submitted'"
+                       decoration-warning="state == 'approved'"
+                       decoration-success="state == 'printable'"/>
                 <field name="company_id" column_invisible="1"/>
             </list>
         </field>
@@ -19,8 +23,23 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_print" type="object"
-                            string="Print" class="btn-primary"/>
+                    <button name="action_submit" type="object" string="Submit"
+                            class="btn-primary" invisible="state != 'draft'"
+                            groups="outgoing_letters.group_outgoing_letter_user"/>
+                    <button name="action_approve" type="object" string="Approve"
+                            class="btn-primary" invisible="state != 'submitted'"
+                            groups="outgoing_letters.group_outgoing_letter_approver"/>
+                    <button name="action_set_printable" type="object" string="Mark Printable"
+                            class="btn-primary" invisible="state != 'approved'"
+                            groups="outgoing_letters.group_outgoing_letter_approver"/>
+                    <button name="action_print" type="object" string="Print"
+                            class="btn-primary" invisible="state != 'printable'"
+                            groups="outgoing_letters.group_outgoing_letter_user"/>
+                    <button name="action_reset_to_draft" type="object" string="Reset to Draft"
+                            invisible="state not in ('submitted', 'approved')"
+                            groups="outgoing_letters.group_outgoing_letter_approver"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,submitted,approved,printable"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -28,16 +47,17 @@
                     </div>
                     <group>
                         <group>
-                            <field name="title"/>
+                            <field name="title" readonly="state != 'draft'"/>
                         </group>
                         <group>
-                            <field name="date"/>
+                            <field name="date" readonly="state != 'draft'"/>
                             <field name="company_id" invisible="1"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Content" name="content">
-                            <field name="content" placeholder="Write the letter here..."/>
+                            <field name="content" placeholder="Write the letter here..."
+                                   readonly="state != 'draft'"/>
                         </page>
                     </notebook>
                 </sheet>
@@ -53,7 +73,12 @@
             <search>
                 <field name="name"/>
                 <field name="title"/>
+                <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_submitted" string="Submitted" domain="[('state', '=', 'submitted')]"/>
+                <filter name="filter_approved" string="Approved" domain="[('state', '=', 'approved')]"/>
+                <filter name="filter_printable" string="Printable" domain="[('state', '=', 'printable')]"/>
                 <group expand="0" string="Group By">
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
                     <filter name="group_date" string="Date" context="{'group_by': 'date'}"/>
                 </group>
             </search>
@@ -70,7 +95,8 @@
     </record>
 
     <menuitem id="menu_outgoing_letter_root" name="Outgoing Letters"
-              web_icon="outgoing_letters,static/description/icon.png" sequence="50"/>
+              web_icon="outgoing_letters,static/description/icon.png" sequence="50"
+              groups="outgoing_letters.group_outgoing_letter_user"/>
     <menuitem id="menu_outgoing_letter" name="Letters"
               parent="menu_outgoing_letter_root" action="action_outgoing_letter" sequence="10"/>
 
