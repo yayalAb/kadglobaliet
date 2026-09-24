@@ -18,6 +18,23 @@ class OutgoingLetter(models.Model):
         default=lambda self: self.env.company)
 
     def action_print(self):
-        for letter in self.filtered(lambda l: l.name == _('New')):
-            letter.name = self.env['ir.sequence'].next_by_code('outgoing.letter') or _('New')
-        return self.env.ref('outgoing_letters.action_report_outgoing_letter').report_action(self)
+        self.ensure_one()
+        self.name = self.env['ir.sequence'].next_by_code('outgoing.letter') or _('New')
+        pdf_content, __ = self.env['ir.actions.report']._render_qweb_pdf(
+            'outgoing_letters.action_report_outgoing_letter', self.ids)
+        attachment = self.env['ir.attachment'].create({
+            'name': 'Letter - %s.pdf' % self.name.replace('/', '-'),
+            'type': 'binary',
+            'raw': pdf_content,
+            'res_model': self._name,
+            'res_id': self.id,
+            'mimetype': 'application/pdf',
+        })
+        self.message_post(
+            body=_('Letter printed with reference %s', self.name),
+            attachment_ids=attachment.ids)
+        return {
+            'type': 'ir.actions.act_url',
+            'url': '/web/content/%s?download=true' % attachment.id,
+            'target': 'self',
+        }
