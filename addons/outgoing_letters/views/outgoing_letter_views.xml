@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_outgoing_letter_list" model="ir.ui.view">
+        <field name="name">outgoing.letter.list</field>
+        <field name="model">outgoing.letter</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="title"/>
+                <field name="date"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_outgoing_letter_form" model="ir.ui.view">
+        <field name="name">outgoing.letter.form</field>
+        <field name="model">outgoing.letter</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_print" type="object"
+                            string="Print" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="title"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Content" name="content">
+                            <field name="content" placeholder="Write the letter here..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_outgoing_letter_search" model="ir.ui.view">
+        <field name="name">outgoing.letter.search</field>
+        <field name="model">outgoing.letter</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="title"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_date" string="Date" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_outgoing_letter" model="ir.actions.act_window">
+        <field name="name">Outgoing Letters</field>
+        <field name="res_model">outgoing.letter</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create your first outgoing letter</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_outgoing_letter_root" name="Outgoing Letters"
+              web_icon="outgoing_letters,static/description/icon.png" sequence="50"/>
+    <menuitem id="menu_outgoing_letter" name="Letters"
+              parent="menu_outgoing_letter_root" action="action_outgoing_letter" sequence="10"/>
+
+    <record id="action_outgoing_letter_sequence" model="ir.actions.act_window">
+        <field name="name">Letter Sequence</field>
+        <field name="res_model">ir.sequence</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="seq_outgoing_letter"/>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem id="menu_outgoing_letter_config" name="Configuration"
+              parent="menu_outgoing_letter_root" sequence="100" groups="base.group_system"/>
+    <menuitem id="menu_outgoing_letter_sequence" name="Sequence"
+              parent="menu_outgoing_letter_config" action="action_outgoing_letter_sequence"
+              sequence="10" groups="base.group_system"/>
+</odoo>
