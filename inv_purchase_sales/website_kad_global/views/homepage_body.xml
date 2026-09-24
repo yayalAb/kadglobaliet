@@ -193,6 +193,119 @@
             </div>
         </section>
 
+        <!-- PARTNERS -->
+        <section id="partners" class="kad-section kad-partners">
+            <div class="container-fluid kad-section__inner">
+                <div class="kad-section__head kad-section__head--wide" data-kad-anim="fade-up">
+                    <p class="kad-kicker">Our Partners</p>
+                    <h2>Working with trusted companies across China, Europe, and Africa.</h2>
+                </div>
+                <div class="kad-partner-marquee" data-kad-anim="fade-up">
+                    <div class="kad-partner-track">
+                        <article class="kad-partner">
+                            <span class="kad-partner__logo"><img src="/website_kad_global/static/src/img/partners/china_glass.png" alt="China Glass Holding Co., Ltd logo" loading="lazy"/></span>
+                            <h3>China Glass Holding Co., Ltd</h3>
+                            <span class="kad-partner__loc">Qingdao, China</span>
+                        </article>
+                        <article class="kad-partner">
+                            <span class="kad-partner__logo"><img src="/website_kad_global/static/src/img/partners/chinastar.png" alt="Qingdao Chinastar Holding Co., Ltd logo" loading="lazy"/></span>
+                            <h3>Qingdao Chinastar Holding Co., Ltd</h3>
+                            <span class="kad-partner__loc">Qingdao, China</span>
+                        </article>
+                        <article class="kad-partner">
+                            <span class="kad-partner__mark">ASE</span>
+                            <h3>ASE Europ N.V.</h3>
+                            <span class="kad-partner__loc">Belgium</span>
+                        </article>
+                        <article class="kad-partner">
+                            <span class="kad-partner__mark">JHT</span>
+                            <h3>Jinhongtong Group</h3>
+                            <span class="kad-partner__loc">Shandong, China</span>
+                        </article>
+                        <article class="kad-partner">
+                            <span class="kad-partner__mark">XXM</span>
+                            <h3>Xasan Xaashi Maxamuud</h3>
+                            <span class="kad-partner__loc">Somalia</span>
+                        </article>
+                        <article class="kad-partner">
+                            <span class="kad-partner__mark">AH</span>
+                            <h3>Ahchof Holdings</h3>
+                            <span class="kad-partner__loc">China</span>
+                        </article>
+                        <article class="kad-partner">
+                            <span class="kad-partner__mark">SSM</span>
+                            <h3>Shandong Sino Metal Co., Ltd</h3>
+                            <span class="kad-partner__loc">Shandong, China</span>
+                        </article>
+                        <article class="kad-partner">
+                            <span class="kad-partner__mark">GSW</span>
+                            <h3>George Sanitary Ware</h3>
+                            <span class="kad-partner__loc">Guangdong, China</span>
+                        </article>
+                        <article class="kad-partner">
+                            <span class="kad-partner__mark">THZ</span>
+                            <h3>Tianjin Hanzhong International Trade Co., Ltd</h3>
+                            <span class="kad-partner__loc">Tianjin, China</span>
+                        </article>
+                        <article class="kad-partner">
+                            <span class="kad-partner__mark">HI</span>
+                            <h3>Himatsing International Pte</h3>
+                        </article>
+                        <!-- duplicate set for a seamless loop -->
+                        <article class="kad-partner" aria-hidden="true">
+                            <span class="kad-partner__logo"><img src="/website_kad_global/static/src/img/partners/china_glass.png" alt="" loading="lazy"/></span>
+                            <h3>China Glass Holding Co., Ltd</h3>
+                            <span class="kad-partner__loc">Qingdao, China</span>
+                        </article>
+                        <article class="kad-partner" aria-hidden="true">
+                            <span class="kad-partner__logo"><img src="/website_kad_global/static/src/img/partners/chinastar.png" alt="" loading="lazy"/></span>
+                            <h3>Qingdao Chinastar Holding Co., Ltd</h3>
+                            <span class="kad-partner__loc">Qingdao, China</span>
+                        </article>
+                        <article class="kad-partner" aria-hidden="true">
+                            <span class="kad-partner__mark">ASE</span>
+                            <h3>ASE Europ N.V.</h3>
+                            <span class="kad-partner__loc">Belgium</span>
+                        </article>
+                        <article class="kad-partner" aria-hidden="true">
+                            <span class="kad-partner__mark">JHT</span>
+                            <h3>Jinhongtong Group</h3>
+                            <span class="kad-partner__loc">Shandong, China</span>
+                        </article>
+                        <article class="kad-partner" aria-hidden="true">
+                            <span class="kad-partner__mark">XXM</span>
+                            <h3>Xasan Xaashi Maxamuud</h3>
+                            <span class="kad-partner__loc">Somalia</span>
+                        </article>
+                        <article class="kad-partner" aria-hidden="true">
+                            <span class="kad-partner__mark">AH</span>
+                            <h3>Ahchof Holdings</h3>
+                            <span class="kad-partner__loc">China</span>
+                        </article>
+                        <article class="kad-partner" aria-hidden="true">
+                            <span class="kad-partner__mark">SSM</span>
+                            <h3>Shandong Sino Metal Co., Ltd</h3>
+                            <span class="kad-partner__loc">Shandong, China</span>
+                        </article>
+                        <article class="kad-partner" aria-hidden="true">
+                            <span class="kad-partner__mark">GSW</span>
+                            <h3>George Sanitary Ware</h3>
+                            <span class="kad-partner__loc">Guangdong, China</span>
+                        </article>
+                        <article class="kad-partner" aria-hidden="true">
+                            <span class="kad-partner__mark">THZ</span>
+                            <h3>Tianjin Hanzhong International Trade Co., Ltd</h3>
+                            <span class="kad-partner__loc">Tianjin, China</span>
+                        </article>
+                        <article class="kad-partner" aria-hidden="true">
+                            <span class="kad-partner__mark">HI</span>
+                            <h3>Himatsing International Pte</h3>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- SERVICES -->
         <section id="services" class="kad-section kad-services kad-style kad-style--cards">
             <div class="container-fluid kad-section__inner">
