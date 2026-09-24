@@ -2028,3 +2028,42 @@ header a.btn-primary {
     .kad-partner { flex-basis: 210px; padding: 1.2rem 0.8rem; }
     .kad-partner-track { --kad-partner-gap: 0.9rem; animation-duration: 35s; }
 }
+
+/* About photo slider: two images cross-fade every 5 seconds */
+.kad-photo-slider {
+    position: relative;
+    overflow: hidden;
+}
+.kad-photo-slider__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.kad-photo-slider__img--1 {
+    animation: kadAboutZoom1 10s ease-in-out infinite;
+}
+.kad-photo-slider__img--2 {
+    object-position: center 25%;
+    opacity: 0;
+    animation: kadAboutFade 10s ease-in-out infinite, kadAboutZoom2 10s ease-in-out infinite;
+}
+@keyframes kadAboutFade {
+    0%, 40% { opacity: 0; }
+    50%, 90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+@keyframes kadAboutZoom1 {
+    0% { transform: scale(1.08); }
+    50% { transform: scale(1); }
+    100% { transform: scale(1.08); }
+}
+@keyframes kadAboutZoom2 {
+    0%, 40% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .kad-photo-slider__img--1 { animation: none; }
+    .kad-photo-slider__img--2 { animation: kadAboutFade 10s linear infinite; }
+}

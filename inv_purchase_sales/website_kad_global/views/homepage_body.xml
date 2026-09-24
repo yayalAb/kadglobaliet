@@ -134,10 +134,16 @@
                 <div class="row align-items-center g-5">
                     <div class="col-lg-5" data-kad-anim="fade-up">
                         <div class="kad-photo-stack">
-                            <img src="/website_kad_global/static/src/img/about_warehouse_2.png"
-                                 alt="KAD Import and Export warehouse"
-                                 class="kad-photo-stack__main"
-                                 loading="lazy"/>
+                            <div class="kad-photo-stack__main kad-photo-slider">
+                                <img src="/website_kad_global/static/src/img/about_warehouse_2.png"
+                                     alt="KAD Import and Export warehouse"
+                                     class="kad-photo-slider__img kad-photo-slider__img--1"
+                                     loading="lazy"/>
+                                <img src="/website_kad_global/static/src/img/about_photo_2.jpg"
+                                     alt="KAD Import and Export"
+                                     class="kad-photo-slider__img kad-photo-slider__img--2"
+                                     loading="lazy"/>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-7">
