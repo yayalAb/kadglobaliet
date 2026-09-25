@@ -1483,45 +1483,86 @@ header a.btn-primary {
 
 .kad-quote-form { background: var(--kad-surface); }
 .kad-map {
+    position: relative;
     border-radius: 20px;
     overflow: hidden;
-    min-height: 280px;
+    min-height: 320px;
     box-shadow: var(--kad-shadow-soft);
 }
 .kad-map iframe {
+    display: block;
     width: 100%;
     height: 320px;
     border: 0;
 }
+/* Loading overlay shown until the map iframe has loaded */
 .kad-map__facade {
-    width: 100%;
-    height: 320px;
-    border: 0;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    background:
-        linear-gradient(rgba(10, 47, 107, 0.55), rgba(10, 47, 107, 0.55)),
-        repeating-linear-gradient(45deg, #dfe6f2 0 2px, #eef2f9 2px 40px);
-    color: #fff;
-    cursor: pointer;
     padding: 1rem;
     text-align: center;
+    color: #fff;
+    background:
+        linear-gradient(rgba(10, 47, 107, 0.6), rgba(10, 47, 107, 0.6)),
+        repeating-linear-gradient(45deg, #dfe6f2 0 2px, #eef2f9 2px 40px);
+    overflow: hidden;
+    transition: opacity 0.6s ease;
 }
-.kad-map__facade i {
+.kad-map__facade::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.22) 50%, transparent 80%);
+    transform: translateX(-100%);
+    animation: kadMapShimmer 1.6s ease-in-out infinite;
+}
+.kad-map.is-loaded .kad-map__facade {
+    opacity: 0;
+    pointer-events: none;
+}
+.kad-map__pin {
     font-size: 2rem;
     margin-bottom: 0.3rem;
+    animation: kadMapPin 1.2s ease-in-out infinite;
 }
 .kad-map__facade-title {
     font-size: 1.1rem;
     font-weight: 800;
 }
 .kad-map__facade-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 0.85rem;
     opacity: 0.9;
-    text-decoration: underline;
+}
+.kad-map__spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: kadMapSpin 0.8s linear infinite;
+}
+@keyframes kadMapSpin {
+    to { transform: rotate(360deg); }
+}
+@keyframes kadMapPin {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+@keyframes kadMapShimmer {
+    to { transform: translateX(100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .kad-map__facade::after,
+    .kad-map__pin { animation: none; }
 }
 
 .kad-float {

@@ -1308,7 +1308,7 @@
                             </div>
                             <div class="kad-contact-block">
                                 <strong>WhatsApp</strong>
-                                <p><a href="https://wa.me/251911357216" target="_blank" rel="noopener">Chat on WhatsApp</a></p>
+                                <p><a href="https://wa.me/251911205428" target="_blank" rel="noopener">Chat on WhatsApp</a></p>
                             </div>
                             <div class="kad-contact-block">
                                 <strong>Email</strong>
@@ -1322,11 +1322,16 @@
                     </div>
                 </div>
                 <div class="kad-map mt-5" data-kad-anim="fade-up">
-                    <button type="button" class="kad-map__facade" aria-label="Load interactive map of Addis Ababa, Ethiopia">
-                        <i class="fa fa-map-marker" aria-hidden="true"/>
+                    <div class="kad-map__facade" role="status" aria-live="polite">
+                        <span class="kad-map__pin" aria-hidden="true">
+                            <i class="fa fa-map-marker"/>
+                        </span>
                         <span class="kad-map__facade-title">Addis Ababa, Ethiopia</span>
-                        <span class="kad-map__facade-cta">Tap to load interactive map</span>
-                    </button>
+                        <span class="kad-map__facade-cta">
+                            <span class="kad-map__spinner" aria-hidden="true"/>
+                            Loading map…
+                        </span>
+                    </div>
                     <noscript>
                         <iframe title="KAD office location Addis Ababa"
                                 src="https://maps.google.com/maps?q=Addis%20Ababa%20Ethiopia&amp;t=&amp;z=11&amp;ie=UTF8&amp;iwloc=&amp;output=embed"

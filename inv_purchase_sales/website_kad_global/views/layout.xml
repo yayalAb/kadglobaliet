@@ -15,8 +15,8 @@
         </xpath>
         <xpath expr="//div[@id='wrapwrap']" position="inside">
             <nav class="kad-float" aria-label="Quick contact">
-                <a class="kad-float__call" href="tel:+251911357216" title="Call"><i class="fa fa-phone" role="img" aria-label="Call"/></a>
-                <a class="kad-float__wa" href="https://wa.me/251911357216" target="_blank" rel="noopener" title="WhatsApp"><i class="fa fa-whatsapp" role="img" aria-label="WhatsApp"/></a>
+                <a class="kad-float__call" href="tel:+251911205428" title="Call"><i class="fa fa-phone" role="img" aria-label="Call"/></a>
+                <a class="kad-float__wa" href="https://wa.me/251911205428" target="_blank" rel="noopener" title="WhatsApp"><i class="fa fa-whatsapp" role="img" aria-label="WhatsApp"/></a>
                 <a class="kad-float__mail" href="mailto:info@kadglobaltrading.com" title="Email"><i class="fa fa-envelope" role="img" aria-label="Email"/></a>
                 <a class="kad-float__top" href="#top" title="Back to top"><i class="fa fa-chevron-up" role="img" aria-label="Back to top"/></a>
             </nav>
@@ -66,7 +66,7 @@
                                 <li>Addis Ababa, Ethiopia</li>
                                 <li><a href="tel:+251911357216">+251 911 357 216</a></li>
                                 <li><a href="tel:+251911205428">+251 911 205 428</a></li>
-                                <li><a href="https://wa.me/251911357216" target="_blank" rel="noopener">WhatsApp</a></li>
+                                <li><a href="https://wa.me/251911205428" target="_blank" rel="noopener">WhatsApp</a></li>
                                 <li><a href="mailto:info@kadglobaltrading.com">info@kadglobaltrading.com</a></li>
                                 <li>Mon–Sat · 8:00 AM – 6:00 PM</li>
                             </ul>

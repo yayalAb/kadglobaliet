@@ -178,21 +178,50 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
 
     _setupMapFacade() {
         const facade = this.el.querySelector(".kad-map__facade");
-        if (!facade) {
+        const map = facade && facade.closest(".kad-map");
+        if (!facade || !map) {
             return;
         }
-        facade.addEventListener(
-            "click",
-            () => {
-                const iframe = document.createElement("iframe");
-                iframe.title = "KAD office location Addis Ababa";
-                iframe.src = "https://maps.google.com/maps?q=Addis%20Ababa%20Ethiopia&t=&z=11&ie=UTF8&iwloc=&output=embed";
-                iframe.referrerPolicy = "no-referrer-when-downgrade";
-                iframe.loading = "eager";
-                facade.replaceWith(iframe);
+        const load = () => {
+            if (map.dataset.kadMapLoaded === "1") {
+                return;
+            }
+            map.dataset.kadMapLoaded = "1";
+            const iframe = document.createElement("iframe");
+            iframe.title = "KAD office location Addis Ababa";
+            iframe.src = "https://maps.google.com/maps?q=Addis%20Ababa%20Ethiopia&t=&z=11&ie=UTF8&iwloc=&output=embed";
+            iframe.referrerPolicy = "no-referrer-when-downgrade";
+            iframe.loading = "eager";
+            const done = () => {
+                map.classList.add("is-loaded");
+                window.setTimeout(() => facade.remove(), 600);
+            };
+            iframe.addEventListener("load", done, { once: true });
+            // Never leave the loader up if the map is slow or blocked
+            window.setTimeout(done, 10000);
+            map.prepend(iframe);
+        };
+
+        // Start loading as the map approaches the viewport (no click needed)
+        if (!("IntersectionObserver" in window)) {
+            load();
+            return;
+        }
+        const scrollRoot = getScrollRoot();
+        const observerRoot =
+            scrollRoot && scrollRoot !== document.documentElement && scrollRoot !== document.body
+                ? scrollRoot
+                : null;
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries.some((entry) => entry.isIntersecting)) {
+                    observer.disconnect();
+                    load();
+                }
             },
-            { once: true }
+            { root: observerRoot, rootMargin: "400px 0px" }
         );
+        observer.observe(map);
     },
 
     _setupAutocompletes() {
