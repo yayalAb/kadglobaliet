@@ -2029,15 +2029,16 @@ header a.btn-primary {
     .kad-partner-track { --kad-partner-gap: 0.9rem; animation-duration: 35s; }
 }
 
-/* About: second photo overlaps the bottom corner of the main one,
-   and grows to show the whole (uncropped) photo on hover */
+
+/* About: GM photo overlaps the bottom corner of the main photo,
+   and grows to show the whole photo on hover */
 .kad-photo-stack__inset--portrait {
     width: 30%;
     height: auto;
-    aspect-ratio: 3 / 4;
-    bottom: -48px;
+    aspect-ratio: 5 / 6;
+    bottom: -32px;
     object-fit: cover;
-    object-position: center 25%;
+    object-position: center 30%;
     z-index: 5;
     cursor: zoom-in;
     transform-origin: bottom right;
@@ -2050,6 +2051,71 @@ header a.btn-primary {
 }
 @media (max-width: 991.98px) {
     .kad-photo-stack { margin-bottom: 3.5rem; }
-    .kad-photo-stack__inset--portrait { width: 30%; bottom: -40px; }
+    .kad-photo-stack__inset--portrait { bottom: -28px; }
     .kad-photo-stack__inset--portrait:hover { transform: scale(1.6); }
+}
+
+/* Meet our CEO */
+.kad-about { padding-bottom: 3rem; }
+.kad-ceo {
+    padding: 3rem 0 3.5rem;
+    background:
+        radial-gradient(ellipse at bottom right, rgba(47, 154, 62, 0.1), transparent 45%),
+        var(--kad-surface);
+}
+.kad-ceo__photo {
+    position: relative;
+    margin: 0 auto;
+    width: fit-content;
+    max-width: 100%;
+}
+.kad-ceo__photo::before {
+    content: "";
+    position: absolute;
+    inset: 18px -18px -18px 18px;
+    border-radius: var(--kad-radius);
+    background: var(--kad-grad-brand);
+}
+.kad-ceo__photo img {
+    position: relative;
+    display: block;
+    width: auto;
+    height: min(460px, 70vh);
+    max-width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center 30%;
+    border-radius: var(--kad-radius);
+    border: 6px solid #fff;
+    box-shadow: var(--kad-shadow);
+    transition: transform 0.5s var(--kad-ease);
+}
+.kad-ceo__photo:hover img {
+    transform: translate(-6px, -6px);
+}
+.kad-ceo .kad-section__head {
+    margin-bottom: 1.5rem;
+}
+.kad-ceo__id {
+    padding-left: 1rem;
+    border-left: 4px solid var(--kad-green);
+    margin-bottom: 1.25rem;
+}
+.kad-ceo__name {
+    margin: 0;
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    color: var(--kad-blue-deep);
+}
+.kad-ceo__role {
+    margin: 0.3rem 0 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--kad-green);
+}
+@media (max-width: 767.98px) {
+    .kad-about { padding-bottom: 2rem; }
+    .kad-ceo { padding: 2rem 0 3rem; }
+    .kad-ceo__photo img { height: min(400px, 60vh); }
 }

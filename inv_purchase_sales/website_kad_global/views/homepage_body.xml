@@ -139,7 +139,7 @@
                                  class="kad-photo-stack__main"
                                  loading="lazy"/>
                             <img src="/website_kad_global/static/src/img/about_photo_2.jpg"
-                                 alt="KAD Import and Export"
+                                 alt="Kalkidan Abebaw Derso, Founder and General Manager of KAD Import and Export"
                                  class="kad-photo-stack__inset kad-photo-stack__inset--portrait"
                                  loading="lazy"/>
                         </div>
@@ -192,6 +192,41 @@
                             <h3>Core Values</h3>
                             <p>Integrity, quality assurance, on-time delivery, competitive pricing, and responsible sourcing across every trade we manage.</p>
                         </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MEET OUR GM -->
+        <section id="ceo" class="kad-section kad-ceo">
+            <div class="container-fluid kad-section__inner">
+                <div class="row align-items-center g-5">
+                    <div class="col-md-6 col-lg-5" data-kad-anim="fade-up">
+                        <figure class="kad-ceo__photo">
+                            <img src="/website_kad_global/static/src/img/about_photo_2.jpg"
+                                 alt="Kalkidan Abebaw Derso, Founder and General Manager of KAD Import and Export"
+                                 loading="lazy"/>
+                        </figure>
+                    </div>
+                    <div class="col-md-6 col-lg-7">
+                        <div class="kad-section__head" data-kad-anim="fade-up" data-kad-delay="80">
+                            <p class="kad-kicker">Leadership</p>
+                            <h2>Meet Our GM</h2>
+                        </div>
+                        <div class="kad-ceo__id" data-kad-anim="fade-up" data-kad-delay="140">
+                            <h3 class="kad-ceo__name">Kalkidan Abebaw Derso</h3>
+                            <p class="kad-ceo__role">Founder &amp; GM</p>
+                        </div>
+                        <p class="kad-lead" data-kad-anim="fade-up" data-kad-delay="200">
+                            Kalkidan Abebaw Derso founded KAD Import &amp; Export to connect Ethiopian
+                            agricultural producers with international buyers, and to bring reliable
+                            industrial, construction, and commercial products into Ethiopia.
+                        </p>
+                        <p class="kad-lead" data-kad-anim="fade-up" data-kad-delay="260">
+                            Under her leadership, KAD focuses on quality, transparency, and long-term
+                            partnerships with customers and suppliers across Africa, Asia, Europe,
+                            and the Middle East.
+                        </p>
                     </div>
                 </div>
             </div>
