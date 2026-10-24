@@ -1155,9 +1155,9 @@
                     <input type="hidden" name="form_type" value="quote"/>
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label class="kad-label" for="kad_q_product">Product</label>
+                            <label class="kad-label" for="kad_q_product">Product <span class="kad-required text-danger">*</span></label>
                             <div class="kad-autocomplete">
-                                <input class="kad-input" type="text" id="kad_q_product" name="product" autocomplete="off" required="required" placeholder="e.g. Sesame Seeds"
+                                <input class="kad-input" type="text" id="kad_q_product" name="product" autocomplete="off" required="required" minlength="2" placeholder="e.g. Sesame Seeds"
                                        data-kad-autocomplete="kad_product_list"/>
                                 <ul class="kad-autocomplete__list" id="kad_product_list" role="listbox" hidden="hidden">
                                     <li role="option">Sesame Seeds</li>
@@ -1187,7 +1187,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label class="kad-label" for="kad_q_qty">Quantity</label>
+                            <label class="kad-label" for="kad_q_qty">Quantity <span class="kad-required text-danger">*</span></label>
                             <input class="kad-input" type="text" id="kad_q_qty" name="quantity" required="required" placeholder="e.g. 20 MT"/>
                         </div>
                         <div class="col-md-6">

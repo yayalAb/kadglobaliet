@@ -45,8 +45,8 @@
                             <field name="form_type"/>
                         </group>
                         <group>
-                            <field name="product"/>
-                            <field name="quantity"/>
+                            <field name="product" required="form_type == 'quote'"/>
+                            <field name="quantity" required="form_type == 'quote'"/>
                             <field name="country"/>
                             <field name="port"/>
                         </group>

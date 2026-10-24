@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import re
 
-from odoo import fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class WebsiteRequest(models.Model):
@@ -29,6 +30,15 @@ class WebsiteRequest(models.Model):
         ('cancelled', 'Cancelled'),
     ], string='Status', default='draft', required=True, copy=False)
     sale_order_id = fields.Many2one('sale.order', string='Quotation', readonly=True, copy=False)
+
+    @api.constrains('form_type', 'product', 'quantity')
+    def _check_quote_required_fields(self):
+        for record in self:
+            if record.form_type == 'quote':
+                if not record.product or len(record.product.strip()) < 2:
+                    raise ValidationError(_("Product must be at least 2 characters long for Quote Requests."))
+                if not record.quantity or not record.quantity.strip():
+                    raise ValidationError(_("Quantity is required for Quote Requests."))
 
     def _find_or_create_partner(self):
         self.ensure_one()

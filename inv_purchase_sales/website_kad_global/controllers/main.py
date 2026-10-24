@@ -20,49 +20,56 @@ class KadWebsite(http.Controller):
         country = (post.get('country') or '').strip()
         port = (post.get('port') or '').strip()
 
-        if name and email and (message or product):
-            request.env['website.request'].sudo().create({
-                'name': name,
-                'email': email,
-                'phone': phone,
-                'company': company,
-                'form_type': 'quote' if form_type == 'quote' else 'contact',
-                'product': product,
-                'quantity': quantity,
-                'country': country,
-                'port': port,
-                'message': message,
-            })
+        if form_type == 'quote':
+            is_valid = bool(name and email and len(product) >= 2 and quantity)
+        else:
+            is_valid = bool(name and email and (message or product))
 
-            rows = [
-                ('Form', 'Quote Request' if form_type == 'quote' else 'Contact'),
-                ('Name', name),
-                ('Email', email),
-                ('Phone', phone or 'N/A'),
-                ('Company', company or 'N/A'),
-                ('Product', product),
-                ('Quantity', quantity),
-                ('Country', country),
-                ('Delivery Port', port),
-                ('Message', message or 'N/A'),
-            ]
-            chunks = []
-            for label, value in rows:
-                if value:
-                    chunks.append('<p><strong>%s:</strong> %s</p>' % (escape(label), escape(value)))
-            body_html = Markup(''.join(chunks))
-            email_to = request.env.company.email or 'info@kadglobaltrading.com'
-            subject = (
-                f'KAD Website Quote — {product or name}'
-                if form_type == 'quote'
-                else f'KAD Website Contact — {name}'
-            )
-            request.env['mail.mail'].sudo().create({
-                'subject': subject,
-                'email_from': request.env.company.email_formatted or email_to,
-                'reply_to': email,
-                'email_to': email_to,
-                'body_html': body_html,
-            }).send()
+        if not is_valid:
+            return request.redirect('/#quote' if form_type == 'quote' else '/#contact')
+
+        request.env['website.request'].sudo().create({
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'company': company,
+            'form_type': 'quote' if form_type == 'quote' else 'contact',
+            'product': product,
+            'quantity': quantity,
+            'country': country,
+            'port': port,
+            'message': message,
+        })
+
+        rows = [
+            ('Form', 'Quote Request' if form_type == 'quote' else 'Contact'),
+            ('Name', name),
+            ('Email', email),
+            ('Phone', phone or 'N/A'),
+            ('Company', company or 'N/A'),
+            ('Product', product),
+            ('Quantity', quantity),
+            ('Country', country),
+            ('Delivery Port', port),
+            ('Message', message or 'N/A'),
+        ]
+        chunks = []
+        for label, value in rows:
+            if value:
+                chunks.append('<p><strong>%s:</strong> %s</p>' % (escape(label), escape(value)))
+        body_html = Markup(''.join(chunks))
+        email_to = request.env.company.email or 'info@kadglobaltrading.com'
+        subject = (
+            f'KAD Website Quote — {product or name}'
+            if form_type == 'quote'
+            else f'KAD Website Contact — {name}'
+        )
+        request.env['mail.mail'].sudo().create({
+            'subject': subject,
+            'email_from': request.env.company.email_formatted or email_to,
+            'reply_to': email,
+            'email_to': email_to,
+            'body_html': body_html,
+        }).send()
 
         return request.render('website_kad_global.contact_thanks')
