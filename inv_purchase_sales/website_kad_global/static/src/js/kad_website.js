@@ -7,19 +7,24 @@ function getScrollRoot() {
 }
 
 function scrollToTarget(target, headerOffset = 88) {
-    const root = getScrollRoot();
-    if (!target || !root) {
+    if (!target) {
         return;
     }
-    if (root === document.body || root === document.documentElement || root === document.scrollingElement) {
-        const top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-        window.scrollTo({ top, behavior: "smooth" });
-        return;
-    }
-    const rootRect = root.getBoundingClientRect();
+    const header = document.querySelector("header.o_header_standard") || document.querySelector("header");
+    const offset = header ? header.offsetHeight : headerOffset;
+
     const targetRect = target.getBoundingClientRect();
-    const top = targetRect.top - rootRect.top + root.scrollTop - headerOffset;
-    root.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
+    const top = targetRect.top + currentScroll - offset;
+
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+
+    const wrap = document.getElementById("wrapwrap");
+    if (wrap && wrap.scrollHeight > wrap.clientHeight) {
+        const wrapRect = wrap.getBoundingClientRect();
+        const wrapTop = targetRect.top - wrapRect.top + wrap.scrollTop - offset;
+        wrap.scrollTo({ top: Math.max(0, wrapTop), behavior: "smooth" });
+    }
 }
 
 function animateCount(el, delay = 0) {
@@ -129,8 +134,13 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
     },
 
     _scrollFromAnchor(event, anchor) {
-        const id = anchor.getAttribute("href");
-        if (!id || id === "#" || !id.startsWith("#")) {
+        const href = anchor.getAttribute("href") || "";
+        const hashIndex = href.indexOf("#");
+        if (hashIndex === -1) {
+            return;
+        }
+        const id = href.slice(hashIndex);
+        if (!id || id === "#") {
             return;
         }
         const target = document.querySelector(id);
@@ -139,6 +149,28 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
         }
         event.preventDefault();
         event.stopPropagation();
+
+        // If clicked from a product card, prefill the product in the quote form!
+        const card = anchor.closest(".kad-pcard");
+        if (card && id === "#quote") {
+            const h3 = card.querySelector("h3");
+            const productName = anchor.dataset.product || (h3 ? h3.textContent.trim() : "");
+            if (productName) {
+                const productInput = document.getElementById("kad_q_product");
+                if (productInput) {
+                    productInput.value = productName;
+                    productInput.dispatchEvent(new Event("input", { bubbles: true }));
+                    productInput.dispatchEvent(new Event("change", { bubbles: true }));
+                }
+                const qtyInput = document.getElementById("kad_q_qty");
+                if (qtyInput) {
+                    setTimeout(() => {
+                        try { qtyInput.focus(); } catch (e) {}
+                    }, 600);
+                }
+            }
+        }
+
         scrollToTarget(target);
         if (history.replaceState) {
             history.replaceState(null, "", id);
@@ -167,11 +199,10 @@ publicWidget.registry.KadWebsite = publicWidget.Widget.extend({
         }
         btn.addEventListener("click", (event) => {
             event.preventDefault();
-            const root = getScrollRoot();
-            if (root === document.body || root === document.documentElement || root === document.scrollingElement) {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            } else {
-                root.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            const wrap = document.getElementById("wrapwrap");
+            if (wrap && wrap.scrollHeight > wrap.clientHeight) {
+                wrap.scrollTo({ top: 0, behavior: "smooth" });
             }
         });
     },

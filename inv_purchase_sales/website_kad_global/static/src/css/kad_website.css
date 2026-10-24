@@ -715,7 +715,11 @@ header a.btn-primary {
 }
 
 /* Sections */
-.kad-section { position: relative; padding: 6rem 0; }
+.kad-section {
+    position: relative;
+    padding: 6rem 0;
+    scroll-margin-top: 90px;
+}
 
 .kad-section__inner {
     width: 100%;
