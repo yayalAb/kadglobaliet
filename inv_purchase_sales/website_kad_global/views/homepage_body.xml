@@ -138,9 +138,9 @@
                                  alt="KAD Import and Export warehouse"
                                  class="kad-photo-stack__main"
                                  loading="lazy"/>
-                            <img src="/website_kad_global/static/src/img/about_photo_2.jpg"
-                                 alt="Kalkidan Abebaw Derso, Founder and General Manager of KAD Import and Export"
-                                 class="kad-photo-stack__inset kad-photo-stack__inset--portrait"
+                            <img src="/website_kad_global/static/src/img/handshake.jpg"
+                                 alt="KAD Import and Export business partnership handshake"
+                                 class="kad-photo-stack__inset"
                                  loading="lazy"/>
                         </div>
                     </div>
