@@ -25,6 +25,7 @@
         'reports/report_invoice.xml',
         'reports/manufacturing_order_attachment_report.xml',
         'reports/store_return_attachment_report.xml',
+        'reports/report_logo_watermark.xml',
         # 'reports/report_deliveryslip.xml',
         'views/sale_order_views.xml',
         'views/account_move_views.xml',
