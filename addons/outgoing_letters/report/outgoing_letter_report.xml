@@ -21,7 +21,7 @@
                         <div style="text-align: right; margin-bottom: 12px;">
                             <strong>Date:</strong> <span t-field="o.date"/>
                         </div>
-                        <h3 style="text-align: center; text-decoration: underline; margin-bottom: 16px;" t-field="o.title"/>
+                        <!-- <h3 style="text-align: center; text-decoration: underline; margin-bottom: 16px;" t-field="o.title"/> -->
                         <div t-field="o.content"/>
                     </div>
                 </t>

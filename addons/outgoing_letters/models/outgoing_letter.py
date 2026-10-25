@@ -11,9 +11,10 @@ class OutgoingLetter(models.Model):
     name = fields.Char(
         string='Reference', required=True, copy=False, readonly=True,
         default=lambda self: _('New'), tracking=True)
-    title = fields.Char(string='Title', required=True, tracking=True)
+    title = fields.Char(string='Title', tracking=True)
     content = fields.Html(string='Content')
-    date = fields.Date(string='Date', default=fields.Date.context_today, required=True)
+    date = fields.Date(
+        string='Date', default=fields.Date.context_today, required=True)
     company_id = fields.Many2one(
         'res.company', string='Company', required=True,
         default=lambda self: self.env.company)
@@ -27,11 +28,13 @@ class OutgoingLetter(models.Model):
     def _check_state(self, allowed):
         for letter in self:
             if letter.state not in allowed:
-                raise UserError(_('This action is not allowed for letter "%s" in its current status.', letter.title))
+                raise UserError(
+                    _('This action is not allowed for letter "%s" in its current status.', letter.title))
 
     def _check_group(self, group_xmlid):
         if not self.env.user.has_group(group_xmlid):
-            raise UserError(_('You do not have the rights to perform this action.'))
+            raise UserError(
+                _('You do not have the rights to perform this action.'))
 
     def action_submit(self):
         self._check_group('outgoing_letters.group_outgoing_letter_user')
@@ -57,7 +60,8 @@ class OutgoingLetter(models.Model):
         self.ensure_one()
         self._check_group('outgoing_letters.group_outgoing_letter_user')
         self._check_state(['printable'])
-        self.name = self.env['ir.sequence'].next_by_code('outgoing.letter') or _('New')
+        self.name = self.env['ir.sequence'].next_by_code(
+            'outgoing.letter') or _('New')
         pdf_content, __ = self.env['ir.actions.report']._render_qweb_pdf(
             'outgoing_letters.action_report_outgoing_letter', self.ids)
         attachment = self.env['ir.attachment'].create({
