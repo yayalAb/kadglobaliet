@@ -29,7 +29,7 @@
                             <div t-if="o.approver_signature"
                                  style="display: inline-block; vertical-align: bottom; margin-right: 20px; text-align: center;">
                                 <img t-att-src="image_data_uri(o.approver_signature)"
-                                     style="max-height: 85px; max-width: 190px; object-fit: contain;"
+                                     style="max-height: 85px; max-width: 180px; object-fit: contain;"
                                      alt="Signature"/>
                                 <div t-if="o.approver_name"
                                      style="font-size: 11px; font-weight: 600; color: #222; border-top: 1px dotted #777; padding-top: 3px; margin-top: 3px;">
