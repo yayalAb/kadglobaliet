@@ -6,3 +6,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
+body, .page, .article, .header, .footer {
+  font-family: 'Ebrima', 'Nyala', 'Noto Sans Ethiopic', 'Segoe UI', Arial, sans-serif !important;
+}
