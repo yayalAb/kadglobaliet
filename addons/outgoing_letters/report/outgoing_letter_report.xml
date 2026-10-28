@@ -18,11 +18,31 @@
                 <t t-set="issue_number" t-value="'1'"/>
                 <t t-call="web.external_layout">
                     <div class="page">
+                        <t t-set="comp" t-value="o.company_id or env.company"/>
                         <div style="text-align: right; margin-bottom: 12px;">
                             <strong>Date:</strong> <span t-field="o.date"/>
                         </div>
-                        <!-- <h3 style="text-align: center; text-decoration: underline; margin-bottom: 16px;" t-field="o.title"/> -->
                         <div t-field="o.content"/>
+
+                        <!-- Approved user signature and company stamp right next to / at end of content -->
+                        <div class="clearfix mt-4" style="page-break-inside: avoid; text-align: right; padding-right: 15px;">
+                            <div t-if="o.approver_signature"
+                                 style="display: inline-block; vertical-align: bottom; margin-right: 20px; text-align: center;">
+                                <img t-att-src="image_data_uri(o.approver_signature)"
+                                     style="max-height: 85px; max-width: 190px; object-fit: contain;"
+                                     alt="Signature"/>
+                                <div t-if="o.approver_name"
+                                     style="font-size: 11px; font-weight: 600; color: #222; border-top: 1px dotted #777; padding-top: 3px; margin-top: 3px;">
+                                    <span t-out="o.approver_name"/>
+                                </div>
+                            </div>
+                            <div t-if="comp and comp.company_stamp"
+                                 style="display: inline-block; vertical-align: bottom;">
+                                <img t-att-src="image_data_uri(comp.company_stamp)"
+                                     style="max-height: 175px; max-width: 250px; object-fit: contain;"
+                                     alt="Company Stamp"/>
+                            </div>
+                        </div>
                     </div>
                 </t>
             </t>

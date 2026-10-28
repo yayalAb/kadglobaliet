@@ -13,6 +13,9 @@ class ResCompany(models.Model):
         'ir.sequence', string='Internal Reference Sequence')
     company_name_am = fields.Char(
         string='Company Name (Amharic)',)
+    company_stamp = fields.Binary(
+        string='Company Stamp',
+        help='Company Stamp for the company, used in outgoing letters and reports.')
 
     # New field to store the year manually
     fiscal_year_for_sequence = fields.Char(

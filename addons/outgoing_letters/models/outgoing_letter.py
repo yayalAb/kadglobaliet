@@ -1,4 +1,4 @@
-from odoo import fields, models, _
+from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
 
@@ -24,6 +24,25 @@ class OutgoingLetter(models.Model):
         ('approved', 'Approved'),
         ('printable', 'Printable'),
     ], string='Status', default='draft', required=True, copy=False, tracking=True)
+    approved_by_id = fields.Many2one(
+        'res.users', string='Approved By', readonly=True, copy=False, tracking=True)
+    approver_signature = fields.Binary(
+        string='Approver Signature', compute='_compute_approver_info')
+    approver_name = fields.Char(
+        string='Approver Name', compute='_compute_approver_info')
+
+    @api.depends('approved_by_id', 'state', 'write_uid', 'create_uid')
+    def _compute_approver_info(self):
+        for letter in self:
+            approver = letter.approved_by_id or (letter.state in ('approved', 'printable') and (letter.write_uid or letter.create_uid))
+            letter.approver_name = approver.name if approver else False
+            sig = False
+            if approver:
+                if hasattr(approver, 'sign_signature') and approver.sign_signature:
+                    sig = approver.sign_signature
+                elif hasattr(approver, 'employee_id') and approver.employee_id and hasattr(approver.employee_id, 'emp_signature') and approver.employee_id.emp_signature:
+                    sig = approver.employee_id.emp_signature
+            letter.approver_signature = sig
 
     def _check_state(self, allowed):
         for letter in self:
@@ -44,7 +63,10 @@ class OutgoingLetter(models.Model):
     def action_approve(self):
         self._check_group('outgoing_letters.group_outgoing_letter_approver')
         self._check_state(['submitted'])
-        self.state = 'approved'
+        self.write({
+            'state': 'approved',
+            'approved_by_id': self.env.user.id,
+        })
 
     def action_set_printable(self):
         self._check_group('outgoing_letters.group_outgoing_letter_approver')
@@ -54,7 +76,10 @@ class OutgoingLetter(models.Model):
     def action_reset_to_draft(self):
         self._check_group('outgoing_letters.group_outgoing_letter_approver')
         self._check_state(['submitted', 'approved', 'printable'])
-        self.state = 'draft'
+        self.write({
+            'state': 'draft',
+            'approved_by_id': False,
+        })
 
     def action_print(self):
         self.ensure_one()

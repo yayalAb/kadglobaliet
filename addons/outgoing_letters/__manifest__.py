@@ -10,6 +10,7 @@
         'data/ir_sequence_data.xml',
         'report/outgoing_letter_report.xml',
         'views/outgoing_letter_views.xml',
+        'views/res_company_views.xml',
     ],
     'installable': True,
     'application': True,
