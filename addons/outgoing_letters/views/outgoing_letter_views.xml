@@ -6,9 +6,10 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
-                <field name="title"/>
-                <field name="date"/>
+                <!-- <field name="title"/> -->
                 <field name="approved_by_id" optional="show"/>
+                <field name="date"/>
+                
                 <field name="state" widget="badge"
                        decoration-info="state == 'submitted'"
                        decoration-warning="state == 'approved'"
