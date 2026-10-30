@@ -5,7 +5,8 @@
     <template id="report_logo_watermark" inherit_id="web.external_layout_standard">
         <xpath expr="//t[@t-call='web.address_layout']" position="before">
             <t t-set="wm_company" t-value="o.company_id if o and 'company_id' in o else res_company" />
-            <div t-if="wm_company and wm_company.logo"
+            <div t-if="wm_company and wm_company.logo and not no_watermark"
+                 class="report-watermark-bg"
                  style="position: fixed; top: 10%; left: 10%; width: 80%; height: 80%;
                         z-index: 9999; pointer-events: none;
                         text-align: center;">
