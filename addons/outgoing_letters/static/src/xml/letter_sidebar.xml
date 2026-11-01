@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="outgoing_letters.LetterSidebar">
+        <div class="ol_sidebar">
+
+            <!-- Header -->
+            <div class="ol_sidebar_header">
+                <span class="ol_sidebar_title">📄 Letters</span>
+                <div class="ol_sidebar_actions">
+                    <button class="ol_sidebar_action_btn ol_sidebar_edit_btn"
+                            t-on-click="openDocumentLayout"
+                            title="Configure Document Layout &amp; Style">
+                        <i class="fa fa-pencil"/>
+                    </button>
+                    <button class="ol_sidebar_action_btn ol_sidebar_new_btn"
+                            t-on-click="newLetter"
+                            title="New Letter">＋</button>
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <div t-if="state.loading" class="ol_sidebar_loading">
+                <span>Loading…</span>
+            </div>
+
+            <!-- Empty -->
+            <div t-elif="state.letters.length === 0" class="ol_sidebar_empty">
+                No letters yet
+            </div>
+
+            <!-- Letter list -->
+            <div t-else="" class="ol_sidebar_list">
+                <t t-foreach="state.letters" t-as="letter" t-key="letter.id">
+                    <div class="ol_sidebar_item"
+                         t-att-class="{ ol_sidebar_item_active: letter.id === currentId }"
+                         t-on-click="() => this.openLetter(letter.id)">
+
+                        <div class="ol_sidebar_item_top">
+                            <span class="ol_sidebar_item_ref" t-out="letter.name"/>
+                            <span t-att-class="'ol_badge ol_badge_' + letter.state"
+                                  t-out="stateLabel(letter.state)"/>
+                        </div>
+
+                        <div class="ol_sidebar_item_date" t-out="letter.date or ''"/>
+
+                        <div t-if="snippet(letter.content)"
+                             class="ol_sidebar_item_snippet"
+                             t-out="snippet(letter.content)"/>
+                    </div>
+                </t>
+            </div>
+
+        </div>
+    </t>
+
+</templates>

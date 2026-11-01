@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <!-- ══════════════════════════════════════════
+         Dedicated Paperformat for Outgoing Letters
+         (12mm margins all around, 0 top gap before header)
+    ══════════════════════════════════════════ -->
+    <record id="paperformat_outgoing_letter" model="report.paperformat">
+        <field name="name">Outgoing Letter A4</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">12</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">12</field>
+        <field name="margin_right">12</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         Report Action
+    ══════════════════════════════════════════ -->
     <record id="action_report_outgoing_letter" model="ir.actions.report">
         <field name="name">Outgoing Letter</field>
         <field name="model">outgoing.letter</field>
@@ -7,95 +31,191 @@
         <field name="report_name">outgoing_letters.report_outgoing_letter</field>
         <field name="report_file">outgoing_letters.report_outgoing_letter</field>
         <field name="print_report_name">'Letter - %s' % object.name</field>
+        <field name="paperformat_id" ref="paperformat_outgoing_letter"/>
         <field name="binding_model_id" eval="False"/>
     </record>
 
-    <template id="outgoing_letter_layout_logo_resize" inherit_id="web.external_layout_standard">
-        <xpath expr="//div[contains(@t-attf-class, 'header')]" position="inside">
-            <style t-if="is_outgoing_letter">
-                .header img.o_company_logo_small,
-                .header .o_company_logo,
-                .header img,
-                div[class*="header"] img {
-                    max-height: 110px !important;
-                    max-width: 320px !important;
-                    height: auto !important;
-                    width: auto !important;
-                }
-            </style>
-        </xpath>
-    </template>
-
+    <!-- ══════════════════════════════════════════
+         QWeb Template Adapting to Selected Document Layout
+    ══════════════════════════════════════════ -->
     <template id="report_outgoing_letter">
         <t t-call="web.html_container">
+            <div data-report-margin-top="12" data-report-header-spacing="0" data-report-margin-bottom="20" data-report-margin-left="12" data-report-margin-right="12">
             <t t-foreach="docs" t-as="o">
-                <t t-set="doc_title" t-value="o.title"/>
-                <t t-set="doc_number" t-value="o.name"/>
-                <t t-set="issue_number" t-value="'1'"/>
-                <t t-set="no_watermark" t-value="True"/>
-                <t t-set="is_outgoing_letter" t-value="True"/>
-                <t t-call="web.external_layout">
+                <t t-set="comp" t-value="o.company_id or env.company"/>
+                <t t-set="p_color" t-value="o.primary_color or comp.primary_color or '#1e293b'"/>
+                <t t-set="s_color" t-value="o.secondary_color or comp.secondary_color or '#475569'"/>
+                <t t-set="letter_logo" t-value="o.logo or o.company_logo or comp.logo"/>
+                <t t-set="layout_name" t-value="o.report_layout_id.name or (comp.external_report_layout_id and ('Folder' if 'folder' in (comp.external_report_layout_id.key or '') else 'Boxed' if 'boxed' in (comp.external_report_layout_id.key or '') else 'Bold' if 'bold' in (comp.external_report_layout_id.key or '') else 'Striped' if 'striped' in (comp.external_report_layout_id.key or '') else 'Bubble' if 'bubble' in (comp.external_report_layout_id.key or '') else 'Wave' if 'wave' in (comp.external_report_layout_id.key or '') else 'Light')) or 'Light'"/>
+                <t t-set="header_text" t-value="o.letter_header or o._default_letter_header()"/>
+                <t t-set="footer_text" t-value="o.letter_footer or o._default_letter_footer()"/>
+                <t t-set="doc_font" t-value="comp.font or 'Lato'"/>
+
+                <!-- Background Image URL -->
+                <t t-set="bg_choice" t-value="o.layout_background or comp.layout_background or 'Blank'"/>
+                <t t-set="bg_image_data" t-value="o.layout_background_image or (bg_choice == 'Custom' and comp.layout_background_image)"/>
+                <t t-set="bg_url" t-value="'data:image/png;base64,%s' % bg_image_data.decode('utf-8') if bg_image_data and bg_choice == 'Custom' else ''"/>
+
+                <!-- Clean horizontal accent divider under header (No enclosing box/borders) -->
+                <t t-set="topbar_accent" t-value="'border-bottom: 2px solid ' + str(p_color) + '; padding-bottom: 12px; margin-bottom: 24px;'"/>
+
+                <!-- ════ ARTICLE BODY (Letterhead placed directly inside to guarantee zero top void & 1:1 on-screen match) ════ -->
+                <div class="article o_report_layout_standard" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id"
+                     t-attf-style="position: relative; font-family: '{{ doc_font }}', 'Ebrima', 'Nyala', 'Noto Sans Ethiopic', 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.8; color: #1a1a1a;">
+
                     <style>
-                        /* Larger header logo */
-                        .header img.o_company_logo_small,
-                        .header .o_company_logo,
-                        .header img,
-                        div[class*="header"] img {
-                            max-height: 110px !important;
-                            max-width: 320px !important;
-                            height: auto !important;
-                            width: auto !important;
+                        .article {
+                            padding-top: 0 !important;
+                            margin-top: 0 !important;
                         }
-                        /* Hide fixed watermark overlay if present in standard layout */
-                        div[style*="pointer-events: none"],
-                        div[style*="z-index: 9999"],
-                        .report-watermark-bg {
-                            display: none !important;
+                        .page {
+                            padding-top: 0 !important;
+                            margin-top: 0 !important;
                         }
-                        .page, .page p, .page div, .page span, .page table, .page td, .page th {
-                            font-family: 'Ebrima', 'Nyala', 'Noto Sans Ethiopic', 'Segoe UI', Arial, sans-serif !important;
+                        .ol_pdf_letterhead,
+                        .ol_pdf_letterhead table,
+                        .ol_pdf_letterhead table tr,
+                        .ol_pdf_letterhead table td,
+                        .ol_pdf_letterhead table th {
+                            border-collapse: collapse !important;
+                        }
+                        .ol_pdf_letterhead table {
+                            border: none !important;
+                        }
+                        .ol_pdf_letterhead table td {
+                            border: none !important;
+                            border-top: none !important;
+                            border-bottom: none !important;
+                            border-left: none !important;
+                            border-right: none !important;
+                            outline: none !important;
+                            box-shadow: none !important;
+                            background: transparent !important;
+                        }
+                        .footer {
+                            margin: 0 !important;
+                            padding: 0 !important;
+                        }
+                        .footer table, .footer tr, .footer td {
+                            border: none !important;
                         }
                     </style>
-                    <div class="page" style="font-family: 'Ebrima', 'Nyala', 'Noto Sans Ethiopic', 'Segoe UI', Arial, sans-serif;">
-                        <style>
-                            div[style*="pointer-events: none"],
-                            div[style*="z-index: 9999"],
-                            .report-watermark-bg {
-                                display: none !important;
-                            }
-                            .page, .page p, .page div, .page span, .page table, .page td, .page th {
-                                font-family: 'Ebrima', 'Nyala', 'Noto Sans Ethiopic', 'Segoe UI', Arial, sans-serif !important;
-                            }
-                        </style>
-                        <t t-set="comp" t-value="o.company_id or env.company"/>
-                        <div style="text-align: right; margin-bottom: 12px;">
-                            <strong>REF No:</strong> <span t-field="o.name"/><br/>
-                            <strong>Date:</strong> <span t-field="o.date"/>
-                        </div>
-                        <div t-field="o.content"/>
 
-                        <!-- Approved user signature and company stamp right next to / at end of content -->
-                        <div class="clearfix mt-4" style="page-break-inside: avoid; text-align: right; padding-right: 15px;">
-                            <div t-if="o.approver_signature"
-                                 style="display: inline-block; vertical-align: bottom; margin-right: 20px; text-align: center;">
-                                <img t-att-src="image_data_uri(o.approver_signature)"
-                                     style="max-height: 85px; max-width: 180px; object-fit: contain; border: 0 !important; outline: none !important; box-shadow: none !important;"
-                                     alt="Signature"/>
-                                <div t-if="o.approver_name"
-                                     style="font-size: 11px; font-weight: 600; color: #222; border-top: 1px dotted #777; padding-top: 3px; margin-top: 3px;">
-                                    <span t-out="o.approver_name"/>
+                    <!-- Geometric Watermark Pattern in PDF -->
+                    <t t-if="bg_choice == 'Geometric'">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.12;">
+                            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <pattern id="geom_pat" width="80" height="80" patternUnits="userSpaceOnUse">
+                                        <polygon points="40,4 76,40 40,76 4,40" fill="none" t-att-stroke="p_color" stroke-width="1.2"/>
+                                        <circle cx="40" cy="40" r="18" fill="none" t-att-stroke="p_color" stroke-width="1"/>
+                                        <polygon points="40,16 64,40 40,64 16,40" fill="none" t-att-stroke="s_color" stroke-width="0.8"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="100%" height="100%" fill="url(#geom_pat)"/>
+                            </svg>
+                        </div>
+                    </t>
+
+                    <!-- Custom Background Watermark in PDF -->
+                    <t t-if="bg_choice == 'Custom' and bg_url">
+                        <div style="position: absolute; top: 20%; left: 10%; width: 80%; height: 60%; z-index: -1; text-align: center; pointer-events: none; opacity: 0.12;">
+                            <img t-att-src="bg_url" style="max-width: 100%; max-height: 100%; object-fit: contain;" alt="Watermark"/>
+                        </div>
+                    </t>
+
+                    <!-- Wave Decorative Header Shape -->
+                    <t t-if="layout_name == 'Wave'">
+                        <div style="position: absolute; top: -12mm; left: -12mm; right: -12mm; height: 110px; z-index: 0; pointer-events: none; overflow: hidden;">
+                            <svg preserveAspectRatio="none" viewBox="0 0 1000 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                                <path d="M1000 230.734C937.384 240.621 803.83 250.266 562.185 220.602C311.343 189.809 104.626 201.375 0 211.598V0.5H1000V230.734Z" t-att-fill="p_color" fill-opacity=".12"/>
+                            </svg>
+                        </div>
+                    </t>
+
+                    <div class="page" t-attf-style="position: relative; z-index: 1; font-family: '{{ doc_font }}', 'Ebrima', 'Nyala', 'Noto Sans Ethiopic', 'Segoe UI', Arial, sans-serif;">
+
+                        <!-- ════ ELEGANT 3-COLUMN LETTERHEAD (Pure divs, zero table borders, uses header area properly) ════ -->
+                        <div class="ol_pdf_letterhead" t-attf-style="{{ topbar_accent }} width: 100%; clear: both; overflow: hidden; position: relative; z-index: 1;">
+                            <!-- Col 1: Logo (Left) -->
+                            <div style="float: left; width: 24%; margin: 0; padding: 0;">
+                                <img t-if="letter_logo" t-att-src="image_data_uri(letter_logo)"
+                                     style="max-height: 78px; max-width: 190px; object-fit: contain; display: block; border: 0;"
+                                     alt="Logo"/>
+                            </div>
+
+                            <!-- Col 2: Name & Address (Center, clean spacing, NO box, NO borders) -->
+                            <div style="float: left; width: 49%; margin: 0; padding: 0 16px; box-sizing: border-box;">
+                                <div t-if="header_text" style="font-size: 12.5px; line-height: 1.45; color: #1e293b;">
+                                    <span t-out="header_text"/>
                                 </div>
                             </div>
-                            <div t-if="comp and comp.company_stamp"
-                                 style="display: inline-block; vertical-align: bottom;">
-                                <img t-att-src="image_data_uri(comp.company_stamp)"
-                                     style="max-height: 175px; max-width: 250px; object-fit: contain; border: 0 !important; outline: none !important; box-shadow: none !important;"
-                                     alt="Company Stamp"/>
+
+                            <!-- Col 3: REF No & Date (Right, clean typography, NO box) -->
+                            <div style="float: right; width: 26%; text-align: right; margin: 0; padding: 0;">
+                                <div style="font-size: 13px; line-height: 1.85; color: #1e293b; text-align: right;">
+                                    <strong style="color: #0f172a;">REF No:</strong> <span t-field="o.name"/><br/>
+                                    <strong style="color: #0f172a;">Date:</strong> <span t-field="o.date"/>
+                                </div>
+                            </div>
+                            <div style="clear: both; height: 0; font-size: 0; line-height: 0;"></div>
+                        </div>
+
+                        <!-- Letter Content -->
+                        <div style="font-size: 14px; line-height: 1.8;">
+                            <div t-field="o.content"/>
+                        </div>
+
+                        <!-- Greeting, Signature & Company Stamp (Right-aligned, greeting on right end above sign/stamp) -->
+                        <div class="clearfix mt-4" style="page-break-inside: avoid; text-align: right; padding-right: 15px; margin-top: 28px;">
+                            <!-- Greeting on the right end above sign and stamp -->
+                            <div t-if="o.greeting" style="font-weight: 700; font-size: 14.5px; margin-bottom: 12px; color: #1e293b; text-align: right;">
+                                <span t-out="o.greeting"/>
+                            </div>
+
+                            <div style="display: inline-block; position: relative; vertical-align: bottom;">
+                                <!-- Stamp behind -->
+                                <div t-if="comp and comp.company_stamp"
+                                     style="display: inline-block; vertical-align: bottom;">
+                                    <img t-att-src="image_data_uri(comp.company_stamp)"
+                                         style="max-height: 175px; max-width: 250px; object-fit: contain; border: 0 !important; outline: none !important; box-shadow: none !important;"
+                                         alt="Company Stamp"/>
+                                </div>
+                                <!-- Signature on top, 30% overlap, centered vertically -->
+                                <div t-if="o.approver_signature"
+                                     style="position: absolute; top: 32%; right: 45%; text-align: center; z-index: 10; -webkit-transform: translateY(-20%); transform: translateY(-20%);">
+                                    <img t-att-src="image_data_uri(o.approver_signature)"
+                                         style="max-height: 85px; max-width: 180px; object-fit: contain; border: 0 !important; outline: none !important; box-shadow: none !important;"
+                                         alt="Signature"/>
+                                    <div t-if="o.approver_name"
+                                         style="font-size: 11px; font-weight: 600; color: #222; border-top: 1px dotted #777; padding-top: 3px; margin-top: 3px; white-space: nowrap;">
+                                        <span t-out="o.approver_name"/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
-                </t>
+                </div>
+
+                <!-- ════ REAL WKHTMLTOPDF FOOTER (Clean footer pinned to bottom margin) ════ -->
+                <div class="footer" t-attf-style="margin: 0 !important; padding: 0 !important; font-family: '{{ doc_font }}', 'Ebrima', 'Nyala', 'Noto Sans Ethiopic', 'Segoe UI', Arial, sans-serif; position: relative;">
+                    <!-- Wave Decorative Footer Shape -->
+                    <t t-if="layout_name == 'Wave'">
+                        <div style="position: absolute; bottom: 0; left: -12mm; right: -12mm; height: 75px; z-index: 0; pointer-events: none; overflow: hidden;">
+                            <svg preserveAspectRatio="none" viewBox="0 0 1000 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                                <path d="M427.731 19.757C686.904 51.3469 898.971 38.039 1000 27.6922V180H0V8.20934C66.363 -0.991089 198.347 -8.20218 427.731 19.757Z" t-att-fill="s_color" fill-opacity=".12"/>
+                            </svg>
+                        </div>
+                    </t>
+                    <div t-if="footer_text" style="width: 100%; text-align: center; border-top: 1px solid #cbd5e1; padding-top: 6px; font-size: 11.5px; line-height: 1.6; color: #475569; position: relative; z-index: 1;">
+                        <span t-out="footer_text"/>
+                    </div>
+                </div>
+
             </t>
+            </div>
         </t>
     </template>
+
 </odoo>

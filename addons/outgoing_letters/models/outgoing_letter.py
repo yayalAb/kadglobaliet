@@ -92,16 +92,129 @@ class OutgoingLetter(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'id desc'
 
+    def _default_letter_header(self):
+        company = self.env.company
+        name = company.name or 'Kalkidan Abebaw Derso'
+        partner = company.partner_id
+        
+        addr_parts = []
+        if partner:
+            if partner.street and partner.street.strip().lower() not in ('new', '-'):
+                addr_parts.append(partner.street.strip())
+            if partner.street2:
+                addr_parts.append(partner.street2.strip())
+            city_parts = []
+            if partner.city:
+                city_parts.append(partner.city.strip())
+            if partner.country_id:
+                city_parts.append(partner.country_id.name.strip())
+            if city_parts:
+                addr_parts.append(", ".join(city_parts))
+        if not addr_parts:
+            addr_parts.append("Addis Ababa, Ethiopia")
+        
+        contact_parts = []
+        if partner and (partner.phone or partner.mobile):
+            contact_parts.append(f"Tel: {partner.phone or partner.mobile}")
+        if partner and partner.email:
+            contact_parts.append(partner.email)
+        elif company.email:
+            contact_parts.append(company.email)
+            
+        html = [
+            f'<div style="font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 2px;">{name}</div>',
+            f'<div style="font-size: 11px; color: #475569; line-height: 1.4;">{", ".join(addr_parts)}</div>',
+        ]
+        if contact_parts:
+            html.append(f'<div style="font-size: 11px; color: #64748b; line-height: 1.4; margin-top: 2px;">{" | ".join(contact_parts)}</div>')
+            
+        return "".join(html)
+
+    def _default_letter_footer(self):
+        company = self.env.company
+        email = company.email or 'info@kadglobaltrading.com'
+        website = company.website or 'https://kadglobaltrading.com/'
+        phone = company.phone or '+251-911 357 216/+251 970606160'
+        address = company.street or 'Addis Ababa: Ethiopia'
+        return f'''<div style="border-top: 1.5px solid #222; padding-top: 6px; text-align: center; font-size: 11px; line-height: 1.5; color: #222;">
+    <p style="margin: 0;"><strong>E-mail:</strong> {email} &nbsp;&nbsp;&nbsp; <strong>Website:</strong> <a href="{website}" style="color: #0d6efd; text-decoration: none;">{website}</a></p>
+    <p style="margin: 0;"><strong>Tel:</strong> {phone}</p>
+    <p style="margin: 0;"><strong>Address:</strong> {address}</p>
+</div>'''
+
+    @api.model
+    def _default_report_layout(self):
+        company = self.env.company
+        if company.external_report_layout_id:
+            layout = self.env['report.layout'].search([('view_id.key', '=', company.external_report_layout_id.key)], limit=1)
+            if layout:
+                return layout.id
+        layout = self.env['report.layout'].search([('name', '=', 'Light')], limit=1)
+        if not layout:
+            layout = self.env['report.layout'].search([], limit=1)
+        return layout.id if layout else False
+
     name = fields.Char(
         string='Reference', required=True, copy=False, readonly=True,
         default=lambda self: _('New'), tracking=True)
     title = fields.Char(string='Title', tracking=True)
     content = fields.Html(string='Content')
+    greeting = fields.Char(
+        string='Greeting',
+        default='ከሰላምታ ጋር፣',
+        tracking=True,
+    )
+    letter_header = fields.Html(
+        string='Letter Header',
+        default=_default_letter_header,
+        sanitize=False,
+    )
+    letter_footer = fields.Html(
+        string='Letter Footer',
+        default=_default_letter_footer,
+        sanitize=False,
+    )
     date = fields.Date(
         string='Date', default=fields.Date.context_today, required=True)
     company_id = fields.Many2one(
         'res.company', string='Company', required=True,
         default=lambda self: self.env.company)
+    company_logo = fields.Binary(
+        related='company_id.logo', string='Company Logo', readonly=True)
+    company_name = fields.Char(
+        related='company_id.name', string='Company Name', readonly=True)
+
+    # Document Layout & Styling (per letter, defaults from company)
+    logo = fields.Binary(
+        string='Logo',
+        default=lambda self: self.env.company.logo,
+        attachment=True,
+    )
+    report_layout_id = fields.Many2one(
+        'report.layout',
+        string='Document Layout',
+        default=_default_report_layout,
+        tracking=True,
+    )
+    layout_background = fields.Selection([
+        ('Blank', 'Blank'),
+        ('Geometric', 'Geometric'),
+        ('Custom', 'Custom'),
+    ], string='Layout Background', default=lambda self: self.env.company.layout_background or 'Blank', tracking=True)
+    layout_background_image = fields.Binary(
+        string='Background Image',
+        default=lambda self: self.env.company.layout_background_image,
+        attachment=True,
+    )
+    primary_color = fields.Char(
+        string='Primary Color',
+        default=lambda self: self.env.company.primary_color or '#1e293b',
+    )
+    secondary_color = fields.Char(
+        string='Secondary Color',
+        default=lambda self: self.env.company.secondary_color or '#475569',
+    )
+
     state = fields.Selection([
         ('draft', 'Draft'),
         ('submitted', 'Submitted'),
