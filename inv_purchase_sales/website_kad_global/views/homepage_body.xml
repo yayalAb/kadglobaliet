@@ -197,7 +197,7 @@
             </div>
         </section>
 
-        <!-- MEET OUR GM -->
+        <!-- MEET OUR CEO -->
         <section id="ceo" class="kad-section kad-ceo">
             <div class="container-fluid kad-section__inner">
                 <div class="row align-items-center g-5">
@@ -211,7 +211,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="kad-section__head" data-kad-anim="fade-up" data-kad-delay="80">
                             <p class="kad-kicker">Leadership</p>
-                            <h2>Meet Our GM</h2>
+                            <h2>Meet Our CEO</h2>
                         </div>
                         <div class="kad-ceo__id" data-kad-anim="fade-up" data-kad-delay="140">
                             <h3 class="kad-ceo__name">Kalkidan Abebaw Derso</h3>
