@@ -131,17 +131,6 @@
     transition: background .15s, transform .1s;
 }
 
-.ol_sidebar_edit_btn {
-    background: #334155;
-    color: #e2e8f0;
-    font-size: 11px;
-}
-.ol_sidebar_edit_btn:hover {
-    background: #475569;
-    color: #ffffff;
-    transform: scale(1.08);
-}
-
 .ol_sidebar_new_btn {
     background: #2563eb;
     color: #fff;
@@ -151,6 +140,69 @@
 .ol_sidebar_new_btn:hover {
     background: #1d4ed8;
     transform: scale(1.08);
+}
+
+/* Sidebar Search (Ref, Date, Approver, etc.) */
+.ol_sidebar_search_wrap {
+    padding: 8px 12px;
+    background: #0f172a;
+    border-bottom: 1px solid #334155;
+    flex-shrink: 0;
+}
+
+.ol_sidebar_search_box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 0 9px;
+    transition: border-color .15s, background .15s;
+}
+
+.ol_sidebar_search_box:focus-within {
+    border-color: #3b82f6;
+    background: #0b1120;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.ol_search_icon {
+    font-size: 11px;
+    color: #64748b;
+    margin-right: 7px;
+    flex-shrink: 0;
+}
+
+.ol_sidebar_search_input {
+    width: 100%;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: #f1f5f9 !important;
+    font-size: 11.5px !important;
+    padding: 5px 0 !important;
+    line-height: 1.4 !important;
+}
+
+.ol_sidebar_search_input::placeholder {
+    color: #64748b !important;
+    font-size: 11px !important;
+}
+
+.ol_search_clear_btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 2px;
+    margin-left: 4px;
+}
+.ol_search_clear_btn:hover {
+    color: #f1f5f9;
 }
 
 /* Loading / empty */
@@ -204,10 +256,31 @@
     text-overflow: ellipsis;
 }
 
-.ol_sidebar_item_date {
+.ol_sidebar_item_meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-size: 11px;
     color: #94a3b8;
     margin-top: 3px;
+    gap: 6px;
+}
+
+.ol_sidebar_item_date {
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+.ol_sidebar_item_approver {
+    font-size: 10px;
+    color: #38bdf8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+}
+.ol_sidebar_item_active .ol_sidebar_item_approver {
+    color: #e0f2fe !important;
 }
 
 .ol_sidebar_item_snippet {

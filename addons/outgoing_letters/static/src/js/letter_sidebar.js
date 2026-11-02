@@ -31,7 +31,7 @@ export class LetterSidebarWidget extends Component {
     setup() {
         this.orm           = useService("orm");
         this.actionService = useService("action");
-        this.state         = useState({ letters: [], loading: true });
+        this.state         = useState({ letters: [], loading: true, searchQuery: "" });
 
         onWillStart(() => this._loadLetters());
 
@@ -185,12 +185,48 @@ export class LetterSidebarWidget extends Component {
             this.state.letters = await this.orm.searchRead(
                 "outgoing.letter",
                 [],
-                ["name", "date", "state", "title", "content"],
-                { limit: 30, order: "id desc" }
+                ["name", "date", "state", "title", "content", "approved_by_id"],
+                { limit: 100, order: "id desc" }
             );
         } finally {
             this.state.loading = false;
         }
+    }
+
+    approverName(val) {
+        if (!val) return "";
+        if (Array.isArray(val)) return val[1] || "";
+        if (typeof val === "object") return val.display_name || val.name || "";
+        return String(val);
+    }
+
+    get filteredLetters() {
+        const q = (this.state.searchQuery || "").trim().toLowerCase();
+        if (!q) return this.state.letters;
+        return this.state.letters.filter(l => {
+            const name = (l.name || "").toLowerCase();
+            const date = (l.date || "").toLowerCase();
+            const approver = this.approverName(l.approved_by_id).toLowerCase();
+            const title = (l.title || "").toLowerCase();
+            const snippet = this.snippet(l.content).toLowerCase();
+            const state = (this.stateLabel(l.state) || "").toLowerCase();
+            return (
+                name.includes(q) ||
+                date.includes(q) ||
+                approver.includes(q) ||
+                title.includes(q) ||
+                snippet.includes(q) ||
+                state.includes(q)
+            );
+        });
+    }
+
+    onSearchInput(ev) {
+        this.state.searchQuery = ev.target.value;
+    }
+
+    clearSearch() {
+        this.state.searchQuery = "";
     }
 
     stateLabel(state) {
