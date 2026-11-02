@@ -12,8 +12,8 @@
         <field name="page_height">0</field>
         <field name="page_width">0</field>
         <field name="orientation">Portrait</field>
-        <field name="margin_top">12</field>
-        <field name="margin_bottom">20</field>
+        <field name="margin_top">6</field>
+        <field name="margin_bottom">18</field>
         <field name="margin_left">12</field>
         <field name="margin_right">12</field>
         <field name="header_line" eval="False"/>
@@ -40,14 +40,13 @@
     ══════════════════════════════════════════ -->
     <template id="report_outgoing_letter">
         <t t-call="web.html_container">
-            <div data-report-margin-top="12" data-report-header-spacing="0" data-report-margin-bottom="20" data-report-margin-left="12" data-report-margin-right="12">
+            <div data-report-margin-top="6" data-report-header-spacing="0" data-report-margin-bottom="18" data-report-margin-left="12" data-report-margin-right="12">
             <t t-foreach="docs" t-as="o">
                 <t t-set="comp" t-value="o.company_id or env.company"/>
                 <t t-set="p_color" t-value="o.primary_color or comp.primary_color or '#1e293b'"/>
                 <t t-set="s_color" t-value="o.secondary_color or comp.secondary_color or '#475569'"/>
-                <t t-set="letter_logo" t-value="o.logo or o.company_logo or comp.logo"/>
+                <t t-set="letter_logo" t-value="o._get_cropped_logo()"/>
                 <t t-set="layout_name" t-value="o.report_layout_id.name or (comp.external_report_layout_id and ('Folder' if 'folder' in (comp.external_report_layout_id.key or '') else 'Boxed' if 'boxed' in (comp.external_report_layout_id.key or '') else 'Bold' if 'bold' in (comp.external_report_layout_id.key or '') else 'Striped' if 'striped' in (comp.external_report_layout_id.key or '') else 'Bubble' if 'bubble' in (comp.external_report_layout_id.key or '') else 'Wave' if 'wave' in (comp.external_report_layout_id.key or '') else 'Light')) or 'Light'"/>
-                <t t-set="header_text" t-value="o.letter_header or o._default_letter_header()"/>
                 <t t-set="footer_text" t-value="o.letter_footer or o._default_letter_footer()"/>
                 <t t-set="doc_font" t-value="comp.font or 'Lato'"/>
 
@@ -57,7 +56,7 @@
                 <t t-set="bg_url" t-value="'data:image/png;base64,%s' % bg_image_data.decode('utf-8') if bg_image_data and bg_choice == 'Custom' else ''"/>
 
                 <!-- Clean horizontal accent divider under header (No enclosing box/borders) -->
-                <t t-set="topbar_accent" t-value="'border-bottom: 2px solid ' + str(p_color) + '; padding-bottom: 12px; margin-bottom: 24px;'"/>
+                <t t-set="topbar_accent" t-value="'border-bottom: 2px solid ' + str(p_color) + '; padding-bottom: 6px; margin-bottom: 20px;'"/>
 
                 <!-- ════ ARTICLE BODY (Letterhead placed directly inside to guarantee zero top void & 1:1 on-screen match) ════ -->
                 <div class="article o_report_layout_standard" t-att-data-oe-model="o._name" t-att-data-oe-id="o.id"
@@ -99,6 +98,24 @@
                         .footer table, .footer tr, .footer td {
                             border: none !important;
                         }
+                        .ol_pdf_letterhead .ol_col_name > *:first-child,
+                        .ol_pdf_letterhead .ol_col_name strong:first-child,
+                        .ol_pdf_letterhead .ol_col_name b:first-child,
+                        .ol_pdf_letterhead .ol_col_name p:first-child,
+                        .ol_pdf_letterhead .ol_col_name div:first-child,
+                        .ol_pdf_letterhead .ol_col_name h1,
+                        .ol_pdf_letterhead .ol_col_name h2,
+                        .ol_pdf_letterhead .ol_col_name h3 {
+                            text-transform: uppercase !important;
+                            font-size: 17px !important;
+                            font-weight: 800 !important;
+                            letter-spacing: 0.4px !important;
+                            white-space: nowrap !important;
+                            overflow: visible !important;
+                            color: #0f172a !important;
+                            line-height: 1.25 !important;
+                            margin-bottom: 4px !important;
+                        }
                     </style>
 
                     <!-- Geometric Watermark Pattern in PDF -->
@@ -135,27 +152,50 @@
 
                     <div class="page" t-attf-style="position: relative; z-index: 1; font-family: '{{ doc_font }}', 'Ebrima', 'Nyala', 'Noto Sans Ethiopic', 'Segoe UI', Arial, sans-serif;">
 
-                        <!-- ════ ELEGANT 3-COLUMN LETTERHEAD (Pure divs, zero table borders, uses header area properly) ════ -->
-                        <div class="ol_pdf_letterhead" t-attf-style="{{ topbar_accent }} width: 100%; clear: both; overflow: hidden; position: relative; z-index: 1;">
-                            <!-- Col 1: Logo (Left) -->
-                            <div style="float: left; width: 24%; margin: 0; padding: 0;">
-                                <img t-if="letter_logo" t-att-src="image_data_uri(letter_logo)"
-                                     style="max-height: 78px; max-width: 190px; object-fit: contain; display: block; border: 0;"
-                                     alt="Logo"/>
-                            </div>
-
-                            <!-- Col 2: Name & Address (Center, clean spacing, NO box, NO borders) -->
-                            <div style="float: left; width: 49%; margin: 0; padding: 0 16px; box-sizing: border-box;">
-                                <div t-if="header_text" style="font-size: 12.5px; line-height: 1.45; color: #1e293b;">
-                                    <span t-out="header_text"/>
+                        <!-- ════ ELEGANT 3-COLUMN LETTERHEAD (Unified Logo + Brand Lockup) ════ -->
+                        <div class="ol_pdf_letterhead" t-attf-style="{{ topbar_accent }} width: 100%; clear: both; position: relative; z-index: 1; margin-top: -6px;">
+                            <!-- Left: Unified Logo + Company Name & Address Lockup (Aligned as one cohesive brand mark) -->
+                            <div style="float: left; max-width: 66%;">
+                                <div style="display: table;">
+                                    <div style="display: table-cell; vertical-align: middle; padding-right: 14px;">
+                                        <img t-if="letter_logo" t-att-src="image_data_uri(letter_logo)"
+                                             style="max-height: 90px; max-width: 230px; object-fit: contain; display: block; border: 0;"
+                                             alt="Logo"/>
+                                    </div>
+                                    <div style="display: table-cell; vertical-align: middle;">
+                                        <div style="font-size: 17px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; color: #0f172a; margin-bottom: 3px; line-height: 1.2;">
+                                            <span t-out="(comp.name or 'KALKIDAN ABEBAW DERSO').upper()"/>
+                                        </div>
+                                        <div style="font-size: 11.5px; color: #475569; line-height: 1.4; white-space: nowrap;">
+                                            Addis Abeba, Ethiopia.
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Col 3: REF No & Date (Right, clean typography, NO box) -->
-                            <div style="float: right; width: 26%; text-align: right; margin: 0; padding: 0;">
-                                <div style="font-size: 13px; line-height: 1.85; color: #1e293b; text-align: right;">
-                                    <strong style="color: #0f172a;">REF No:</strong> <span t-field="o.name"/><br/>
-                                    <strong style="color: #0f172a;">Date:</strong> <span t-field="o.date"/>
+                            <!-- Right: Bilingual Ref No & Date (Exact match to sample format) -->
+                            <div style="float: right; width: 220px; margin: 0; padding: 0; text-align: left;">
+                                <!-- Ref No Row -->
+                                <div style="width: 100%; margin-bottom: 8px; clear: both; overflow: hidden;">
+                                    <div style="float: left; width: 52px; line-height: 1.15;">
+                                        <div style="font-weight: 700; font-size: 12.5px; color: #0f172a; line-height: 1.1;">ቁጥር</div>
+                                        <div style="font-size: 11px; font-weight: 600; color: #475569; line-height: 1.1;">Ref.No.</div>
+                                    </div>
+                                    <div style="float: right; width: 162px; border-bottom: 1.5px solid #1e293b; padding-bottom: 1px; font-size: 12.5px; font-weight: 600; color: #0f172a; line-height: 1.5; min-height: 22px;">
+                                        <span t-field="o.name"/>
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <!-- Date Row -->
+                                <div style="width: 100%; clear: both; overflow: hidden;">
+                                    <div style="float: left; width: 52px; line-height: 1.15;">
+                                        <div style="font-weight: 700; font-size: 12.5px; color: #0f172a; line-height: 1.1;">ቀን</div>
+                                        <div style="font-size: 11px; font-weight: 600; color: #475569; line-height: 1.1;">Date</div>
+                                    </div>
+                                    <div style="float: right; width: 162px; border-bottom: 1.5px solid #1e293b; padding-bottom: 1px; font-size: 12.5px; font-weight: 600; color: #0f172a; line-height: 1.5; min-height: 22px;">
+                                        <span t-field="o.date"/>
+                                    </div>
+                                    <div style="clear: both;"></div>
                                 </div>
                             </div>
                             <div style="clear: both; height: 0; font-size: 0; line-height: 0;"></div>
@@ -208,8 +248,17 @@
                             </svg>
                         </div>
                     </t>
-                    <div t-if="footer_text" style="width: 100%; text-align: center; border-top: 1px solid #cbd5e1; padding-top: 6px; font-size: 11.5px; line-height: 1.6; color: #475569; position: relative; z-index: 1;">
-                        <span t-out="footer_text"/>
+                    <div style="width: 100%; position: relative; z-index: 1;">
+                        <t t-if="o.letter_footer">
+                            <span t-field="o.letter_footer"/>
+                        </t>
+                        <t t-else="">
+                            <div style="border-top: 1.5px solid #222; padding-top: 6px; text-align: center; font-size: 11px; line-height: 1.5; color: #222;">
+                                <p style="margin: 0; padding: 0;"><strong>E-mail:</strong> info@kadglobaltrading.com &amp;nbsp;&amp;nbsp;&amp;nbsp; <strong>Website:</strong> https://kadglobaltrading.com/</p>
+                                <p style="margin: 0; padding: 0;"><strong>Tel:</strong> +251-911 357 216/+251 970606160</p>
+                                <p style="margin: 0; padding: 0;"><strong>Address:</strong> Addis Ababa: Ethiopia</p>
+                            </div>
+                        </t>
                     </div>
                 </div>
 

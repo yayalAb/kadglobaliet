@@ -96,34 +96,47 @@
                         <div class="ol_paper_wrap">
                             <div class="ol_paper">
 
-                                <!-- Printing Header (3 Columns: Logo | Name & Address | REF & Date) -->
+                                <!-- Printing Header (Brand Lockup on Left | REF & Date on Right) -->
                                 <div class="ol_paper_topbar">
-                                    <!-- Col 1: Logo -->
-                                    <div class="ol_header_col_logo" title="Click to change or upload logo">
-                                        <div class="ol_logo_wrapper">
-                                            <field name="logo" widget="image" options="{'size': [180, 70]}" readonly="state != 'draft'" nolabel="1" class="ol_company_logo"/>
+                                    <!-- Brand Lockup: Logo + Company Name & Address as ONE cohesive unit -->
+                                    <div class="ol_brand_lockup">
+                                        <!-- Col 1: Logo -->
+                                        <div class="ol_header_col_logo" title="Click to change or upload logo">
+                                            <div class="ol_logo_wrapper">
+                                                <field name="logo" widget="image" options="{'size': [260, 110]}" readonly="state != 'draft'" nolabel="1" class="ol_company_logo"/>
+                                            </div>
+                                        </div>
+
+                                        <!-- Col 2: Name & Address -->
+                                        <div class="ol_header_col_info" title="Click to edit company name &amp; address">
+                                            <div class="ol_header_editor">
+                                                <field name="letter_header" readonly="state != 'draft'" placeholder="Company Name &amp; Address…" nolabel="1"/>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <!-- Col 2: Name & Address -->
-                                    <div class="ol_header_col_info" title="Click to edit company name &amp; address">
-                                        <div class="ol_header_editor">
-                                            <field name="letter_header" readonly="state != 'draft'" placeholder="Company Name &amp; Address…" nolabel="1"/>
-                                        </div>
-                                    </div>
-
-                                    <!-- Col 3: REF No & Date -->
+                                    <!-- Col 3: REF No & Date (Bilingual Ethiopian standard format) -->
                                     <div class="ol_header_col_meta">
-                                        <table class="ol_paper_meta">
-                                            <tr>
-                                                <td class="ol_meta_key">REF No:</td>
-                                                <td><field name="name" readonly="1" nolabel="1"/></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="ol_meta_key">Date:</td>
-                                                <td><field name="date" readonly="state != 'draft'" nolabel="1"/></td>
-                                            </tr>
-                                        </table>
+                                        <div class="ol_meta_bilingual_box">
+                                            <div class="ol_meta_row">
+                                                <div class="ol_meta_lbl">
+                                                    <span class="ol_lbl_am">ቁጥር</span>
+                                                    <span class="ol_lbl_en">Ref.No.</span>
+                                                </div>
+                                                <div class="ol_meta_val">
+                                                    <field name="name" readonly="1" nolabel="1"/>
+                                                </div>
+                                            </div>
+                                            <div class="ol_meta_row">
+                                                <div class="ol_meta_lbl">
+                                                    <span class="ol_lbl_am">ቀን</span>
+                                                    <span class="ol_lbl_en">Date</span>
+                                                </div>
+                                                <div class="ol_meta_val">
+                                                    <field name="date" readonly="state != 'draft'" nolabel="1"/>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -142,17 +155,8 @@
                                            nolabel="1"/>
                                 </div>
 
-                                <!-- Approved by (after approval) -->
-                                <div class="ol_paper_approver" invisible="state in ('draft','submitted')">
-                                    <span class="ol_meta_key">Approved by: </span>
-                                    <field name="approved_by_id" readonly="1" nolabel="1"/>
-                                </div>
-
-                                <!-- Sign + Stamp placeholder -->
-                                <div class="ol_paper_sigstamp">
-                                    <div class="ol_sig_box">Signature</div>
-                                    <div class="ol_stamp_circle">Stamp</div>
-                                </div>
+                                <!-- Hidden on editing form (kept on PDF printout) -->
+                                <field name="approved_by_id" invisible="1"/>
 
                                 <!-- Letter Footer (Editable Footer with contacts & styling) -->
                                 <div class="ol_footer_editor" title="Click to format &amp; edit footer">

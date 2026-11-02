@@ -267,31 +267,51 @@
     color: #1a1a1a;
 }
 
-/* Printing Header (3 Columns: Logo on Left, Name & Address in Center, REF & Date on Right) */
+/* Printing Header Topbar */
 .ol_paper_topbar {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
-    margin-top: 0 !important;
-    margin-bottom: 20px;
+    margin-top: -6px !important;
+    margin-bottom: 20px !important;
     padding-top: 0 !important;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--ol-p-color, #1e293b);
+    padding-bottom: 10px !important;
+    border-bottom: 2px solid var(--ol-p-color, #1e293b) !important;
     position: relative;
     z-index: 1;
 }
 
+/* Brand Lockup: Logo + Company Name & Address unified as ONE aligned block */
+.ol_brand_lockup {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important; /* Perfect vertical centering between logo and company info */
+    gap: 14px !important;           /* 14px gap (under 15px max) */
+    margin: 0 !important;
+    padding: 0 !important;
+    flex: 0 1 auto !important;
+}
+
 .ol_header_col_logo {
-    flex: 0 0 auto;
-    max-width: 190px;
-    display: flex;
-    align-items: center;
+    flex: 0 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.ol_logo_wrapper {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .ol_company_logo,
 .ol_company_logo img {
-    max-height: 75px !important;
-    max-width: 185px !important;
+    max-height: 90px !important;
+    max-width: 240px !important;
     height: auto !important;
     width: auto !important;
     object-fit: contain !important;
@@ -299,21 +319,24 @@
     box-shadow: none !important;
     background: transparent !important;
     padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
 }
 
 .ol_header_col_info {
-    flex: 1 1 auto;
-    margin: 0 20px;
-    padding: 0 10px;
+    flex: 0 1 auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
     border: none !important;
-    min-height: 52px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
 }
 
 .ol_header_editor {
-    width: 100%;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .ol_header_editor .odoo-editor-editable,
@@ -321,12 +344,32 @@
     border: none !important;
     box-shadow: none !important;
     background: transparent !important;
-    padding: 2px 4px !important;
+    padding: 0 !important;
     min-height: 24px;
     font-family: 'Ebrima', 'Nyala', 'Noto Sans Ethiopic', 'Segoe UI', Arial, sans-serif !important;
-    font-size: 12.5px !important;
-    color: #222 !important;
-    line-height: 1.45;
+    font-size: 11.5px !important;
+    color: #475569 !important;
+    line-height: 1.4 !important;
+}
+
+/* Company Name: uppercase, larger & strictly on one line */
+.ol_header_editor .odoo-editor-editable > *:first-child,
+.ol_header_editor .odoo-editor-editable strong:first-child,
+.ol_header_editor .odoo-editor-editable b:first-child,
+.ol_header_editor .odoo-editor-editable p:first-child,
+.ol_header_editor .odoo-editor-editable div:first-child,
+.ol_header_editor .odoo-editor-editable h1,
+.ol_header_editor .odoo-editor-editable h2,
+.ol_header_editor .odoo-editor-editable h3 {
+    text-transform: uppercase !important;
+    font-size: 16.5px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.4px !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    color: #0f172a !important;
+    line-height: 1.25 !important;
+    margin-bottom: 2px !important;
 }
 
 .ol_header_editor .o_field_html {
@@ -336,24 +379,51 @@
 
 .ol_header_col_meta {
     flex: 0 0 auto;
-    min-width: 175px;
+    min-width: 210px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.ol_paper_meta {
-    border-collapse: collapse;
-    font-size: 12.5px;
-    text-align: right;
-    line-height: 1.9;
+/* Bilingual Ethiopian Ref No & Date format */
+.ol_meta_bilingual_box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 200px;
 }
-
-.ol_meta_key {
+.ol_meta_row {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+}
+.ol_meta_lbl {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+    flex-shrink: 0;
+    min-width: 50px;
+    text-align: left;
+}
+.ol_lbl_am {
     font-weight: 700;
-    padding-right: 8px;
-    white-space: nowrap;
-    color: #334155;
+    font-size: 12.5px;
+    color: #0f172a;
+}
+.ol_lbl_en {
+    font-size: 11px;
+    font-weight: 600;
+    color: #475569;
+}
+.ol_meta_val {
+    flex: 1;
+    border-bottom: 1.5px solid #1e293b;
+    padding-bottom: 1px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #0f172a;
+    min-height: 20px;
+    text-align: left;
 }
 
 /* Strip widget chrome inside topbar */
@@ -425,35 +495,11 @@
     color: #1e293b !important;
 }
 
-/* Approved by */
-.ol_paper_approver {
-    margin-top: 6px;
-    font-size: 12px;
-    color: #64748b;
-    text-align: right;
-}
-.ol_paper_approver .o_field_widget,
-.ol_paper_approver .o_field_widget input,
-.ol_paper_approver .o_field_widget span {
-    border: none !important;
-    box-shadow: none !important;
-    background: transparent !important;
-    padding: 0 !important;
-    display: inline !important;
-    font-size: 12px !important;
-    color: #64748b !important;
-}
-
-/* Sign + Stamp placeholder */
+/* Approved by & Sign/Stamp placeholders: Hidden on editing form (kept on PDF printout) */
+.ol_paper_approver,
 .ol_paper_sigstamp {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 12px;
-    min-height: 110px;
-    opacity: 0.35;
-    pointer-events: none;
-    user-select: none;
+    display: none !important;
+}
 }
 .ol_sig_box {
     width: 150px;

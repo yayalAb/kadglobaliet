@@ -1,9 +1,43 @@
 import base64
 import io
-from PIL import Image
+from PIL import Image, ImageChops
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
+
+
+def _clean_logo_image(logo_data):
+    """Trim excess transparent and white whitespace around logo artwork."""
+    if not logo_data:
+        return False
+    try:
+        if isinstance(logo_data, str):
+            raw_bytes = base64.b64decode(logo_data.encode('ascii'))
+        elif isinstance(logo_data, (bytes, bytearray)):
+            try:
+                raw_bytes = base64.b64decode(logo_data)
+            except Exception:
+                raw_bytes = bytes(logo_data)
+        else:
+            return logo_data
+
+        img = Image.open(io.BytesIO(raw_bytes))
+        w, h = img.size
+        if w < 10 or h < 10:
+            return logo_data
+
+        rgb = img.convert('RGB')
+        bg = Image.new('RGB', rgb.size, (255, 255, 255))
+        diff = ImageChops.difference(rgb, bg)
+        bbox = diff.getbbox()
+        if bbox:
+            img = img.crop(bbox)
+
+        out_io = io.BytesIO()
+        img.save(out_io, format="PNG")
+        return base64.b64encode(out_io.getvalue())
+    except Exception:
+        return logo_data
 
 
 def _clean_signature_image(sig_data):
@@ -92,55 +126,66 @@ class OutgoingLetter(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'id desc'
 
+    def _get_cropped_logo(self):
+        raw_logo = self.logo or self.company_logo or self.company_id.logo
+        return _clean_logo_image(raw_logo)
+
     def _default_letter_header(self):
+        from markupsafe import Markup
         company = self.env.company
-        name = company.name or 'Kalkidan Abebaw Derso'
-        partner = company.partner_id
-        
-        addr_parts = []
-        if partner:
-            if partner.street and partner.street.strip().lower() not in ('new', '-'):
-                addr_parts.append(partner.street.strip())
-            if partner.street2:
-                addr_parts.append(partner.street2.strip())
-            city_parts = []
-            if partner.city:
-                city_parts.append(partner.city.strip())
-            if partner.country_id:
-                city_parts.append(partner.country_id.name.strip())
-            if city_parts:
-                addr_parts.append(", ".join(city_parts))
-        if not addr_parts:
-            addr_parts.append("Addis Ababa, Ethiopia")
-        
-        contact_parts = []
-        if partner and (partner.phone or partner.mobile):
-            contact_parts.append(f"Tel: {partner.phone or partner.mobile}")
-        if partner and partner.email:
-            contact_parts.append(partner.email)
-        elif company.email:
-            contact_parts.append(company.email)
-            
-        html = [
-            f'<div style="font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 2px;">{name}</div>',
-            f'<div style="font-size: 11px; color: #475569; line-height: 1.4;">{", ".join(addr_parts)}</div>',
-        ]
-        if contact_parts:
-            html.append(f'<div style="font-size: 11px; color: #64748b; line-height: 1.4; margin-top: 2px;">{" | ".join(contact_parts)}</div>')
-            
-        return "".join(html)
+        name = (company.name or 'KALKIDAN ABEBAW DERSO').upper()
+        return Markup(
+            f'<div style="font-size: 16.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; color: #0f172a; margin-bottom: 2px; line-height: 1.25;">{name}</div>'
+            '<div style="font-size: 11.5px; color: #475569; line-height: 1.4; white-space: nowrap;">Addis Abeba, Ethiopia.</div>'
+        )
+
+    def _clean_letter_header(self):
+        return self._default_letter_header()
 
     def _default_letter_footer(self):
-        company = self.env.company
-        email = company.email or 'info@kadglobaltrading.com'
-        website = company.website or 'https://kadglobaltrading.com/'
-        phone = company.phone or '+251-911 357 216/+251 970606160'
-        address = company.street or 'Addis Ababa: Ethiopia'
-        return f'''<div style="border-top: 1.5px solid #222; padding-top: 6px; text-align: center; font-size: 11px; line-height: 1.5; color: #222;">
-    <p style="margin: 0;"><strong>E-mail:</strong> {email} &nbsp;&nbsp;&nbsp; <strong>Website:</strong> <a href="{website}" style="color: #0d6efd; text-decoration: none;">{website}</a></p>
-    <p style="margin: 0;"><strong>Tel:</strong> {phone}</p>
-    <p style="margin: 0;"><strong>Address:</strong> {address}</p>
-</div>'''
+        from markupsafe import Markup
+        return Markup('''<div style="border-top: 1.5px solid #222; padding-top: 6px; text-align: center; font-size: 11px; line-height: 1.5; color: #222;">
+    <p style="margin: 0;"><strong>E-mail:</strong> info@kadglobaltrading.com &nbsp;&nbsp;&nbsp; <strong>Website:</strong> https://kadglobaltrading.com/</p>
+    <p style="margin: 0;"><strong>Tel:</strong> +251-911 357 216/+251 970606160</p>
+    <p style="margin: 0;"><strong>Address:</strong> Addis Ababa: Ethiopia</p>
+</div>''')
+
+    def init(self):
+        super().init()
+        # Fix company partner street and contacts
+        try:
+            self.env.cr.execute("""
+                UPDATE res_partner p
+                SET street = 'Addis Ababa: Ethiopia',
+                    city = 'Addis Ababa',
+                    phone = '+251-911 357 216/+251 970606160',
+                    email = 'info@kadglobaltrading.com',
+                    website = 'https://kadglobaltrading.com/'
+                FROM res_company c
+                WHERE c.partner_id = p.id;
+            """)
+        except Exception:
+            pass
+        # Cleanly reset letter_header and letter_footer for all existing records
+        footer_html = (
+            '<div style="border-top: 1.5px solid #222; padding-top: 6px; text-align: center; font-size: 11px; line-height: 1.5; color: #222;">'
+            '<p style="margin: 0;"><strong>E-mail:</strong> info@kadglobaltrading.com &nbsp;&nbsp;&nbsp; <strong>Website:</strong> https://kadglobaltrading.com/</p>'
+            '<p style="margin: 0;"><strong>Tel:</strong> +251-911 357 216/+251 970606160</p>'
+            '<p style="margin: 0;"><strong>Address:</strong> Addis Ababa: Ethiopia</p>'
+            '</div>'
+        )
+        header_html = (
+            '<div style="font-size: 16.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; color: #0f172a; margin-bottom: 2px; line-height: 1.25;">KALKIDAN ABEBAW DERSO</div>'
+            '<div style="font-size: 11.5px; color: #475569; line-height: 1.4; white-space: nowrap;">Addis Abeba, Ethiopia.</div>'
+        )
+        try:
+            self.env.cr.execute("""
+                UPDATE outgoing_letter
+                SET letter_header = %s,
+                    letter_footer = %s;
+            """, (header_html, footer_html))
+        except Exception:
+            pass
 
     @api.model
     def _default_report_layout(self):
