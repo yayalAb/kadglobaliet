@@ -333,6 +333,21 @@ class OutgoingLetter(models.Model):
             raise UserError(
                 _('You do not have the rights to perform this action.'))
 
+    @api.model
+    def action_open_last_letter(self):
+        last_letter = self.search([], order='write_date desc, id desc', limit=1)
+        action = {
+            'name': _('Outgoing Letters'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'outgoing.letter',
+            'views': [[False, 'form'], [False, 'list']],
+            'target': 'current',
+            'context': dict(self.env.context),
+        }
+        if last_letter:
+            action['res_id'] = last_letter.id
+        return action
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:

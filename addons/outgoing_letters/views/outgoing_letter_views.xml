@@ -207,11 +207,20 @@
         </field>
     </record>
 
+    <record id="action_outgoing_letter_open_last" model="ir.actions.server">
+        <field name="name">Outgoing Letters</field>
+        <field name="model_id" ref="model_outgoing_letter"/>
+        <field name="state">code</field>
+        <field name="code">
+action = model.action_open_last_letter()
+        </field>
+    </record>
+
     <menuitem id="menu_outgoing_letter_root" name="Outgoing Letters"
               web_icon="outgoing_letters,static/description/icon.png" sequence="50"
               groups="outgoing_letters.group_outgoing_letter_user"/>
     <menuitem id="menu_outgoing_letter" name="Letters"
-              parent="menu_outgoing_letter_root" action="action_outgoing_letter" sequence="10"/>
+              parent="menu_outgoing_letter_root" action="action_outgoing_letter_open_last" sequence="10"/>
 
     <record id="action_outgoing_letter_sequence" model="ir.actions.act_window">
         <field name="name">Letter Sequence</field>
