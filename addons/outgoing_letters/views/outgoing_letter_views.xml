@@ -53,8 +53,13 @@
 
                 <sheet>
                     <!-- Hidden fields Odoo needs -->
-                    <field name="title"      invisible="1"/>
+                    <field name="title" invisible="1"/>
                     <field name="company_id" invisible="1"/>
+                    <field name="report_layout_id" invisible="1"/>
+                    <field name="layout_background" invisible="1"/>
+                    <field name="layout_background_image" invisible="1"/>
+                    <field name="primary_color" invisible="1"/>
+                    <field name="secondary_color" invisible="1"/>
 
                     <!-- ════ App layout: sidebar + paper ════ -->
                     <div class="ol_app_layout">
@@ -62,37 +67,7 @@
                         <!-- 1. LEFT: Recent documents sidebar -->
                         <widget name="letter_sidebar"/>
 
-                        <!-- 2. MIDDLE: Compact Vertical Style Toolbar (uses very little space) -->
-                        <div class="ol_style_toolbar" invisible="state != 'draft'">
-                            <div class="ol_style_toolbar_title">🎨 Style</div>
-                            
-                            <div class="ol_style_group">
-                                <span class="ol_style_label">Layout</span>
-                                <field name="report_layout_id" options="{'no_create': True, 'no_open': True}" class="ol_style_field"/>
-                            </div>
-
-                            <div class="ol_style_group">
-                                <span class="ol_style_label">Background</span>
-                                <field name="layout_background" class="ol_style_field"/>
-                            </div>
-
-                            <div class="ol_style_group" invisible="layout_background != 'Custom'">
-                                <span class="ol_style_label">Watermark</span>
-                                <field name="layout_background_image" widget="image" options="{'size': [50, 24]}" class="ol_style_img"/>
-                            </div>
-
-                            <div class="ol_style_group">
-                                <span class="ol_style_label">Primary Color</span>
-                                <field name="primary_color" widget="color" class="ol_style_color"/>
-                            </div>
-
-                            <div class="ol_style_group">
-                                <span class="ol_style_label">Secondary Color</span>
-                                <field name="secondary_color" widget="color" class="ol_style_color"/>
-                            </div>
-                        </div>
-
-                        <!-- 3. RIGHT: Paper document workspace -->
+                        <!-- 2. Paper document workspace -->
                         <div class="ol_paper_wrap">
                             <div class="ol_paper">
 
