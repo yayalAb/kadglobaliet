@@ -333,6 +333,13 @@ class OutgoingLetter(models.Model):
             raise UserError(
                 _('You do not have the rights to perform this action.'))
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get('name') or vals.get('name') == _('New'):
+                vals['name'] = self.env['ir.sequence'].next_by_code('outgoing.letter') or _('New')
+        return super().create(vals_list)
+
     def action_submit(self):
         self._check_group('outgoing_letters.group_outgoing_letter_user')
         self._check_state(['draft'])
@@ -363,8 +370,9 @@ class OutgoingLetter(models.Model):
         self.ensure_one()
         self._check_group('outgoing_letters.group_outgoing_letter_user')
         self._check_state(['printable'])
-        self.name = self.env['ir.sequence'].next_by_code(
-            'outgoing.letter') or _('New')
+        if not self.name or self.name == _('New'):
+            self.name = self.env['ir.sequence'].next_by_code(
+                'outgoing.letter') or _('New')
         pdf_content, __ = self.env['ir.actions.report']._render_qweb_pdf(
             'outgoing_letters.action_report_outgoing_letter', self.ids)
         attachment = self.env['ir.attachment'].create({

@@ -9,8 +9,8 @@
                 <span class="ol_sidebar_title">📄 Letters</span>
                 <div class="ol_sidebar_actions">
                     <button class="ol_sidebar_action_btn ol_sidebar_edit_btn"
-                            t-on-click="openDocumentLayout"
-                            title="Configure Document Layout &amp; Style">
+                            t-on-click="openCompany"
+                            title="Edit Company &amp; Letterhead">
                         <i class="fa fa-pencil"/>
                     </button>
                     <button class="ol_sidebar_action_btn ol_sidebar_new_btn"

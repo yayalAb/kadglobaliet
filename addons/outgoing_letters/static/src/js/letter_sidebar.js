@@ -217,35 +217,27 @@ export class LetterSidebarWidget extends Component {
         });
     }
 
-    async openDocumentLayout() {
+    async openCompany() {
         if (this.props.record && this.props.record.isDirty) {
             await this.props.record.save();
         }
-        const activeId = this.currentId || false;
-        await this.actionService.doAction(
-            "web.action_base_document_layout_configurator",
-            {
-                additionalContext: {
-                    active_model: "outgoing.letter",
-                    active_id: activeId,
-                    dialog_size: "extra-large",
-                },
-                onClose: async () => {
-                    const reloadId = this.currentId || activeId;
-                    if (reloadId) {
-                        await this.actionService.doAction({
-                            type: "ir.actions.act_window",
-                            res_model: "outgoing.letter",
-                            res_id: reloadId,
-                            views: [[false, "form"]],
-                            target: "current",
-                        });
-                    }
-                    await this._loadLetters();
-                    this._applyLiveStyling();
-                },
-            }
-        );
+        let companyId = this.props.record?.data?.company_id?.[0];
+        if (!companyId) {
+            const companies = await this.orm.search("res.company", [], { limit: 1 });
+            companyId = companies[0] || 1;
+        }
+        await this.actionService.doAction({
+            type: "ir.actions.act_window",
+            name: "Company & Letterhead",
+            res_model: "res.company",
+            res_id: companyId,
+            views: [[false, "form"]],
+            target: "current",
+        });
+    }
+
+    async openDocumentLayout() {
+        return this.openCompany();
     }
 
     async newLetter() {
