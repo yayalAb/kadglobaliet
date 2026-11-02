@@ -103,7 +103,7 @@
                                         <!-- Col 1: Logo -->
                                         <div class="ol_header_col_logo" title="Click to change or upload logo">
                                             <div class="ol_logo_wrapper">
-                                                <field name="logo" widget="image" options="{'size': [260, 110]}" readonly="state != 'draft'" nolabel="1" class="ol_company_logo"/>
+                                                <field name="logo" widget="image" options="{'size': [300, 130]}" readonly="state != 'draft'" nolabel="1" class="ol_company_logo"/>
                                             </div>
                                         </div>
 

@@ -290,6 +290,16 @@
     margin: 0 !important;
     padding: 0 !important;
     flex: 0 1 auto !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.ol_brand_lockup,
+.ol_brand_lockup * {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .ol_header_col_logo {
@@ -310,8 +320,8 @@
 
 .ol_company_logo,
 .ol_company_logo img {
-    max-height: 90px !important;
-    max-width: 240px !important;
+    max-height: 105px !important;
+    max-width: 260px !important;
     height: auto !important;
     width: auto !important;
     object-fit: contain !important;
@@ -383,6 +393,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    padding-top: 18px !important;
 }
 
 /* Bilingual Ethiopian Ref No & Date format */

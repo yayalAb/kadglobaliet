@@ -7,7 +7,7 @@ from odoo.exceptions import UserError
 
 
 def _clean_logo_image(logo_data):
-    """Trim excess transparent and white whitespace around logo artwork."""
+    """Trim excess transparent and white whitespace around logo artwork and remove background noise."""
     if not logo_data:
         return False
     try:
@@ -21,17 +21,40 @@ def _clean_logo_image(logo_data):
         else:
             return logo_data
 
-        img = Image.open(io.BytesIO(raw_bytes))
+        img = Image.open(io.BytesIO(raw_bytes)).convert("RGBA")
         w, h = img.size
         if w < 10 or h < 10:
             return logo_data
 
-        rgb = img.convert('RGB')
-        bg = Image.new('RGB', rgb.size, (255, 255, 255))
-        diff = ImageChops.difference(rgb, bg)
-        bbox = diff.getbbox()
-        if bbox:
-            img = img.crop(bbox)
+        pixels = img.load()
+        # Find tight bounding box of visible artwork (threshold < 235 on any RGB channel or alpha > 30)
+        min_x, min_y, max_x, max_y = w, h, 0, 0
+        has_content = False
+        for y in range(h):
+            for x in range(w):
+                r, g, b, a = pixels[x, y]
+                if a > 30 and (r < 235 or g < 235 or b < 235):
+                    has_content = True
+                    if x < min_x: min_x = x
+                    if x > max_x: max_x = x
+                    if y < min_y: min_y = y
+                    if y > max_y: max_y = y
+
+        if not has_content or min_x > max_x or min_y > max_y:
+            return logo_data
+
+        pad = 4
+        crop_box = (max(0, min_x - pad), max(0, min_y - pad), min(w, max_x + 1 + pad), min(h, max_y + 1 + pad))
+        img = img.crop(crop_box)
+        w, h = img.size
+        pixels = img.load()
+
+        # Convert off-white / near-white background noise to transparent
+        for y in range(h):
+            for x in range(w):
+                r, g, b, a = pixels[x, y]
+                if r > 238 and g > 238 and b > 238:
+                    pixels[x, y] = (255, 255, 255, 0)
 
         out_io = io.BytesIO()
         img.save(out_io, format="PNG")
@@ -184,6 +207,19 @@ class OutgoingLetter(models.Model):
                 SET letter_header = %s,
                     letter_footer = %s;
             """, (header_html, footer_html))
+        except Exception:
+            pass
+        # Tightly crop logos to remove dead canvas margins
+        try:
+            for comp in self.env['res.company'].search([]):
+                if comp.logo:
+                    cropped = _clean_logo_image(comp.logo)
+                    if cropped and cropped != comp.logo:
+                        comp.logo = cropped
+            for letter in self.env['outgoing.letter'].search([('logo', '!=', False)]):
+                cropped = _clean_logo_image(letter.logo)
+                if cropped and cropped != letter.logo:
+                    letter.logo = cropped
         except Exception:
             pass
 
