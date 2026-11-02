@@ -546,7 +546,7 @@
     text-align: right !important;
     display: flex !important;
     justify-content: flex-end !important;
-    padding-right: 25px;
+    padding-right: 120px !important;
     font-weight: 700;
     font-size: 14.5px;
     color: #1e293b;

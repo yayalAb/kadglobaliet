@@ -158,7 +158,8 @@ class OutgoingLetter(models.Model):
         company = self.env.company
         name = (company.name or 'KALKIDAN ABEBAW DERSO').upper()
         return Markup(
-            f'<div style="font-size: 16.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; color: #0f172a; margin-bottom: 2px; line-height: 1.25;">{name}</div>'
+            '<div style="font-size: 19px; font-weight: 800; color: #0f172a; margin-bottom: 2px; line-height: 1.25; white-space: nowrap;">ቃልኪዳን አበባው ደርሶ</div>'
+            f'<div style="font-size: 14.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; color: #0f172a; margin-bottom: 2px; line-height: 1.25;">{name}</div>'
             '<div style="font-size: 11.5px; color: #475569; line-height: 1.4; white-space: nowrap;">Addis Abeba, Ethiopia.</div>'
         )
 
@@ -169,7 +170,7 @@ class OutgoingLetter(models.Model):
         from markupsafe import Markup
         return Markup('''<div style="border-top: 1.5px solid #222; padding-top: 6px; text-align: center; font-size: 11px; line-height: 1.5; color: #222;">
     <p style="margin: 0;"><strong>E-mail:</strong> info@kadglobaltrading.com &nbsp;&nbsp;&nbsp; <strong>Website:</strong> https://kadglobaltrading.com/</p>
-    <p style="margin: 0;"><strong>Tel:</strong> +251-911 357 216/+251 970606160</p>
+    <p style="margin: 0;"><strong>Tel:</strong> +251-911 357 216 / +251 970606160 / +251116687378</p>
     <p style="margin: 0;"><strong>Address:</strong> Addis Ababa: Ethiopia</p>
 </div>''')
 
@@ -181,7 +182,7 @@ class OutgoingLetter(models.Model):
                 UPDATE res_partner p
                 SET street = 'Addis Ababa: Ethiopia',
                     city = 'Addis Ababa',
-                    phone = '+251-911 357 216/+251 970606160',
+                    phone = '+251-911 357 216 / +251 970606160 / +251116687378',
                     email = 'info@kadglobaltrading.com',
                     website = 'https://kadglobaltrading.com/'
                 FROM res_company c
@@ -193,12 +194,13 @@ class OutgoingLetter(models.Model):
         footer_html = (
             '<div style="border-top: 1.5px solid #222; padding-top: 6px; text-align: center; font-size: 11px; line-height: 1.5; color: #222;">'
             '<p style="margin: 0;"><strong>E-mail:</strong> info@kadglobaltrading.com &nbsp;&nbsp;&nbsp; <strong>Website:</strong> https://kadglobaltrading.com/</p>'
-            '<p style="margin: 0;"><strong>Tel:</strong> +251-911 357 216/+251 970606160</p>'
+            '<p style="margin: 0;"><strong>Tel:</strong> +251-911 357 216 / +251 970606160 / +251116687378</p>'
             '<p style="margin: 0;"><strong>Address:</strong> Addis Ababa: Ethiopia</p>'
             '</div>'
         )
         header_html = (
-            '<div style="font-size: 16.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; color: #0f172a; margin-bottom: 2px; line-height: 1.25;">KALKIDAN ABEBAW DERSO</div>'
+            '<div style="font-size: 19px; font-weight: 800; color: #0f172a; margin-bottom: 2px; line-height: 1.25; white-space: nowrap;">ቃልኪዳን አበባው ደርሶ</div>'
+            '<div style="font-size: 14.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; color: #0f172a; margin-bottom: 2px; line-height: 1.25;">KALKIDAN ABEBAW DERSO</div>'
             '<div style="font-size: 11.5px; color: #475569; line-height: 1.4; white-space: nowrap;">Addis Abeba, Ethiopia.</div>'
         )
         try:
