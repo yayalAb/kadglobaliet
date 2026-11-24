@@ -513,13 +513,30 @@
 /* Strip widget chrome inside topbar */
 .ol_paper_topbar .o_field_widget,
 .ol_paper_topbar .o_field_widget input,
-.ol_paper_topbar .o_field_widget span {
+.ol_paper_topbar .o_field_widget span,
+.ol_body_meta_date .o_field_widget,
+.ol_body_meta_date .o_field_widget input,
+.ol_body_meta_date .o_field_widget span {
     border: none !important;
     box-shadow: none !important;
     background: transparent !important;
     padding: 0 !important;
     font-size: 12.5px !important;
     color: #1a1a1a !important;
+}
+
+/* Date block placed in the body area floating on the top right */
+.ol_body_meta_date {
+    float: right;
+    width: 220px;
+    margin-top: 0;
+    margin-bottom: 12px;
+    margin-left: 20px;
+    clear: right;
+}
+.ol_body_meta_date .ol_meta_bilingual_box {
+    margin: 0;
+    width: 100%;
 }
 
 /* Html editor body */

@@ -1,6 +1,6 @@
 {
     'name': 'Outgoing Letters',
-    'version': '18.0.1.35.0',
+    'version': '18.0.1.36.0',
     'category': 'Productivity',
     'summary': 'Register and print outgoing letters with automatic reference numbers',
     'depends': ['base', 'mail', 'web'],
