@@ -252,26 +252,66 @@
 
                 <!-- ════ REAL WKHTMLTOPDF FOOTER (Clean footer pinned to bottom margin) ════ -->
                 <div class="footer" t-attf-style="margin: 0 !important; padding: 0 !important; font-family: '{{ doc_font }}', 'Ebrima', 'Nyala', 'Noto Sans Ethiopic', 'Segoe UI', Arial, sans-serif; position: relative;">
-                    <!-- Wave Decorative Footer Shape -->
-                    <t t-if="layout_name == 'Wave'">
-                        <div style="position: absolute; bottom: 0; left: -12mm; right: -12mm; height: 75px; z-index: 0; pointer-events: none; overflow: hidden;">
-                            <svg preserveAspectRatio="none" viewBox="0 0 1000 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                                <path d="M427.731 19.757C686.904 51.3469 898.971 38.039 1000 27.6922V180H0V8.20934C66.363 -0.991089 198.347 -8.20218 427.731 19.757Z" t-att-fill="s_color" fill-opacity=".12"/>
-                            </svg>
-                        </div>
-                    </t>
-                    <div style="width: 100%; position: relative; z-index: 1;">
-                        <t t-if="o.letter_footer">
-                            <span t-field="o.letter_footer"/>
-                        </t>
-                        <t t-else="">
-                            <div style="border-top: 1.5px solid #222; padding-top: 6px; text-align: center; font-size: 11px; line-height: 1.5; color: #222;">
-                                <p style="margin: 0; padding: 0;"><strong>E-mail:</strong> info@kadglobaltrading.com &amp;nbsp;&amp;nbsp;&amp;nbsp; <strong>Website:</strong> https://kadglobaltrading.com/</p>
-                                <p style="margin: 0; padding: 0;"><strong>Tel:</strong> +251-911 357 216 / +251 970606160 / +251116687378</p>
-                                <p style="margin: 0; padding: 0;"><strong>Address:</strong> Addis Ababa: Ethiopia</p>
+                    <div id="ol_pdf_footer_wrap" style="width: 100%; position: relative;">
+                        <!-- Wave Decorative Footer Shape -->
+                        <t t-if="layout_name == 'Wave'">
+                            <div style="position: absolute; bottom: 0; left: -12mm; right: -12mm; height: 75px; z-index: 0; pointer-events: none; overflow: hidden;">
+                                <svg preserveAspectRatio="none" viewBox="0 0 1000 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                                    <path d="M427.731 19.757C686.904 51.3469 898.971 38.039 1000 27.6922V180H0V8.20934C66.363 -0.991089 198.347 -8.20218 427.731 19.757Z" t-att-fill="s_color" fill-opacity=".12"/>
+                                </svg>
                             </div>
                         </t>
+                        <div style="width: 100%; position: relative; z-index: 1;">
+                            <t t-if="o.letter_footer">
+                                <span t-field="o.letter_footer"/>
+                            </t>
+                            <t t-else="">
+                                <div style="border-top: 1.5px solid #222; padding-top: 6px; text-align: center; font-size: 11px; line-height: 1.5; color: #222;">
+                                    <p style="margin: 0; padding: 0;"><strong>E-mail:</strong> info@kadglobaltrading.com &amp;nbsp;&amp;nbsp;&amp;nbsp; <strong>Website:</strong> https://kadglobaltrading.com/</p>
+                                    <p style="margin: 0; padding: 0;"><strong>Tel:</strong> +251-911 357 216 / +251 970606160 / +251116687378</p>
+                                    <p style="margin: 0; padding: 0;"><strong>Address:</strong> Addis Ababa: Ethiopia</p>
+                                </div>
+                            </t>
+                        </div>
                     </div>
+                    <script type="text/javascript">
+                        (function() {
+                            function checkFooter() {
+                                try {
+                                    var vars = {};
+                                    var x = document.location.search.substring(1).split('&amp;');
+                                    for (var i = 0; i &lt; x.length; i++) {
+                                        var z = x[i].split('=', 2);
+                                        vars[z[0]] = decodeURIComponent(z[1]);
+                                    }
+                                    var page = parseInt(vars['page'] || vars['sitepage'] || 0, 10);
+                                    var topage = parseInt(vars['topage'] || vars['sitepages'] || 0, 10);
+                                    if (topage &gt; 1 &amp;&amp; page &gt; 0 &amp;&amp; page &lt; topage) {
+                                        var el = document.getElementById('ol_pdf_footer_wrap');
+                                        if (el) {
+                                            el.style.display = 'none';
+                                            el.style.visibility = 'hidden';
+                                        }
+                                    }
+                                } catch(e) {}
+                            }
+                            if (typeof window.subst === 'function') {
+                                var _old = window.subst;
+                                window.subst = function() {
+                                    _old();
+                                    checkFooter();
+                                };
+                            }
+                            if (document.readyState === 'loading') {
+                                window.addEventListener('DOMContentLoaded', checkFooter);
+                                window.addEventListener('load', checkFooter);
+                            } else {
+                                checkFooter();
+                            }
+                            setTimeout(checkFooter, 0);
+                            setTimeout(checkFooter, 50);
+                        })();
+                    </script>
                 </div>
 
             </t>
