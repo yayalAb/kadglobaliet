@@ -200,12 +200,22 @@ export class LetterSidebarWidget extends Component {
         return String(val);
     }
 
+    formatDate(d) {
+        if (!d) return "";
+        const parts = d.split("-");
+        if (parts.length === 3) {
+            return `${parts[2]}/${parts[1]}/${parts[0]}`;
+        }
+        return d;
+    }
+
     get filteredLetters() {
         const q = (this.state.searchQuery || "").trim().toLowerCase();
         if (!q) return this.state.letters;
         return this.state.letters.filter(l => {
             const name = (l.name || "").toLowerCase();
             const date = (l.date || "").toLowerCase();
+            const formattedDate = this.formatDate(l.date).toLowerCase();
             const approver = this.approverName(l.approved_by_id).toLowerCase();
             const title = (l.title || "").toLowerCase();
             const snippet = this.snippet(l.content).toLowerCase();
@@ -213,6 +223,7 @@ export class LetterSidebarWidget extends Component {
             return (
                 name.includes(q) ||
                 date.includes(q) ||
+                formattedDate.includes(q) ||
                 approver.includes(q) ||
                 title.includes(q) ||
                 snippet.includes(q) ||

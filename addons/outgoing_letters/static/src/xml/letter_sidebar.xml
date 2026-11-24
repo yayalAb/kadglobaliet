@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="ol_sidebar_item_meta">
-                            <span class="ol_sidebar_item_date" t-out="letter.date or ''"/>
+                            <span class="ol_sidebar_item_date" t-out="formatDate(letter.date)"/>
                             <span t-if="letter.approved_by_id" class="ol_sidebar_item_approver" title="Approved by">
                                 <i class="fa fa-check-circle me-1"/> <t t-out="approverName(letter.approved_by_id)"/>
                             </span>

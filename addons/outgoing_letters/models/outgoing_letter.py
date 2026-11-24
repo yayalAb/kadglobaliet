@@ -160,7 +160,6 @@ class OutgoingLetter(models.Model):
         return Markup(
             '<div style="font-size: 19px; font-weight: 800; color: #0f172a; margin-bottom: 2px; line-height: 1.25; white-space: nowrap;">ቃልኪዳን አበባው ደርሶ</div>'
             f'<div style="font-size: 14.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; color: #0f172a; margin-bottom: 2px; line-height: 1.25;">{name}</div>'
-            '<div style="font-size: 11.5px; color: #475569; line-height: 1.4; white-space: nowrap;">Addis Abeba, Ethiopia.</div>'
         )
 
     def _clean_letter_header(self):
@@ -201,7 +200,6 @@ class OutgoingLetter(models.Model):
         header_html = (
             '<div style="font-size: 19px; font-weight: 800; color: #0f172a; margin-bottom: 2px; line-height: 1.25; white-space: nowrap;">ቃልኪዳን አበባው ደርሶ</div>'
             '<div style="font-size: 14.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; color: #0f172a; margin-bottom: 2px; line-height: 1.25;">KALKIDAN ABEBAW DERSO</div>'
-            '<div style="font-size: 11.5px; color: #475569; line-height: 1.4; white-space: nowrap;">Addis Abeba, Ethiopia.</div>'
         )
         try:
             self.env.cr.execute("""
@@ -209,6 +207,15 @@ class OutgoingLetter(models.Model):
                 SET letter_header = %s,
                     letter_footer = %s;
             """, (header_html, footer_html))
+        except Exception:
+            pass
+        # Set default English locale date format to Day-Month-Year (D-M-Y: %d/%m/%Y)
+        try:
+            self.env.cr.execute("""
+                UPDATE res_lang
+                SET date_format = '%d/%m/%Y'
+                WHERE code = 'en_US';
+            """)
         except Exception:
             pass
         # Tightly crop logos to remove dead canvas margins
