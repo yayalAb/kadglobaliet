@@ -510,10 +510,13 @@
     text-align: left;
 }
 
-/* Strip widget chrome inside topbar */
+/* Strip widget chrome inside topbar and body meta box */
 .ol_paper_topbar .o_field_widget,
 .ol_paper_topbar .o_field_widget input,
 .ol_paper_topbar .o_field_widget span,
+.ol_body_meta_box .o_field_widget,
+.ol_body_meta_box .o_field_widget input,
+.ol_body_meta_box .o_field_widget span,
 .ol_body_meta_date .o_field_widget,
 .ol_body_meta_date .o_field_widget input,
 .ol_body_meta_date .o_field_widget span {
@@ -525,7 +528,8 @@
     color: #1a1a1a !important;
 }
 
-/* Date block placed in the body area floating on the top right */
+/* Meta block (Ref No & Date) placed in the body area floating on the top right */
+.ol_body_meta_box,
 .ol_body_meta_date {
     float: right;
     width: 220px;
@@ -534,6 +538,7 @@
     margin-left: 20px;
     clear: right;
 }
+.ol_body_meta_box .ol_meta_bilingual_box,
 .ol_body_meta_date .ol_meta_bilingual_box {
     margin: 0;
     width: 100%;

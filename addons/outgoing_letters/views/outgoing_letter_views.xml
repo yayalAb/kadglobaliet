@@ -89,9 +89,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <!-- Col 3: REF No (Bilingual Ethiopian standard format) -->
-                                    <div class="ol_header_col_meta">
+                                <!-- Letter body -->
+                                <div class="ol_paper_body">
+                                    <!-- Meta box: Ref No & Date floating on the right below header divider -->
+                                    <div class="ol_body_meta_box">
                                         <div class="ol_meta_bilingual_box">
                                             <div class="ol_meta_row">
                                                 <div class="ol_meta_lbl">
@@ -102,14 +105,6 @@
                                                     <field name="name" readonly="1" nolabel="1"/>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Letter body -->
-                                <div class="ol_paper_body">
-                                    <div class="ol_body_meta_date">
-                                        <div class="ol_meta_bilingual_box">
                                             <div class="ol_meta_row">
                                                 <div class="ol_meta_lbl">
                                                     <span class="ol_lbl_am">ቀን</span>
